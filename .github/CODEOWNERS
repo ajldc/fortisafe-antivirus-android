@@ -1,0 +1,13 @@
+# CODEOWNERS — FortiSafe Antivírus para Android
+#
+# Quem consta aqui é pedido automaticamente como revisor de todo pull request
+# que toque nos caminhos listados. A revisão é obrigatória (CONTRIBUTING.md);
+# para o GitHub exigir a aprovação do code owner antes do merge, a regra de
+# proteção do branch `main` precisa ter "Require review from Code Owners"
+# ligada — este arquivo sozinho só sugere o revisor.
+#
+# Um único dono por enquanto: o repositório tem um mantenedor. Quando houver
+# outros, dividir por caminho (por exemplo, `app/` e `.github/workflows/` com
+# donos diferentes) em vez de manter um curinga só.
+
+* @ajldc

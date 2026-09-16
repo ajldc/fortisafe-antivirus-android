@@ -1,0 +1,222 @@
+FortiSafe Antivírus para Android — NOTICE
+=========================================
+
+Atribuições e licenças. Este arquivo está em português do Brasil; os
+identificadores de licença seguem o padrão SPDX e valem em qualquer idioma.
+(This file is written in Brazilian Portuguese. License identifiers follow
+SPDX and the attributions below are language-independent.)
+
+
+1. Esta obra
+------------
+
+FortiSafe Antivírus para Android
+Copyright (c) 2026 Tascom Global Network LLC — modificações a partir de 2026.
+
+Obra derivada do Hypatia, um verificador de malware em tempo real para
+Android:
+
+- Copyright 2017–2024 Divested Computing Group (DivestOS)
+  Projeto original: https://github.com/Divested-Mobile/Hypatia
+- Copyleft 2025 MaintainTeam Organization
+  Projeto de origem deste repositório: https://github.com/MaintainTeam/Hypatia
+
+Os dois avisos acima são reproduzidos exatamente como o próprio upstream os
+declara no app (recurso app_copyright em app/src/main/res/values/strings.xml,
+gravado no log de inicialização por MainActivity.kt; medido no emulador).
+
+Licença desta obra e do Hypatia: GNU Affero General Public License, versão 3
+ou, a critério de quem recebe, qualquer versão posterior
+(SPDX: AGPL-3.0-or-later), conforme os cabeçalhos dos arquivos-fonte. O texto
+integral está no arquivo LICENSE.
+
+Divergência do próprio upstream, registrada como fato: o app do Hypatia exibe
+"License: GPL-3.0" na tela e no log de inicialização (recurso app_license, no
+mesmo strings.xml), enquanto o arquivo LICENSE do repositório é a GNU
+AGPL-3.0. O FortiSafe segue o LICENSE (AGPL-3.0) e corrigirá o texto exibido
+quando a identidade do app for definida.
+
+Principais autores do histórico git do Hypatia — autores com 5 ou mais
+commits entre 67 autores e 524 commits do branch `upstream-stable`, medidos
+em 16/09/2026 com `git log --format='%an'`; a lista completa é o próprio
+histórico:
+
+  Tad (209 commits), Inhishonor (47), Aliberk Sandıkçı (42), Tavi (27),
+  Anonymous (22), lucasmz (19), Manuel-Senpai (16), SkewedZeppelin (8),
+  Fjuro (8), Petra Mirelli (7), srccrow (6), 張可揚 (5), t1011 (5),
+  Priit Jõerüüt (5) — e, empatados com 4 commits: Renko, cardpuncher, q1011,
+  thereisnoanderson e "thereisno anderson" (duas grafias de autor distintas
+  registradas no git).
+
+Créditos declarados no README do upstream:
+
+- Petra Mirelli — banner/feature graphic do Hypatia e ajustes diversos.
+- @eloitor — trabalho de traduções.
+
+O FortiSafe Antivírus é um trabalho independente. A DivestOS e o MaintainTeam
+não participam dele, não o endossam e não respondem por ele.
+
+
+2. Componentes de terceiros incorporados ao código
+--------------------------------------------------
+
+- app/src/main/java/us/spotco/malwarescanner/RecursiveFileObserver.kt
+  Licença: GPL-3.0-or-later (conforme o README do upstream, que o cita como
+  RecursiveFileObserver.java; o upstream portou o arquivo para Kotlin).
+  Copyright (C) 2012 Bartek Przybylski; Copyright (C) 2015 ownCloud Inc.;
+  Copyright (C) 2016 Daniel Gultsch.
+  Origem: siacs/Conversations, adaptado.
+
+- app/src/main/java/us/spotco/malwarescanner/GPGDetachedSignatureVerifier.java
+  Licença: GPL-2.0-or-later, com a exceção declarada no cabeçalho do próprio
+  arquivo (uso como parte de uma biblioteca de software livre sem restrição).
+  Copyright 2015 Arduino LLC (http://www.arduino.cc/); autor citado no README
+  do upstream: Federico Fissore.
+  Origem: https://github.com/arduino/Arduino/blob/master/arduino-core/src/cc/arduino/contributions/GPGDetachedSignatureVerifier.java
+
+- Ícones: Material Design Icons — Google / Android / AOSP.
+  Licença: Apache-2.0. https://google.github.io/material-design-icons/
+
+- Trechos de app/src/main/java/us/spotco/malwarescanner/Utils.kt creditados a
+  respostas do Stack Overflow, conforme os comentários no próprio código:
+  - isServiceRunning — CC BY-SA 3.0, https://stackoverflow.com/a/5921190
+  - isPackageInstalled — CC BY-SA 3.0, https://stackoverflow.com/a/6758962
+  - isNetworkAvailable — https://stackoverflow.com/a/4239019 (o comentário
+    cita a origem, mas não declara a licença)
+
+
+3. Dependências (Maven), conforme gradle/libs.versions.toml
+-----------------------------------------------------------
+
+Licenças conferidas no repositório oficial de cada projeto em 16/09/2026.
+
+  Artefato                              Versão       Licença (SPDX)
+  ------------------------------------  -----------  -----------------------------
+  commons-io:commons-io                 2.20.0       Apache-2.0
+  org.bouncycastle:bcpg-jdk15to18       1.81         MIT (Bouncy Castle Licence) e Apache-2.0 (*)
+  com.google.guava:guava                33.4.8-jre   Apache-2.0
+  androidx.appcompat:appcompat          1.7.1        Apache-2.0
+  androidx.documentfile:documentfile    1.1.0        Apache-2.0
+  androidx.core:core-ktx                1.17.0       Apache-2.0
+
+  Fontes consultadas:
+  - https://github.com/apache/commons-io/blob/master/LICENSE.txt
+  - https://github.com/bcgit/bc-java/blob/main/LICENSE.md
+  - https://github.com/google/guava/blob/master/LICENSE
+  - https://github.com/androidx/androidx/blob/androidx-main/LICENSE.txt
+
+  (*) O POM oficial do bcpg-jdk15to18 1.81 declara duas licenças: "Bouncy
+      Castle Licence" (tipo MIT) e "Apache Software License, Version 2.0",
+      esta para partes do artefato. Fonte:
+      https://repo1.maven.org/maven2/org/bouncycastle/bcpg-jdk15to18/1.81/bcpg-jdk15to18-1.81.pom
+
+O plugin Kotlin para Android (org.jetbrains.kotlin.android 2.0.21) adiciona a
+biblioteca padrão do Kotlin, licenciada sob Apache-2.0.
+
+Dependências transitivas: listadas no SBOM (CycloneDX) publicado com cada
+release (ver docs/RELEASE.md). Toda dependência nova exige atualização de
+gradle/verification-metadata.xml e desta seção (ver CONTRIBUTING.md).
+
+
+4. Fontes de assinaturas herdadas do upstream — EM REVISÃO
+-----------------------------------------------------------
+
+⚠️ Em revisão — a lista final do FortiSafe, com a licença e a atribuição de
+cada fonte efetivamente usada, será publicada junto das bases de assinaturas
+do FortiSafe. A lista abaixo é a declarada no README do upstream e nos scripts
+em scripts/; ela descreve o Hypatia, não o que o FortiSafe vai distribuir.
+
+Fontes com licença declarada pelo upstream (no README ou nos scripts em
+scripts/):
+
+- ClamAV (Cisco) — GPLv2
+- ESET (https://github.com/eset/malware-ioc) — BSD 2-Clause
+- Nex / @botherder (https://github.com/botherder/targetedthreats) — CC BY-SA 4.0
+- Amnesty International — CC BY 2.0
+- Echap (https://github.com/AssoEchap/stalkerware-indicators) — CC BY 4.0
+- MalwareBazaar, abuse.ch — CC0
+- ThreatFox, abuse.ch (https://threatfox.abuse.ch/) — CC0 (declarada em
+  scripts/0threatfox.sh; termos a confirmar em threatfox.abuse.ch antes do
+  uso comercial)
+
+Fontes referenciadas em scripts/ sem licença declarada pelo upstream
+(termos a confirmar antes de qualquer uso pelo FortiSafe):
+
+- Sanesecurity
+- MalShare (https://malshare.com/)
+- CyberCure (https://api.cybercure.ai/)
+- ThreatView (https://threatview.io/)
+- Indicadores de Covid-19 da Avast (https://github.com/avast/covid-19-ioc)
+
+
+5. Traduções do upstream
+------------------------
+
+Tradutores creditados no README do Hypatia (via Weblate). As traduções
+herdadas permanecem no repositório com esse crédito:
+
+- Africâner: Oswald van Ginkel
+- Árabe: abdelbasset jabrane, ABDO GM
+- Chinês (simplificado): Sdarfeesh, Crit, 大王叫我来巡山
+- Chinês (tradicional): 張可揚
+- Croata: lukapiplica
+- Tcheco: Fjuro
+- Estoniano: Priit Jõerüüt
+- Finlandês: huuhaa, Ricky Tigg
+- Francês: cardpuncher, Jean-Luc Tibaux, Petra Mirelli, thraex
+- Hebraico: elid34
+- Galego: ghose, josé m
+- Alemão: thereisnoanderson, Balthazar1234, Petra Mirelli, Ettore Atalan
+- Grego: Dimitris Vagiakakos
+- Indonésio: Adrien N
+- Italiano: Tommaso Fonda, srccrow, Petra Mirelli, Dark Space
+- Japonês: honyaku
+- Polonês: Marcin Mikołajczak
+- Português (Brasil): lucasmz
+- Português: jontaix, inkhorn, ssantos
+- Romeno: Renko
+- Russo: yurtpage, q1011, Andrey
+- Eslovaco: Pa Di
+- Espanhol: gallegonovato, Manuel-Senpai, Petra Mirelli
+- Turco: cardpuncher
+- Ucraniano: Fqwe1
+
+
+6. Compatibilidade das licenças combinadas nesta obra
+-----------------------------------------------------
+
+Fato de licença, sem parecer jurídico:
+
+- A obra como um todo é AGPL-3.0-or-later.
+- RecursiveFileObserver.kt é GPL-3.0-or-later. A seção 13 da AGPL-3.0
+  ("Remote Network Interaction; Use with the GNU General Public License")
+  permite combinar uma obra coberta pela AGPL-3.0 com uma obra coberta pela
+  GPL-3.0 numa única obra combinada e distribuí-la; cada parte continua regida
+  pela própria licença.
+- GPGDetachedSignatureVerifier.java é GPL-2.0-or-later. A cláusula "ou
+  posterior" permite recebê-lo sob a GPL-3.0, e a partir daí vale o mesmo
+  mecanismo da seção 13 acima. O arquivo traz ainda uma exceção do autor que
+  permite seu uso como parte de uma biblioteca de software livre sem
+  restrição.
+- Apache-2.0 e MIT (dependências e ícones) são compatíveis com a GPL-3.0 e
+  com a AGPL-3.0 na direção usada aqui: código sob essas licenças pode ser
+  incorporado a uma obra AGPL-3.0, mantendo-se os avisos de copyright e de
+  licença de cada componente.
+- ⚠️ Trechos de Utils.kt creditados ao Stack Overflow (seção 2) são
+  CC BY-SA 3.0. A Creative Commons declara compatibilidade unidirecional com
+  a GPLv3 apenas para a CC BY-SA **4.0**; a 3.0 não tem essa declaração.
+  Situação herdada do upstream. Decisão do FortiSafe (16/09/2026): reescrever
+  as três funções (isServiceRunning, isPackageInstalled, isNetworkAvailable)
+  com código próprio, sem o trecho do Stack Overflow, antes da primeira
+  versão publicada — e então remover este item e o da seção 2.
+
+
+7. Avisos
+---------
+
+- ClamAV é da Cisco. A Tascom Global Network LLC, a Divested Computing Group e
+  o MaintainTeam não são afiliados à Cisco nem à ESET.
+- O FortiSafe Antivírus não é patrocinado nem endossado pela Cisco, pela ESET
+  nem por qualquer das fontes de assinaturas citadas.
+- "Hypatia" é o nome do projeto de origem; "FortiSafe" é marca da Tascom
+  Global Network LLC.

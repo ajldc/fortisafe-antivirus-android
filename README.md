@@ -1,156 +1,146 @@
+# FortiSafe Antivírus para Android
+
+🇺🇸 [Read this in English](README.en.md)
+
 > [!WARNING]
-> ### This is a fork of the [original](https://github.com/Divested-Mobile/Hypatia) (and discontinued) app from DivestOS.
+> **Em desenvolvimento. Não publicado. Não há versão para uso.**
+> Este repositório contém o código-fonte de um produto que ainda está sendo
+> construído. Nenhum APK foi distribuído, nenhuma versão está na Google Play e
+> o código, hoje, ainda é o do projeto de origem, sem as mudanças descritas
+> abaixo.
 
-![Banner](./fastlane/metadata/android/en-US/images/featureGraphic.png)
+## O que é
 
-Hypatia
-=======
+O FortiSafe Antivírus para Android é um verificador de apps e arquivos para
+Android, da marca **FortiSafe** (Tascom Global Network LLC). É uma **obra
+derivada do [Hypatia](https://github.com/MaintainTeam/Hypatia)**, mantido pelo
+MaintainTeam e originalmente criado pela DivestOS
+([Divested-Mobile/Hypatia](https://github.com/Divested-Mobile/Hypatia)),
+distribuído sob a **GNU Affero General Public License v3** (AGPL-3.0) — a
+mesma licença deste repositório.
 
-Overview
---------
-Hypatia is the world's first FOSS malware scanner for Android. It is powered by ClamAV style signature databases.
+O histórico git do Hypatia foi preservado. Este repositório não é um módulo
+nem um branch do projeto de origem: é um produto separado, com identidade,
+bases de assinaturas e distribuição próprias.
 
-<!-- [<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png"
-     alt="Get it on F-Droid"
-     height="80">](https://f-droid.org/packages/us.spotco.malwarescanner/) -->
-[<img src="https://gitlab.com/IzzyOnDroid/repo/-/raw/master/assets/IzzyOnDroid.png"
-     alt="Get it on IzzyOnDroid"
-     height="80">](https://apt.izzysoft.de/packages/org.maintainteam.hypatia/)
-[<img src="https://hosted.weblate.org/widget/maintainteam/hypatia/287x66-grey.png"
-     alt="Translation status"
-     height="66">](https://hosted.weblate.org/projects/maintainteam/hypatia/)
+### O que muda em relação ao Hypatia
 
-Features
---------
-- Near zero battery impact: you'll never notice any impact on battery at all
-- Extremely fast: it can scan small files (1MB) in <20ms, and even large files (40MB) in 1000ms.
-- Memory efficient: with the default databases enabled it uses under 120MB.
-- Regular scan: allowing selection of /system, internal storage, external storage, and installed apps
-- Realtime scanner: can detect malware in realtime on write/rename in internal storage
-- Completely offline: Internet is only used to download signature databases, files will never ever leave your device
-- Persistence: will automatically restart on boot/update
-- Tiny codebase: coming in at under 1000 sloc, it can be audited by even someone with basic programming experience
-- Minimal dependencies: the app only uses libraries when necessary
-- Signature databases can be enabled/disabled at the users demand
+| Aspecto | Hypatia (origem) | FortiSafe Antivírus (planejado) |
+|---|---|---|
+| Identidade | `org.maintainteam.hypatia`, nome e ícones do Hypatia | `net.fortisafe.antivirus`, marca FortiSafe |
+| Bases de assinaturas | Geradas e publicadas pelo MaintainTeam | **Geradas e assinadas pelo FortiSafe**, em servidor próprio |
+| Serviço de acessibilidade (`LinkScannerService`) | Presente (verificação de links lendo a tela) | **Removido** |
+| `targetSdk` | 34 | **36** |
+| Distribuição | IzzyOnDroid (o Hypatia original, da DivestOS, esteve no F-Droid) | **Google Play** (prevista) |
 
+Nenhuma dessas mudanças está aplicada ainda. O estado atual do código é o do
+upstream na versão 3.18.
 
-Troubleshooting
-------------------
-- **The app crashes and is very buggy:**
-The first thing to check is if you have extended databases enabled. Extended databases require more RAM (8 GB), and can occasionally cause the app to be very buggy.
-- **Unable to download databases:**
-If this occurs, try tapping the ellipsis in the top right of the main screen and tap `Database server override`. This uses a mirror database in case the main database is down.
-- **There are false positives:**
-This occasionally occurs due to the nature of bloom filters. If you believe there is a false positive, first, rescan. This will sometimes fix the false positive. And if this still returns a false positive, scan the file to [VirusTotal](https://www.virustotal.com/gui/home/upload), and this will tell you if you truly have a false positive or rather some malware. 
+## O que faz — e o que não faz
 
-APK Info & Security
---------------------
+**Faz:**
 
-Both debug, release and nightly versions built by GitHub Actions. You can check checksum notice in Release Actions or/and checksum.txt in releases to compare with Application's
+- Calcula os hashes (MD5, SHA-1 e SHA-256) de apps instalados e de arquivos e
+  compara com bases de assinaturas de malware **conhecido**, armazenadas em
+  Bloom filters.
+- Verifica, sob demanda, os apps instalados e o armazenamento (interno,
+  externo e `/system`); verifica arquivos compartilhados com o app; e, com o
+  serviço em tempo real ligado, verifica arquivos gravados ou renomeados no
+  armazenamento interno.
+- Baixa as bases por HTTPS e confere a assinatura GPG destacada antes de usar.
+- Funciona sem enviar arquivos para fora do aparelho: a rede é usada só para
+  baixar as bases.
 
-This is the SHA fingerprint of Hypatia's signing key to verify downloaded APKs which are signed by us.
+**Não faz:**
+
+- **Não detecta o que não está nas bases.** A detecção é por hash de arquivo
+  conhecido. Uma ameaça nova, ou uma variante com um byte diferente, não é
+  reconhecida.
+- **Pode dar falso positivo.** Bloom filter é uma estrutura probabilística:
+  por natureza, pode apontar como conhecido um arquivo que não está na base.
+- **Não descompacta arquivos** (ZIP, conteúdo interno de APK etc.): o hash é
+  do arquivo como está.
+- **Não verifica automaticamente um app no instante em que é instalado.** No
+  código atual, o receptor de eventos de instalação existe, mas a chamada de
+  verificação está desativada; apps são verificados sob demanda.
+- **Não faz análise de comportamento nem heurística.** Não observa o que os
+  apps fazem.
+- **Não faz proteção web** (filtro de sites, links ou DNS) e não usa
+  `VpnService`.
+- **Não substitui bom senso.** Instalar apps só de fontes confiáveis, manter
+  o Android atualizado e desconfiar de links continuam sendo a proteção
+  principal.
+
+O app **não foi avaliado por nenhum laboratório independente**. Não há
+resultado de AV-TEST, AV-Comparatives ou similar para este produto.
+
+## Como compilar
+
+Requisitos confirmados pela CI deste repositório em 16/09/2026 (run do
+commit `9bafbf2` em `ubuntu-latest`: build de debug, lint e testes em 3 min
+41 s — ver a aba *Actions*):
+
+- **JDK 17** (o build declara `sourceCompatibility 17`; JDKs mais antigos não
+  compilam o projeto).
+- **Android SDK** com a plataforma **36** (`compileSdkVersion 36`).
+- O Gradle Wrapper incluído no repositório (`./gradlew`).
+
+```bash
+export JAVA_HOME=/caminho/para/jdk-17
+export ANDROID_HOME=/caminho/para/android-sdk
+./gradlew assembleDebug
 ```
-1B:00:8D:64:BB:95:AB:47:74:D6:8B:87:F2:2B:8B:E9:A2:72:F4:92:4D:F5:20:29:D7:E6:18:38:35:D9:18:CC
-```
 
-Technical Details
-------------------
-- Signature databases are serialized Guava BloomFilter object format
-- Signature databases will not be redownloaded if the file hasn't changed on the server (304 not modified)
-- Signatures are stored using BloomFilters for O(k) lookup
-- Files have their MD5/SHA-1/SHA-256 hashes calculated in one pass
-- Realtime scanner is multithreaded and will use half of the device's core count for scanning multiple files asynchronously
-- Realtime scanning powered by a recursive FileObserver
+O APK de depuração sai em `app/build/outputs/apk/debug/`.
 
-Permissions
------------------
-- `ACCESS_NETWORK_STATE`: Checks if a network is available before updating databases.
-- `FOREGROUND_SERVICE` and `FOREGROUND_SERVICE_SPECIAL_USE`: Used for realtime scanning.
-- `INTERNET`: Download and update databases.
-- `MANAGE_EXTERNAL_STORAGE`: Used for reading malicious files for scanning, and deleting infected files.
-- `WRITE_EXTERNAL_STORAGE` and `READ_EXTERNAL_STORAGE`: Used for scanning and removing infected files on older Android versions.
-- `QUERY_ALL_PACKAGES`: Used for scanning malicious apps.
-- `RECEIVE_BOOT_COMPLETED`: Restart the app on reboot.
-- `REQUEST_DELETE_PACKAGES`: Used for removing infected apps.
-- `POST_NOTIFICATIONS`: Notifications.
-- `WAKE_LOCK`: Keeps phone awake while scanning to prevent the process from being killed.
-- `ACCESIBILITY_SERVICE`: Used to allow the link scanner to read the screen and check for malicious domains.
-- `DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION`: Required for receiver declarations in Android.
+O projeto usa **verificação estrita de dependências**
+(`org.gradle.dependency.verification=strict`, com as somas em
+`gradle/verification-metadata.xml`). Ao sincronizar no Android Studio, o
+upstream recomenda marcar temporariamente os artefatos de javadoc e sources
+como confiáveis:
 
-Building
------
-Building the app is simliar to most android apps, but if you would like to sync the app in Android Studio, you might need to add the following to [metadata-verification.xml](https://github.com/MaintainTeam/Hypatia/blob/stable/gradle/verification-metadata.xml):
 ```xml
-      <trusted-artifacts>
-         <trust file=".*-javadoc[.]jar" regex="true"/>
-         <trust file=".*-sources[.]jar" regex="true"/>
-      </trusted-artifacts>
+<trusted-artifacts>
+   <trust file=".*-javadoc[.]jar" regex="true"/>
+   <trust file=".*-sources[.]jar" regex="true"/>
+</trusted-artifacts>
 ```
 
-Planned Updates
-----------------
-In order to view the immediate roadmap, please check out the [milestones](https://github.com/MaintainTeam/Hypatia/milestones). From here, you can gauge the time untill the next release. 😀
-- Option to scan on access
-- Scan newly installed/updated apps
-- Option to let 3rd-party apps invoke scans
-- Automatic database updates
-- Database sanity checks
-- Testing
-- Better GUI
-- Translations
-- Scanning entire system using root (low priority)
+## Branches e upstream
 
-Goals
------
-- Be fast
-- Don't eat batteries
-- Use minimal permissions
-- Use libraries only when necessary
+| Branch / remote | Função |
+|---|---|
+| `main` | O produto. Recebe mudanças **só por pull request**. |
+| `upstream-stable` | Espelho do branch `stable` do `MaintainTeam/Hypatia`. Atualizado só por *fast-forward*; **nunca recebe commit nosso**. |
+| remote `upstream` | `https://github.com/MaintainTeam/Hypatia.git`. Só leitura na prática: **nunca fazemos push para lá**. |
 
-Credits
--------
-- ClamAV for the databases (GPLv2)
-- ESET for extra databases (BSD 2-Clause)
-- Nex (@botherder) for extra databases (CC BY-SA 4.0)
-- Amnesty International for extra databases (CC BY 2.0)
-- Echap for extra databases (CC BY 4.0)
-- MalwareBazaar for extra databases (CC0)
-- RecursiveFileObserver.java (GPL-3.0-or-later): Daniel Gultsch, ownCloud Inc., Bartek Przybylski
-- GPGDetachedSignatureVerifier.java (GPL-2.0-or-later): Federico Fissore, Arduino LLC
-- Petra Mirelli for the app banner/feature graphic and various tweaks.
-- @eloitor: Translations work
-- Icons: Google/Android/AOSP, License: Apache 2.0, https://google.github.io/material-design-icons/
+O procedimento de sincronização e a política do que **não** trazer do upstream
+estão em [`docs/UPSTREAM.md`](docs/UPSTREAM.md).
 
-Translations
-------------
-- Afrikaans: Oswald van Ginkel
-- Arabic: abdelbasset jabrane, ABDO GM
-- Chinese (Simplified): Sdarfeesh, Crit, 大王叫我来巡山
-- Chinese (Traditional Han script): 張可揚
-- Croatian: lukapiplica
-- Czech: Fjuro
-- Estonian: Priit Jõerüüt
-- Finnish: huuhaa, Ricky Tigg
-- French: cardpuncher, Jean-Luc Tibaux, Petra Mirelli, thraex
-- Hebrew: elid34
-- Galician: ghose, josé m
-- German: thereisnoanderson, Balthazar1234, Petra Mirelli, Ettore Atalan
-- Greek: Dimitris Vagiakakos
-- Indonesian: Adrien N
-- Italian: Tommaso Fonda, srccrow, Petra Mirelli, Dark Space
-- Japanese: honyaku
-- Polish: Marcin Mikołajczak
-- Portuguese (Brazil): lucasmz
-- Portuguese: jontaix, inkhorn, ssantos
-- Romanian: Renko
-- Russian: yurtpage, q1011, Andrey
-- Slovak: Pa Di
-- Spanish: gallegonovato, Manuel-Senpai, Petra Mirelli
-- Turkish: cardpuncher
-- Ukrainian: Fqwe1
+## Como contribuir e como reportar uma vulnerabilidade
 
-Notices
--------
-- Divested Computing Group is not affiliated with Cisco or ESET
-- MaintainTeam is not affiliated with Cisco or ESET
-- Hypatia is not sponsored or endorsed by Cisco or ESET
+- Contribuições: leia [`CONTRIBUTING.md`](CONTRIBUTING.md) — fluxo por pull
+  request, Conventional Commits, DCO e o que é proibido no repositório.
+- Vulnerabilidades: **não abra issue pública**. Siga
+  [`SECURITY.md`](SECURITY.md).
+- Política de versões e de releases: [`docs/RELEASE.md`](docs/RELEASE.md).
+
+## Licença e atribuições
+
+- Código: **GNU Affero General Public License, versão 3 ou posterior**
+  (`AGPL-3.0-or-later`). Texto completo em [`LICENSE`](LICENSE).
+- Obra derivada do Hypatia — Copyright 2017–2024 Divested Computing Group;
+  Copyleft 2025 MaintainTeam Organization (aviso reproduzido como o próprio
+  upstream o declara no app). Modificações a partir de 2026: Copyright © 2026
+  Tascom Global Network LLC.
+- Componentes de terceiros, dependências, fontes de assinaturas e tradutores
+  do upstream: [`NOTICE`](NOTICE).
+- ClamAV é da Cisco. A Tascom Global Network LLC, a DivestOS e o MaintainTeam
+  **não são afiliados** à Cisco nem à ESET, e este produto não é patrocinado
+  nem endossado por elas.
+
+---
+
+**Identificadores.** `applicationId` planejado: `net.fortisafe.antivirus`
+(ainda não aplicado). ID atual, herdado do upstream: `org.maintainteam.hypatia`
+(namespace `us.spotco.malwarescanner`), versão 3.18.
