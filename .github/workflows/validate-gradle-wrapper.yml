@@ -1,42 +1,74 @@
+# FortiSafe Antivírus — derivado do Hypatia. Este workflow constrói e publica
+# APENAS neste repositório; nunca no upstream.
+#
+# Valida que todo gradle-wrapper.jar do repositório é um jar oficial publicado
+# pelo Gradle (SHA-256 comparado com o de todas as releases, inclusive nomes
+# homoglifos de "gradle-wrapper.jar"). Protege contra PR "atualiza o Gradle"
+# que troca o jar por um binário adulterado. Documentação lida em 16/09/2026:
+# https://github.com/gradle/actions/blob/main/docs/wrapper-validation.md
+#
+# Fato medido em 16/09/2026: o gradle/wrapper/gradle-wrapper.jar deste
+# repositório tem SHA-256
+# 498495120a03b9a6ab5d155f5de3c8f0d986a449153702fb80fc80e134484f17, que é o
+# jar oficial do Gradle 8.9. O gradle-wrapper.properties aponta para a
+# distribuição 8.13 — o jar do wrapper não precisa ser da mesma versão da
+# distribuição, e a validação aceita qualquer release oficial. Não é problema.
+#
+# Mesmos gatilhos do CI; `permissions: contents: read`; action fixada por SHA.
+
 name: Validate Gradle Wrapper
 
 on:
-  workflow_dispatch:
-  pull_request:
-    branches:
-      - dev
-      - master
-      - extended
-      - stable
-      - '**-feature-**'
-    paths-ignore:
-      - 'README.md'
-      - 'doc/**'
-      - 'fastlane/**'
-      - 'assets/**'
-      - '.github/**/*.md'
-      - '.github/FUNDING.yml'
-      - '.github/ISSUE_TEMPLATE/**'
   push:
     branches:
-      - dev
-      - master
-      - extended
-      - stable
-      - '**-feature-**'
+      - main
+      - 'feature/**'
     paths-ignore:
-      - 'README.md'
-      - 'doc/**'
+      - '**.md'
+      - 'docs/**'
       - 'fastlane/**'
-      - 'assets/**'
-      - '.github/**/*.md'
+      - 'graphics/**'
+      - 'LICENSE'
+      - 'NOTICE'
+      - '.gitignore'
+      - '.github/CODEOWNERS'
+      - '.github/dependabot.yml'
       - '.github/FUNDING.yml'
       - '.github/ISSUE_TEMPLATE/**'
+  pull_request:
+    branches:
+      - main
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+      - 'fastlane/**'
+      - 'graphics/**'
+      - 'LICENSE'
+      - 'NOTICE'
+      - '.gitignore'
+      - '.github/CODEOWNERS'
+      - '.github/dependabot.yml'
+      - '.github/FUNDING.yml'
+      - '.github/ISSUE_TEMPLATE/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   validation:
-    name: "Validation"
+    name: Validação do gradle-wrapper.jar
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v6
-      - uses: gradle/actions/wrapper-validation@v5
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Validar checksums do Gradle Wrapper
+        uses: gradle/actions/wrapper-validation@9c971963bec38e04b3d30dcc455b5382be2fdbfb # v6.3.0

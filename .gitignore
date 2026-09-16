@@ -12,3 +12,23 @@
 /build
 /captures
 .externalNativeBuild
+
+# --- Material de assinatura / chave privada: NUNCA versionar (FortiSafe, 16/09/2026) ---
+# As chaves de debug herdadas do Hypatia (debugkey.pk8 / debugkey.x509.pem) foram
+# removidas do repositório. A assinatura de produção será feita pelo Play App
+# Signing, com a chave de upload guardada fora do repositório (GitHub Environment).
+# Antes de ignorar *.pem foi conferido (16/09/2026) que não existe .pem/.asc/.crt
+# em app/. Se um dia o app precisar de um certificado PÚBLICO .pem versionado,
+# liberar só aquele arquivo com uma regra "!caminho/arquivo.pem" logo abaixo.
+# Os keyrings públicos gradle/verification-keyring.{gpg,keys} não são afetados.
+*.jks
+*.keystore
+*.pk8
+*.pem
+*.p12
+*.pfx
+keystore.properties
+signing.properties
+
+# Bytecode do Python gerado ao executar/compilar scripts/*.py localmente.
+__pycache__/

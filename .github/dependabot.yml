@@ -1,0 +1,40 @@
+# Dependabot — atualizações semanais de GitHub Actions e de dependências Gradle.
+#
+# GitHub Actions: as actions dos workflows são fixadas por SHA completo do
+# commit da tag, com a versão em comentário (`# vX.Y.Z`). O Dependabot atualiza
+# o SHA e o comentário juntos — manter o comentário é o que permite ler qual
+# versão está fixada.
+#
+# ⚠️ Gradle — leia antes de aprovar um PR do Dependabot:
+# Este repositório usa verificação ESTRITA de dependências
+# (`org.gradle.dependency.verification=strict` em gradle.properties). Toda
+# atualização de dependência ou de plugin Gradle exige atualizar
+# gradle/verification-metadata.xml com os checksums dos novos artefatos, e o
+# Dependabot NÃO faz isso. O PR dele vai falhar no CI até alguém, com o SDK
+# Android instalado, regenerar os metadados (documentação do Gradle:
+# https://docs.gradle.org/current/userguide/dependency_verification.html —
+# por exemplo `./gradlew --write-verification-metadata sha256 help`), CONFERIR
+# o diff (o comando confia no que o repositório remoto entregou naquele
+# momento) e commitar no mesmo PR. Sem isso, o PR não pode entrar.
+#
+# Observação: o Dependabot executa em runners do GitHub Actions. Enquanto as
+# Actions deste repositório estiverem desligadas, as atualizações podem não
+# rodar; voltam a rodar quando forem religadas.
+
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 3
+    commit-message:
+      prefix: "chore(ci)"
+
+  - package-ecosystem: gradle
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 3
+    commit-message:
+      prefix: "chore(deps)"

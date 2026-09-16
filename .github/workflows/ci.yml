@@ -1,65 +1,134 @@
+# FortiSafe Antivírus — derivado do Hypatia. Este workflow constrói e publica
+# APENAS neste repositório; nunca no upstream.
+#
+# CI de integração: build de debug, lint, testes de unidade (JVM), SBOM e
+# checksums. Não assina nada, não cria release, não toca em outro repositório.
+#
+# Memória do sistema (por que está assim — 16/09/2026):
+# - `permissions: contents: read` no nível do workflow. O arquivo herdado do
+#   upstream dava ao token permissão total de escrita em tudo; nenhum passo
+#   daqui escreve no repositório.
+# - Toda action é fixada pelo SHA completo do commit da tag, com a versão em
+#   comentário (`# vX.Y.Z`). Tag é mutável; SHA não. O Dependabot
+#   (.github/dependabot.yml) atualiza SHA e comentário juntos.
+# - `persist-credentials: false` no checkout: o build executa plugins Gradle
+#   (código de terceiros) e não precisa de token git; assim nenhum token fica
+#   acessível no workspace durante o build.
+# - `-DskipFormatKtlint`, herdado do upstream, foi REMOVIDO: não existe plugin
+#   ktlint nem leitura dessa propriedade em nenhum arquivo de build deste
+#   repositório (conferido em 16/09/2026 com grep em todo o repo). Era ruído.
+# - `upstream-stable` nunca dispara este workflow: é espelho do upstream e não
+#   recebe commit nosso.
+# - Armadilha conhecida: `paths-ignore` + "status check obrigatório" na
+#   proteção de `main`. Um PR só de documentação não dispara o CI e o check
+#   fica "aguardando" para sempre. Se isso acontecer, remover o `paths-ignore`
+#   do gatilho `pull_request` (ou não exigir o check).
+# - GitHub Actions não suporta âncoras YAML, por isso a lista de
+#   `paths-ignore` está duplicada nos dois gatilhos.
+
 name: CI
 
 on:
-  workflow_dispatch:
-  pull_request:
-    branches:
-      - dev
-      - master
-      - extended
-      - stable
-      - '**-feature-**'
-    paths-ignore:
-      - 'README.md'
-      - 'doc/**'
-      - 'fastlane/**'
-      - 'assets/**'
-      - '.github/**/*.md'
-      - '.github/FUNDING.yml'
-      - '.github/ISSUE_TEMPLATE/**'
   push:
     branches:
-      - dev
-      - master
-      - extended
-      - stable
-      - '**-feature-**'
+      - main
+      - 'feature/**'
     paths-ignore:
-      - 'README.md'
-      - 'doc/**'
+      - '**.md'
+      - 'docs/**'
       - 'fastlane/**'
-      - 'assets/**'
-      - '.github/**/*.md'
+      - 'graphics/**'
+      - 'LICENSE'
+      - 'NOTICE'
+      - '.gitignore'
+      - '.github/CODEOWNERS'
+      - '.github/dependabot.yml'
       - '.github/FUNDING.yml'
       - '.github/ISSUE_TEMPLATE/**'
+  pull_request:
+    branches:
+      - main
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+      - 'fastlane/**'
+      - 'graphics/**'
+      - 'LICENSE'
+      - 'NOTICE'
+      - '.gitignore'
+      - '.github/CODEOWNERS'
+      - '.github/dependabot.yml'
+      - '.github/FUNDING.yml'
+      - '.github/ISSUE_TEMPLATE/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# Um push novo no mesmo branch/PR cancela o run anterior ainda em andamento.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build:
+    name: Build de debug, lint, testes e SBOM
     runs-on: ubuntu-latest
-
-    permissions: write-all
-
+    timeout-minutes: 45
+    defaults:
+      run:
+        shell: bash
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
-
-      - name: Set up JDK
-        uses: actions/setup-java@v5
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          java-version: 17
-          distribution: "temurin"
-          cache: 'gradle'
+          persist-credentials: false
 
-      - name: Build debug APK and run jvm tests
-        run: ./gradlew assembleDebug lintDebug testDebugUnitTest --stacktrace -DskipFormatKtlint
+      - name: JDK 17 (Temurin) com cache do Gradle
+        uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6.0.1
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: gradle
 
-      - name: Generate checksum
+      - name: Build de debug, lint e testes de unidade (JVM)
+        # Sem `-DskipFormatKtlint` — ver cabeçalho.
+        run: ./gradlew assembleDebug lintDebug testDebugUnitTest --stacktrace
+
+      - name: SBOM CycloneDX 1.5 a partir de gradle/verification-metadata.xml
+        # python3 vem pré-instalado na imagem ubuntu-latest; o script usa só a
+        # biblioteca padrão. O que o SBOM cobre e não cobre: scripts/README-sbom.md.
         run: |
-          sha256sum app/build/outputs/apk/debug/*.apk > app/build/outputs/apk/debug/checksums.txt
-          echo "::notice::$(cat app/build/outputs/apk/debug/checksums.txt)"
+          set -euo pipefail
+          mkdir -p dist
+          python3 scripts/sbom_from_verification_metadata.py \
+            --output dist/fortisafe-antivirus-android.cdx.json
 
-      - name: Upload APK
-        uses: actions/upload-artifact@v6
+      - name: Reunir APK de debug e gerar SHA256SUMS.txt
+        run: |
+          set -euo pipefail
+          cp app/build/outputs/apk/debug/*.apk dist/
+          (cd dist && sha256sum -- * > ../SHA256SUMS.txt && mv ../SHA256SUMS.txt .)
+          echo "::notice title=SHA-256::$(tr '\n' ' ' < dist/SHA256SUMS.txt)"
+          ls -la dist
+
+      - name: Artefato — APK de debug, SBOM e SHA256SUMS.txt
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
-          name: app
-          path: app/build/outputs/apk/debug/*.apk
+          name: fortisafe-antivirus-android-debug
+          path: dist/
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Artefato — relatórios de lint e de testes
+        # Sobe mesmo se o build falhar (mas não se o run foi cancelado), para
+        # que o relatório de lint/teste que causou a falha fique disponível.
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: relatorio-lint-e-testes
+          path: |
+            app/build/reports/
+            app/build/test-results/
+          if-no-files-found: warn
+          retention-days: 14

@@ -1,83 +1,241 @@
+# FortiSafe Antivírus — derivado do Hypatia. Este workflow constrói e publica
+# APENAS neste repositório; nunca no upstream.
+#
+# Armadilha já paga (16/09/2026): o release.yml herdado do Hypatia clonava o
+# repositório do upstream (a organização mantenedora do Hypatia) em vez do
+# commit que disparou o run, assinava o APK com um keystore vindo de secret
+# mais a ferramenta de assinatura do Android SDK, e criava o release com
+# `gh release create ... --repo <upstream>`. Rodá-lo daqui publicaria no
+# repositório do upstream. Este arquivo foi reescrito do zero; nada daquele
+# foi aproveitado. Regressão a vigiar (o grep de guarda do projeto procura
+# exatamente isto): o nome da organização do upstream, `--repo` apontando para
+# outro repositório, qualquer secret de keystore e qualquer passo de assinatura.
+#
+# O que este workflow faz:
+# 1. Job `build` (token só-leitura): `assembleRelease` + `bundleRelease`, SBOM
+#    CycloneDX e SHA256SUMS.txt, tudo guardado como artefato do run.
+# 2. Job `release` (o ÚNICO com `contents: write`, e só quando a ref é uma tag
+#    `v*`): baixa o artefato, confere os checksums e cria o release NESTE
+#    repositório (`--repo "$GITHUB_REPOSITORY"`), como pré-lançamento, com
+#    notas geradas pelo GitHub mais o aviso de código-fonte correspondente.
+#    Separar os jobs garante que o build (que executa plugins Gradle, código de
+#    terceiros) nunca tem um token com permissão de escrita.
+#
+# Assinatura: APK e AAB saem NÃO ASSINADOS de propósito. Não existe
+# `signingConfigs` no app/build.gradle e não deve existir keystore neste
+# repositório, nunca. A assinatura de produção virá do Play App Signing, com a
+# chave de UPLOAD guardada num GitHub Environment, quando a publicação na
+# Google Play for preparada. Até lá, estes binários servem para teste e
+# verificação, não para distribuição.
+#
+# Armadilha detectada na revisão (16/09/2026), antes de custar: o `origin` já
+# carrega as 87 tags `v*` herdadas do Hypatia (medido com
+# `git ls-remote --tags origin`: 131 refs, contando as `^{}` das tags
+# anotadas; de `v2.9-39` até `v3.18`), porque o repositório nasceu do
+# histórico completo do upstream. Com o gatilho original
+# `tags: ['v*']`, um `workflow_dispatch` apontado para `v3.18` — ou um
+# `git push origin --tags` numa sincronização futura, trazendo `v3.19` —
+# compilaria o código do Hypatia (applicationId do upstream) e publicaria um
+# pré-lançamento "FortiSafe Antivírus v3.18" AQUI, com o token de escrita.
+# Duas travas, porque o filtro `on.push.tags` NÃO se aplica ao
+# `workflow_dispatch`:
+# 1. o gatilho `push` só aceita tags no formato do FortiSafe
+#    (`vMAJOR.MINOR.PATCH`, com sufixo opcional — docs/RELEASE.md, seção 1);
+#    `v3.18` e `v3.14-314` não casam porque não têm três grupos numéricos;
+# 2. o primeiro passo do job `build` recusa qualquer tag fora desse formato,
+#    venha o disparo de onde vier.
+# docs/UPSTREAM.md proíbe empurrar tags do upstream para o `origin`.
+#
+# `workflow_dispatch`: disparado numa tag no formato do FortiSafe, faz o
+# release; numa tag fora do formato, falha no primeiro passo; disparado num
+# branch, só roda o job `build` (ensaio) e o job `release` é pulado.
+#
+# Toda action é fixada pelo SHA completo do commit da tag (`# vX.Y.Z`);
+# o Dependabot atualiza SHA e comentário juntos.
+
 name: Release
 
 on:
+  push:
+    tags:
+      # Só o formato do FortiSafe (docs/RELEASE.md, seção 1). No filtro do
+      # GitHub, `+` é "um ou mais do caractere anterior" e `[]` é faixa;
+      # `.` é literal. Padrão com `[` precisa de aspas.
+      - 'v[0-9]+.[0-9]+.[0-9]+'
+      - 'v[0-9]+.[0-9]+.[0-9]+-*'
   workflow_dispatch:
-    inputs:
-      title:
-        type: string
-        description: 'Title'
-        required: true
-        default: 'v0.00.0 R0'
+
+permissions:
+  contents: read
+
+# Nunca cancelar um release no meio; runs da mesma tag entram em fila.
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  ARTIFACT_NAME: release-dist
 
 jobs:
-  build-and-release:
+  build:
+    name: Build de release (não assinado), SBOM e checksums
     runs-on: ubuntu-latest
-
-    permissions: write-all
-
+    timeout-minutes: 60
+    permissions:
+      contents: read
+    defaults:
+      run:
+        shell: bash
     steps:
-      - name: Checkout
+      - name: Recusar tag fora do formato do FortiSafe
+        # O filtro `on.push.tags` não vale para `workflow_dispatch`; esta guarda
+        # vale para os dois caminhos. Formato aceito: vMAJOR.MINOR.PATCH com
+        # sufixo opcional (`v1.0.0`, `v1.0.0-beta.1`). As tags herdadas do
+        # Hypatia (`v3.18`, `v3.14-314`) param aqui, antes de qualquer checkout.
+        # Usa `ref_type` em vez de testar o prefixo `v`: qualquer TAG fora do
+        # formato é recusada, mesmo sem o prefixo; branches passam normalmente.
         env:
-          BRANCH: ${{ github.ref_name }}
+          REF_TYPE: ${{ github.ref_type }}
+          REF_NAME: ${{ github.ref_name }}
         run: |
-          mkdir -p "${{ github.workspace }}/stable"
-          mkdir -p "${{ github.workspace }}/output"
+          set -euo pipefail
+          # Regex numa variável: em bash, `\.` literal dentro de `[[ =~ ]]`
+          # funciona, mas em zsh a barra é descartada e `.` passa a casar
+          # qualquer caractere (`v3.14-314` seria aceita). A variável vale igual
+          # nos dois e é a forma recomendada pelo manual do bash.
+          re='^v[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.]+)?$'
+          if [[ "$REF_TYPE" == tag && ! "$REF_NAME" =~ $re ]]; then
+            echo "::error title=Tag fora do formato FortiSafe::${REF_NAME} não é vMAJOR.MINOR.PATCH[-sufixo]; tags do upstream (Hypatia) não geram release aqui"
+            exit 1
+          fi
+          echo "ref_type=${REF_TYPE} ref_name=${REF_NAME}: formato aceito, prosseguindo"
 
-          cd "${{ github.workspace }}/stable"
-          git clone --no-checkout https://github.com/MaintainTeam/Hypatia.git .
-          git checkout --progress --force "stable"
-
-      - name: Set up JDK
-        uses: actions/setup-java@v5
+      - name: Checkout do commit que disparou o workflow
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          java-version: 21
-          distribution: "temurin"
-          cache: 'gradle'
+          persist-credentials: false
 
-      - name: Build release APK
-        run: |
-          cd "${{ github.workspace }}/stable"
-          echo "::notice::building stable"
+      - name: JDK 17 (Temurin) com cache do Gradle
+        uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6.0.1
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: gradle
 
-          ./gradlew assembleRelease
-          mv "${{ github.workspace }}/stable/app/build/outputs/apk/release/app-release-unsigned.apk" "${{ github.workspace }}/output/stable.apk"
-          cp "./.github/changelog.md" "${{ github.workspace }}/output/"
-
-      - name: Sign APK
+      - name: Ler versionName e versionCode de app/build.gradle
+        # Só leitura e aviso. A convenção "tag = versionName" será fixada
+        # quando a identidade do app for definida; até lá, divergência é
+        # warning, não erro.
         env:
-          KEYSTORE: ${{ secrets.KEYSTORE }}
-          SIGNING_STORE_PASSWORD: ${{ secrets.SIGNING_STORE_PASSWORD }}
+          REF_NAME: ${{ github.ref_name }}
         run: |
-          cd "${{ github.workspace }}/output/"
-          echo "${KEYSTORE}" | base64 -d > apksign.keystore
+          set -euo pipefail
+          version_name="$(sed -nE 's/^[[:space:]]*versionName[[:space:]]+"([^"]+)".*$/\1/p' app/build.gradle | head -n1)"
+          version_code="$(sed -nE 's/^[[:space:]]*versionCode[[:space:]]+([0-9]+)[[:space:]]*$/\1/p' app/build.gradle | head -n1)"
+          if [[ -z "$version_name" ]]; then
+            echo "::error title=versionName não encontrado::app/build.gradle não tem 'versionName \"x.y\"' legível"
+            exit 1
+          fi
+          echo "::notice title=Versão do app::versionName=${version_name} versionCode=${version_code} ref=${REF_NAME}"
+          if [[ "$REF_NAME" == v* && "${REF_NAME#v}" != "${version_name}"* ]]; then
+            echo "::warning title=Tag e versionName divergem::tag=${REF_NAME} versionName=${version_name} (convenção de versionamento será fixada quando a identidade do app for definida)"
+          fi
 
-          version=$( grep "versionName" "${{ github.workspace }}/stable/app/build.gradle" | awk -F'"' '{print $2}' )
-          ${ANDROID_HOME}/build-tools/34.0.0/apksigner sign --ks apksign.keystore --ks-pass env:SIGNING_STORE_PASSWORD "./stable.apk"
-          mv "stable.apk" "hypatia_v${version}.apk"
+      - name: Build de release — APK e AAB (não assinados)
+        run: ./gradlew assembleRelease bundleRelease --stacktrace
 
-          echo ${version} > version.num
+      - name: Reunir APK, AAB, SBOM e SHA256SUMS.txt em dist/
+        env:
+          REF_NAME: ${{ github.ref_name }}
+        run: |
+          set -euo pipefail
+          # Nome de arquivo seguro: qualquer caractere fora de [A-Za-z0-9._-] vira "-".
+          safe_ref="$(printf '%s' "$REF_NAME" | tr -c 'A-Za-z0-9._-' '-')"
+          base="fortisafe-antivirus-android-${safe_ref}"
+          mkdir -p dist
+          apks=(app/build/outputs/apk/release/*.apk)
+          aabs=(app/build/outputs/bundle/release/*.aab)
+          if [[ "${#apks[@]}" -ne 1 || ! -f "${apks[0]}" ]]; then
+            echo "::error title=APK de release::esperado exatamente 1 APK em app/build/outputs/apk/release; encontrado: ${apks[*]}"
+            exit 1
+          fi
+          if [[ "${#aabs[@]}" -ne 1 || ! -f "${aabs[0]}" ]]; then
+            echo "::error title=AAB de release::esperado exatamente 1 AAB em app/build/outputs/bundle/release; encontrado: ${aabs[*]}"
+            exit 1
+          fi
+          cp "${apks[0]}" "dist/${base}-unsigned.apk"
+          cp "${aabs[0]}" "dist/${base}-unsigned.aab"
+          # SBOM: python3 vem pré-instalado na imagem ubuntu-latest; o script usa
+          # só a biblioteca padrão. Cobertura e limites: scripts/README-sbom.md.
+          python3 scripts/sbom_from_verification_metadata.py --output "dist/${base}.cdx.json"
+          (cd dist && sha256sum -- * > ../SHA256SUMS.txt && mv ../SHA256SUMS.txt .)
+          echo "::notice title=SHA-256::$(tr '\n' ' ' < dist/SHA256SUMS.txt)"
+          ls -la dist
+
+      - name: Guardar dist/ como artefato do run
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: ${{ env.ARTIFACT_NAME }}
+          path: dist/
+          if-no-files-found: error
+          retention-days: 30
+
+  release:
+    name: Publicar pré-lançamento neste repositório
+    needs: build
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Baixar dist/ do job build
+        # digest-mismatch=error (padrão): o zip é conferido contra o hash
+        # registrado no upload.
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: ${{ env.ARTIFACT_NAME }}
+          path: dist
+
+      - name: Conferir SHA256SUMS.txt
+        run: |
+          set -euo pipefail
+          cd dist
+          sha256sum --check --strict SHA256SUMS.txt
           ls -la
 
-      - name: Generate checksum
+      - name: Criar release (pré-lançamento) com APK, AAB, SBOM e checksums
+        # gh vem pré-instalado na imagem ubuntu-latest e autentica pelo GH_TOKEN
+        # (token do próprio run). Sem checkout neste job, `--repo` é obrigatório
+        # e aponta para ESTE repositório ($GITHUB_REPOSITORY) — nunca para outro.
+        # `--verify-tag`: aborta se a tag não existir no remoto (nunca cria tag).
+        # `--generate-notes`: notas do GitHub; o texto de `--notes` vem antes.
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ github.ref_name }}
         run: |
-          cd "${{ github.workspace }}/output/"
-          find . -name '*.apk' -type f -exec sha256sum {} \; > checksums.txt
-          echo "::notice::$(echo $(cat ./checksums.txt))"
-          ls -la
+          set -euo pipefail
+          notes="$(cat <<EOF_NOTES
+          Pré-lançamento gerado pela CI a partir da tag ${TAG}. O APK e o AAB anexados NÃO estão assinados: servem para teste e verificação, não para instalação por usuários finais nem para loja.
 
+          **Código-fonte correspondente (AGPL-3.0-or-later):** o código-fonte que corresponde exatamente a estes binários é o desta mesma tag (${TAG}) neste repositório.
 
-      - name: Create release and upload
-        run: |
-          gh auth login --with-token <<<"${{ secrets.GITHUB_TOKEN }}"
-          cd "${{ github.workspace }}/output/"
-          version=$(cat version.num)
-          echo $version
-          gh release create "v${version}" --title "${{ inputs.title }}" --notes-file "./changelog.md" --prerelease="true" --discussion-category "Announcements" --repo MaintainTeam/Hypatia
-          gh release upload "v${version}" $(echo $(find . -name '*.apk' -type f -exec basename \{} \;) checksums.txt) --repo MaintainTeam/Hypatia
+          Pre-release built by CI from tag ${TAG}. The attached APK and AAB are NOT signed: they are for testing and verification only, not for end users or app stores.
 
-      - name: Archive reports for job
-        uses: actions/upload-artifact@v6
-        with:
-          name: reports
-          path: '*/build/reports'
-        if: ${{ always() }}
+          **Corresponding source code (AGPL-3.0-or-later):** the source code corresponding exactly to these binaries is the one at this same tag (${TAG}) in this repository.
+
+          Anexos / Assets: APK e AAB não assinados · SBOM CycloneDX 1.5 (lista de artefatos verificados pelo Gradle — ver scripts/README-sbom.md; não é análise do APK) · SHA256SUMS.txt.
+
+          ---
+          EOF_NOTES
+          )"
+          gh release create "$TAG" dist/* \
+            --repo "$GITHUB_REPOSITORY" \
+            --verify-tag \
+            --prerelease \
+            --generate-notes \
+            --title "FortiSafe Antivírus ${TAG}" \
+            --notes "$notes"
