@@ -38,3 +38,14 @@ updates:
     open-pull-requests-limit: 3
     commit-message:
       prefix: "chore(deps)"
+    # Major de AGP e do plugin Kotlin não é atualização: é migração planejada
+    # (mudança de API do build, de requisitos de JDK/SDK e de comportamento do
+    # R8). Medido em 16/09/2026: o primeiro PR do Dependabot propôs AGP
+    # 8.12.1 → 9.4.0 e Kotlin 2.0.21 → 2.4.20 no mesmo dia em que o
+    # repositório nasceu; os dois caíram na verificação estrita, como
+    # esperado. Minor e patch continuam sendo propostos.
+    ignore:
+      - dependency-name: "com.android.application"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "org.jetbrains.kotlin.android"
+        update-types: ["version-update:semver-major"]
