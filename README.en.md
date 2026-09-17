@@ -1,4 +1,4 @@
-# FortiSafe Antivírus for Android
+# FortiSafe Antivirus for Android
 
 🇧🇷 [Leia em português (Brasil)](README.md)
 
@@ -11,7 +11,7 @@
 
 ## What it is
 
-FortiSafe Antivírus for Android is an app and file checker for Android, under
+FortiSafe Antivirus for Android is an app and file checker for Android, under
 the **FortiSafe** brand (Tascom Global Network LLC). It is a **derivative work
 of [Hypatia](https://github.com/MaintainTeam/Hypatia)**, maintained by
 MaintainTeam and originally created by DivestOS
@@ -25,7 +25,7 @@ identity, signature databases and distribution.
 
 ### What changes compared to Hypatia
 
-| Aspect | Hypatia (upstream) | FortiSafe Antivírus (planned) |
+| Aspect | Hypatia (upstream) | FortiSafe Antivirus (planned) |
 |---|---|---|
 | Identity | `org.maintainteam.hypatia`, Hypatia name and icons | `net.fortisafe.antivirus`, FortiSafe brand |
 | Signature databases | Generated and published by MaintainTeam | **Generated and signed by FortiSafe**, on its own server |
