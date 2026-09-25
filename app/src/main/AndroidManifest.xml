@@ -108,7 +108,7 @@
             android:enabled="true"
             android:foregroundServiceType="specialUse"
             android:exported="false"
-            android:label="Realtime Malware Scanner" />
+            android:label="@string/lblNotificationRealtimeTitle" />
 
         <!--
           Religa o tempo real no boot e depois de atualizar o próprio app (entrega
