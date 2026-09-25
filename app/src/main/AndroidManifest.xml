@@ -87,6 +87,13 @@
             </intent-filter>
         </activity>
         <!--
+          Onboarding em cinco passos (entrega 1.4; D-AV21).
+        -->
+        <activity
+            android:name=".OnboardingActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize|screenLayout"
+            android:exported="false" />
+        <!--
           Detalhe da detecção (entrega 1.5): substitui a NotificationPromptActivity
           do upstream; a notificação abre a evidência antes de qualquer ação.
         -->

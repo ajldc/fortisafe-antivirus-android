@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Onboarding em cinco passos (D-AV13 revista pela D-AV21; design-app.md §4).
+  Uma tela só, com o conteúdo de cada passo trocado no código. Também serve de
+  tela avulsa de um passo (consentimento do inventário de apps, acesso aos
+  arquivos, notificações) quando o usuário volta a ela pelo app.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/raizOnboarding"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/fortisafe_background"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/txtOnbPasso"
+        style="@style/FortiSafe.Apoio"
+        android:paddingLeft="24dp"
+        android:paddingTop="16dp"
+        android:paddingRight="24dp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="24dp"
+            android:paddingTop="16dp"
+            android:paddingRight="24dp"
+            android:paddingBottom="16dp">
+
+            <ImageView
+                android:id="@+id/imgOnbLogo"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:layout_marginBottom="16dp"
+                android:contentDescription="@null"
+                android:src="@mipmap/ic_launcher" />
+
+            <TextView
+                android:id="@+id/txtOnbTitulo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/fortisafe_text"
+                android:textSize="26sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtOnbCorpo"
+                style="@style/FortiSafe.Corpo"
+                android:layout_marginTop="16dp"
+                android:lineSpacingExtra="4dp"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/txtOnbStatus"
+                style="@style/FortiSafe.Corpo"
+                android:layout_marginTop="16dp"
+                android:textColor="@color/fortisafe_text"
+                android:textStyle="bold"
+                android:visibility="gone" />
+
+            <ProgressBar
+                android:id="@+id/progressoOnb"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:indeterminate="true"
+                android:visibility="gone" />
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:paddingBottom="16dp">
+
+        <Button
+            android:id="@+id/btnOnbPrimario"
+            style="@style/FortiSafe.Botao.Primario" />
+
+        <Button
+            android:id="@+id/btnOnbSecundario"
+            style="@style/FortiSafe.Botao.Secundario"
+            android:layout_marginTop="8dp" />
+    </LinearLayout>
+</LinearLayout>
