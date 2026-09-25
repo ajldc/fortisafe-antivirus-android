@@ -152,6 +152,9 @@
     <string name="ajustes_secao_sobre">Acerca de</string>
     <string name="ajustes_creditos">Créditos y licencias</string>
     <string name="creditos_codigo_fonte">Código fuente (AGPL-3.0): %1$s</string>
+    <string name="creditos_titulo_bases">Fuentes de las bases de firmas</string>
+    <string name="creditos_bases_ausentes">Las atribuciones de las fuentes aparecen aquí después de descargar la primera base y verificar su firma.</string>
+    <string name="creditos_titulo_hypatia">Colaboradores de Hypatia</string>
 
     <string name="politica_resumo">Resumen de privacidad de FortiSafe Antivirus (Tascom Global Network LLC):\n\n• El análisis se hace en este dispositivo. Ninguno de tus archivos se envía a ninguna parte, ni siquiera cuando hay una coincidencia.\n\n• La lista de aplicaciones instaladas solo se lee después de tu consentimiento, y solo en este dispositivo.\n\n• La aplicación solo se conecta a internet para descargar las bases de firmas, por HTTPS. Como en toda conexión, el servidor ve la dirección IP del dispositivo.\n\n• La consulta a VirusTotal solo ocurre si la tocas en una detección y confirmas: el navegador abre el sitio con el código (hash) del archivo.\n\n• Sin anuncios, sin análisis de uso y sin informes de fallos.\n\n• Nada de la aplicación va a la copia de seguridad en la nube.\n\nContacto de privacidad: privacy@fortisafe.net. La política completa se publicará en fortisafe.net.</string>
 

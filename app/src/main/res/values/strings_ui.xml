@@ -168,6 +168,9 @@
     <string name="ajustes_secao_sobre">About</string>
     <string name="ajustes_creditos">Credits and licenses</string>
     <string name="creditos_codigo_fonte">Source code (AGPL-3.0): %1$s</string>
+    <string name="creditos_titulo_bases">Signature database sources</string>
+    <string name="creditos_bases_ausentes">Source attributions appear here after the first database is downloaded and its signature is verified.</string>
+    <string name="creditos_titulo_hypatia">Hypatia contributors</string>
 
     <string name="politica_resumo">Privacy summary of FortiSafe Antivirus (Tascom Global Network LLC):\n\n• Scanning happens on this device. None of your files is sent anywhere, not even when there is a match.\n\n• The list of installed apps is only read after your consent, and only on this device.\n\n• The app only connects to the internet to download the signature databases, over HTTPS. As with any connection, the server sees the device IP address.\n\n• The VirusTotal lookup only happens if you tap it on a detection and confirm: your browser opens the site with the file\'s code (hash).\n\n• No ads, no usage analytics and no crash reports.\n\n• Nothing from the app goes to cloud backup.\n\nPrivacy contact: privacy@fortisafe.net. The full policy will be published at fortisafe.net.</string>
 
