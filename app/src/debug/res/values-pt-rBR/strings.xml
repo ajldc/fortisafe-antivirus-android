@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!--
+      O build de debug nomeia o app por resValue em app/build.gradle, que só
+      alcança o idioma padrão. Sem este arquivo, o debug neste idioma herdaria
+      o app_name de main/res/values-pt-rBR e ficaria igual ao release.
+    -->
+    <string name="app_name" tools:ignore="ExtraTranslation">FortiSafe Debug</string>
+</resources>

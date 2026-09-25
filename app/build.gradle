@@ -8,8 +8,10 @@ android {
     namespace 'us.spotco.malwarescanner'
 
     defaultConfig {
-        applicationId "org.maintainteam.hypatia"
-        resValue "string", "app_name", "Hypatia"
+        // Identidade FortiSafe (entrega 1.1; D-AV9 e D-AV12). O nome em
+        // pt-BR ("FortiSafe Antivírus") vem de values-pt-rBR/strings.xml.
+        applicationId "net.fortisafe.antivirus"
+        resValue "string", "app_name", "FortiSafe Antivirus"
         minSdkVersion 21
         targetSdkVersion 34
         if (System.properties.containsKey('versionCodeOverride')) {
@@ -21,8 +23,9 @@ android {
         if (System.properties.containsKey('versionNameSuffix')) {
             versionNameSuffix System.getProperty('versionNameSuffix')
         }
-        resConfigs 'en', 'ar', 'bg', 'cs', 'de', 'es', 'et', 'fi', 'fr', 'gl', 'hr', 'in', 'it', 'iw', 'ja', 'pl', 'pt', 'pt-rBR', 'ro', 'ru', 'sk', 'ta', 'tr', 'uk', 'zh-rCN', 'zh-rTW'
-        // currently disabled locales due to insufficient translation: af, el
+        // Só os três idiomas da entrega 1.1 (G0, B22 / D-AV22). As traduções
+        // comunitárias do Hypatia ficam no histórico do git.
+        resConfigs 'en', 'es', 'pt-rBR'
     }
     buildTypes {
         debug {
@@ -34,10 +37,10 @@ android {
             if (normalizedWorkingBranch.isEmpty() || workingBranch == "master" || workingBranch == "dev" || workingBranch == "stable") {
                 // default values when branch name could not be determined or is master, dev or stable
                 applicationIdSuffix ".debug"
-                resValue "string", "app_name", "Hypatia Debug"
+                resValue "string", "app_name", "FortiSafe Debug"
             } else {
                 applicationIdSuffix ".debug." + normalizedWorkingBranch
-                resValue "string", "app_name", "Hypatia " + workingBranch
+                resValue "string", "app_name", "FortiSafe " + workingBranch
             }
 
             zipAlignEnabled true
@@ -46,7 +49,7 @@ android {
         release {
             if (System.properties.containsKey('packageSuffix')) {
                 applicationIdSuffix System.getProperty('packageSuffix')
-                resValue "string", "app_name", "Hypatia " + System.getProperty('packageSuffix')
+                resValue "string", "app_name", "FortiSafe " + System.getProperty('packageSuffix')
             }
             minifyEnabled true
             shrinkResources false // disabled to fix F-Droid's reproducible build
