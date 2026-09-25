@@ -33,8 +33,9 @@ identity, signature databases and distribution.
 | `targetSdk` | 34 | **36** |
 | Distribution | IzzyOnDroid (the original DivestOS Hypatia was on F-Droid) | **Google Play** (planned) |
 
-None of these changes has been applied yet. The current state of the code is
-upstream version 3.18.
+The identity (first row) was applied in delivery 1.1, on 2026-09-25: name,
+`applicationId`, icon, colors and texts in pt-BR, en and es. The other changes
+are not applied yet; the rest of the code is upstream version 3.18.
 
 ## What it does — and what it does not do
 
@@ -144,6 +145,7 @@ in [`docs/UPSTREAM.md`](docs/UPSTREAM.md) (in Brazilian Portuguese).
 
 ---
 
-**Identifiers.** Planned `applicationId`: `net.fortisafe.antivirus` (not yet
-applied). Current ID, inherited from upstream: `org.maintainteam.hypatia`
-(namespace `us.spotco.malwarescanner`), version 3.18.
+**Identifiers.** `applicationId`: `net.fortisafe.antivirus` (debug:
+`net.fortisafe.antivirus.debug`), applied in delivery 1.1. The code namespace
+is still upstream's, `us.spotco.malwarescanner`, and the version is still the
+inherited 3.18.
