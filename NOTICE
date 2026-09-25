@@ -83,7 +83,9 @@ não participam dele, não o endossam e não respondem por ele.
 - Trechos de app/src/main/java/us/spotco/malwarescanner/Utils.kt creditados a
   respostas do Stack Overflow, conforme os comentários no próprio código:
   - isServiceRunning — CC BY-SA 3.0, https://stackoverflow.com/a/5921190
-  - isPackageInstalled — CC BY-SA 3.0, https://stackoverflow.com/a/6758962
+  - (isPackageInstalled — CC BY-SA 3.0, https://stackoverflow.com/a/6758962 —
+    saiu do código na entrega 1.3, 25/09/2026, junto com o caminho
+    Tor/Orbot, único que a usava)
   - isNetworkAvailable — https://stackoverflow.com/a/4239019 (o comentário
     cita a origem, mas não declara a licença)
 

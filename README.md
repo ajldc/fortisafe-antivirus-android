@@ -34,8 +34,10 @@ bases de assinaturas e distribuição próprias.
 | Distribuição | IzzyOnDroid (o Hypatia original, da DivestOS, esteve no F-Droid) | **Google Play** (prevista) |
 
 A identidade (primeira linha) foi aplicada na entrega 1.1, em 25/09/2026: nome,
-`applicationId`, ícone, cores e textos em pt-BR, en e es. As demais mudanças
-ainda não estão aplicadas; o resto do código é o do upstream na versão 3.18.
+`applicationId`, ícone, cores e textos em pt-BR, en e es. Na entrega 1.3, na
+mesma data, saíram o serviço de acessibilidade (terceira linha) e o download
+pelo Tor/Orbot. As demais mudanças ainda não estão aplicadas; o resto do
+código é o do upstream na versão 3.18.
 
 ## O que faz — e o que não faz
 

@@ -192,7 +192,7 @@ a divergência achando que foi esquecimento:
 
 | Mudança do upstream | Por que não entra |
 |---|---|
-| Reativar o serviço de acessibilidade (`LinkScannerService`) ou qualquer uso de `AccessibilityService` | O FortiSafe não usa acessibilidade: a política da Google Play não considera antivírus um uso legítimo dessa API, e a função de proteção web não é deste app. |
+| Reativar o serviço de acessibilidade (`LinkScannerService`) ou qualquer uso de `AccessibilityService` | Removido na entrega 1.3 (25/09/2026) por custo e risco, não por proibição: a Google Play não veta a API a antivírus, mas exige divulgação destacada, declaração e vídeo (correção de 17/09/2026); e a função de proteção web não é deste app (D-AV3). |
 | Qualquer uso de `VpnService` | O antivírus não faz proteção web (filtro de sites, links ou DNS) e não usa `VpnService`. |
 | Voltar as fontes de bases para os servidores do MaintainTeam ou de terceiros | O FortiSafe distribui só bases geradas e assinadas por ele. |
 | `release.yml` do upstream ou qualquer workflow que publique fora deste repositório | Publicaria no repositório do MaintainTeam com as nossas credenciais. |
@@ -201,6 +201,7 @@ a divergência achando que foi esquecimento:
 | Tags `v*` do upstream (`v3.19` em diante) | Tag no `origin` é candidata a release; as do Hypatia não descrevem versão nossa (ver "Tags do upstream" acima). |
 | Mudança de `applicationId`, `namespace`, `versionName`/`versionCode` | São do produto; o upstream tem os dele. |
 | `<queries>` para pacotes que o FortiSafe não integra (por exemplo, Orbot) | Só consultamos o que usamos; consulta de pacote sem uso é pergunta a mais na revisão da loja. |
+| Download das bases pelo Tor (Orbot) | Removido na entrega 1.3 (25/09/2026) com a opção de menu, o `<queries>` e o proxy SOCKS: as bases vêm só do servidor do FortiSafe (D-AV18), e o caminho dependia de um app de terceiro. |
 | `requestLegacyExternalStorage`, `allowBackup="true"` e outras opções legadas do manifesto | Revisadas para a política atual do Android/Play; não voltam pelo merge. |
 | Metadados de loja e READMEs do Hypatia | Descrevem outro produto. |
 | `.github/changelog.md` | Notas de release do Hypatia; só eram lidas pelo `release.yml` antigo. Removido do FortiSafe em 16/09/2026. |

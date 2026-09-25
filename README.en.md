@@ -34,8 +34,10 @@ identity, signature databases and distribution.
 | Distribution | IzzyOnDroid (the original DivestOS Hypatia was on F-Droid) | **Google Play** (planned) |
 
 The identity (first row) was applied in delivery 1.1, on 2026-09-25: name,
-`applicationId`, icon, colors and texts in pt-BR, en and es. The other changes
-are not applied yet; the rest of the code is upstream version 3.18.
+`applicationId`, icon, colors and texts in pt-BR, en and es. Delivery 1.3, on
+the same date, removed the accessibility service (third row) and the
+download over Tor/Orbot. The other changes are not applied yet; the rest of
+the code is upstream version 3.18.
 
 ## What it does — and what it does not do
 
