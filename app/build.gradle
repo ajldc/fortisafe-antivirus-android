@@ -3,6 +3,65 @@ plugins {
     alias(libs.plugins.kotlin.android)
 }
 
+// ---------------------------------------------------------------------------
+// Bases de assinaturas: servidor e chaves (entregas 1.6 e 1.7; protocolo v1 das
+// bases, pipeline/PROTOCOLO.md do repositório de documentação, seções 1 e 5;
+// D-AV18). Nada disso aparece em menu: só no build.
+//
+// - fortisafe.bases.url — só o debug troca (ex.: http://10.0.2.2:8080/v1/ para
+//   o servidor local do teste de ponta a ponta, seção 8). O release usa sempre
+//   https://db.fortisafe.net/v1/.
+// - fortisafe.bases.fingerprints — impressões digitais completas das chaves em
+//   que o app confia (40 dígitos hexadecimais maiúsculos, sem espaço), separadas
+//   por vírgula: principal e reserva. Vira BuildConfig.BASES_FINGERPRINTS.
+// - fortisafe.bases.chaves — só o debug: caminho (absoluto ou relativo à raiz do
+//   repositório) de um .asc com chaves PÚBLICAS de teste, copiado para o recurso
+//   gerado raw/fortisafe_bases_chaves_debug. O release lê
+//   app/src/main/res/raw/fortisafe_bases_chaves.asc (a chave de produção é do
+//   André, entrega 2.6; o arquivo ainda não existe).
+// - Guarda: build de release sem impressão digital ou sem o .asc falha (fim deste
+//   arquivo). O debug compila sem nada disso e recusa atualizar as bases, com
+//   mensagem clara (falha fechada) — é assim que a CI roda.
+// ---------------------------------------------------------------------------
+def basesUrlDoRelease = 'https://db.fortisafe.net/v1/'
+def basesUrlDoDebug = providers.gradleProperty('fortisafe.bases.url').getOrNull()
+def basesImpressoes = providers.gradleProperty('fortisafe.bases.fingerprints').getOrElse('')
+        .split(',').collect { it.trim() }.findAll { !it.isEmpty() }
+def basesChavesDoDebug = providers.gradleProperty('fortisafe.bases.chaves').getOrNull()
+def basesChavesDoRelease = file('src/main/res/raw/fortisafe_bases_chaves.asc')
+
+basesImpressoes.each { impressao ->
+    if (!(impressao ==~ /[0-9A-F]{40}/)) {
+        throw new GradleException("fortisafe.bases.fingerprints: \"${impressao}\" não é uma impressão " +
+                "digital completa (40 dígitos hexadecimais maiúsculos, sem espaço).")
+    }
+}
+if (basesUrlDoDebug != null && !(basesUrlDoDebug ==~ /https?:\/\/[^\s"\\]+\//)) {
+    throw new GradleException("fortisafe.bases.url: \"${basesUrlDoDebug}\" tem de começar com " +
+            "http:// ou https:// e terminar em /.")
+}
+def arquivoDeChavesDoDebug = basesChavesDoDebug == null ? null : rootProject.file(basesChavesDoDebug)
+if (arquivoDeChavesDoDebug != null) {
+    if (!arquivoDeChavesDoDebug.isFile()) {
+        throw new GradleException("fortisafe.bases.chaves: arquivo não encontrado: ${arquivoDeChavesDoDebug}")
+    }
+    if (contemChavePrivada(arquivoDeChavesDoDebug)) {
+        throw new GradleException("fortisafe.bases.chaves: ${arquivoDeChavesDoDebug} contém chave PRIVADA; " +
+                "só a pública vai para o APK.")
+    }
+}
+
+/** Anel com chave privada (armored ou binário) nunca entra no APK. */
+static boolean contemChavePrivada(File arquivo) {
+    byte[] bytes = arquivo.bytes
+    String texto = new String(bytes, 'ISO-8859-1')
+    if (texto.contains('PRIVATE KEY BLOCK')) return true
+    if (texto.contains('-----BEGIN PGP') || bytes.length == 0) return false
+    int b = bytes[0] & 0xFF
+    int tag = (b & 0x40) != 0 ? (b & 0x3F) : ((b & 0x3C) >> 2)
+    return tag == 5 || tag == 7 // pacotes de chave secreta (principal e subchave)
+}
+
 android {
     compileSdkVersion 36
     namespace 'us.spotco.malwarescanner'
@@ -28,6 +87,9 @@ android {
         // Só os três idiomas da entrega 1.1 (G0, B22 / D-AV22). As traduções
         // comunitárias do Hypatia ficam no histórico do git.
         resConfigs 'en', 'es', 'pt-rBR'
+
+        // Chaves das bases em que o app confia (ver o topo deste arquivo).
+        buildConfigField 'String', 'BASES_FINGERPRINTS', "\"${basesImpressoes.join(',')}\""
     }
     buildTypes {
         debug {
@@ -47,6 +109,11 @@ android {
 
             zipAlignEnabled true
 
+            // Servidor das bases: o de produção, ou o de fortisafe.bases.url. HTTP em
+            // claro só para 10.0.2.2 e localhost (guarda no código e
+            // src/debug/res/xml/network_security_config.xml).
+            buildConfigField 'String', 'BASES_URL', "\"${basesUrlDoDebug ?: basesUrlDoRelease}\""
+            buildConfigField 'boolean', 'BASES_HTTP_LOCAL', 'true'
         }
         release {
             if (System.properties.containsKey('packageSuffix')) {
@@ -54,8 +121,14 @@ android {
                 resValue "string", "app_name", "FortiSafe " + System.getProperty('packageSuffix')
             }
             minifyEnabled true
+            // Desligado também porque o anel das bases é lido por nome
+            // (getIdentifier), e o encolhimento poderia removê-lo.
             shrinkResources false // disabled to fix F-Droid's reproducible build
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            // Servidor fixo, só HTTPS (D-AV18).
+            buildConfigField 'String', 'BASES_URL', "\"${basesUrlDoRelease}\""
+            buildConfigField 'boolean', 'BASES_HTTP_LOCAL', 'false'
         }
     }
     lint {
@@ -89,13 +162,77 @@ android {
 }
 
 dependencies {
-    implementation(libs.commons.io)
     implementation(libs.bouncycastle.bcpg)
     implementation(libs.guava)
 
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.documentfile)
     implementation(libs.androidx.core.ktx)
+
+    testImplementation(libs.junit)
+}
+
+// Debug com fortisafe.bases.chaves: o .asc de teste vira o recurso gerado
+// raw/fortisafe_bases_chaves_debug (nome próprio, para nunca colidir com o anel
+// do release em src/main/res/raw).
+abstract class CopiarChavesDasBases extends DefaultTask {
+    @InputFile
+    @PathSensitive(PathSensitivity.NONE)
+    abstract RegularFileProperty getOrigem()
+
+    @OutputDirectory
+    abstract DirectoryProperty getSaida()
+
+    @TaskAction
+    void copiar() {
+        File raw = new File(saida.get().asFile, 'raw')
+        raw.mkdirs()
+        new File(raw, 'fortisafe_bases_chaves_debug.asc').bytes = origem.get().asFile.bytes
+    }
+}
+
+if (arquivoDeChavesDoDebug != null) {
+    def copiarChavesDoDebug = tasks.register('copiarChavesDasBasesDoDebug', CopiarChavesDasBases) {
+        origem.set(arquivoDeChavesDoDebug)
+        saida.set(layout.buildDirectory.dir('generated/fortisafe/chaves-das-bases/res'))
+    }
+    androidComponents {
+        onVariants(selector().withBuildType('debug')) { variant ->
+            variant.sources.res.addGeneratedSourceDirectory(copiarChavesDoDebug, { it.saida })
+        }
+    }
+}
+
+// Guarda do release (PROTOCOLO v1, seção 5): um APK que não confia em ninguém não
+// sai. Só as tarefas que produzem ou instalam o release são barradas; a CI
+// (assembleDebug lintDebug testDebugUnitTest) não passa por aqui.
+gradle.taskGraph.whenReady { grafo ->
+    def pedeRelease = grafo.allTasks.any { tarefa ->
+        tarefa.project == project &&
+                tarefa.name ==~ /(assemble|bundle|install|package|sign)\w*Release(Bundle|UniversalApk)?/
+    }
+    if (!pedeRelease) return
+    def problemas = []
+    if (basesImpressoes.isEmpty()) {
+        problemas << 'fortisafe.bases.fingerprints está vazio: informe as impressões digitais completas ' +
+                'da chave principal e da reserva (40 hex maiúsculos, separadas por vírgula).'
+    }
+    if (!basesChavesDoRelease.isFile() || basesChavesDoRelease.length() == 0) {
+        problemas << "falta ${project.relativePath(basesChavesDoRelease)} (anel ASCII-armored com as " +
+                'chaves PÚBLICAS principal e reserva).'
+    } else if (contemChavePrivada(basesChavesDoRelease)) {
+        problemas << "${project.relativePath(basesChavesDoRelease)} contém chave PRIVADA."
+    }
+    if (basesUrlDoDebug != null) {
+        problemas << "fortisafe.bases.url só vale no debug; o release usa sempre ${basesUrlDoRelease}."
+    }
+    if (basesChavesDoDebug != null) {
+        problemas << 'fortisafe.bases.chaves só vale no debug; o release usa o anel de src/main/res/raw.'
+    }
+    if (!problemas.isEmpty()) {
+        throw new GradleException('Build de release recusado — bases de assinaturas sem raiz de ' +
+                'confiança (D-AV18):\n  - ' + problemas.join('\n  - '))
+    }
 }
 
 static String getGitWorkingBranch() {

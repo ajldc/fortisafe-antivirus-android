@@ -38,8 +38,13 @@ A identidade (primeira linha) foi aplicada na entrega 1.1, em 25/09/2026: nome,
 mesma data, saíram o serviço de acessibilidade (terceira linha) e o download
 pelo Tor/Orbot; na 1.2, o `targetSdk` passou a 36 (quarta linha), com os
 defeitos herdados corrigidos — a regressão em emuladores dessa entrega ainda
-está por rodar. As demais mudanças ainda não estão aplicadas; o resto do
-código é o do upstream na versão 3.18.
+está por rodar. Nas entregas 1.6 e 1.7 (segunda linha, lado do app) o app
+passou a aceitar bases **só** do servidor do FortiSafe e só assinadas por uma
+chave do FortiSafe fixada no build, e a respeitar a lista de emergência
+(permitidos e revogação). **O servidor e a chave de produção ainda não
+existem** (Fase 2): hoje o app compila e roda, mas não tem de onde baixar
+base. As demais mudanças ainda não estão aplicadas; o resto do código é o do
+upstream na versão 3.18.
 
 ## O que faz — e o que não faz
 
@@ -52,7 +57,15 @@ código é o do upstream na versão 3.18.
   externo e `/system`); verifica arquivos compartilhados com o app; e, com o
   serviço em tempo real ligado, verifica arquivos gravados ou renomeados no
   armazenamento interno.
-- Baixa as bases por HTTPS e confere a assinatura GPG destacada antes de usar.
+- Baixa as bases só do servidor do FortiSafe (`https://db.fortisafe.net/v1/`),
+  só por HTTPS, e só as instala se o manifesto estiver assinado (OpenPGP,
+  Ed25519) por uma chave cuja impressão digital completa está fixada no app;
+  recusa versão mais antiga que a instalada, base vencida e arquivo que não
+  bate com o manifesto. Cada arquivo é conferido de novo ao carregar.
+- Respeita a lista de emergência assinada do FortiSafe: um falso positivo
+  conhecido (por SHA-256 do arquivo, ou por pacote **e** certificado de
+  assinatura de um app instalado) não vira alerta, e uma versão de base
+  revogada deixa de ser usada.
 - Funciona sem enviar arquivos para fora do aparelho: a rede é usada só para
   baixar as bases.
 
@@ -110,6 +123,39 @@ como confiáveis:
    <trust file=".*-sources[.]jar" regex="true"/>
 </trusted-artifacts>
 ```
+
+### Bases de assinaturas: servidor e chaves no build
+
+O servidor e as chaves das bases não aparecem em menu nenhum: vêm do build
+(protocolo v1 das bases; decisão D-AV18).
+
+| Propriedade Gradle | Debug | Release |
+|---|---|---|
+| `fortisafe.bases.url` | opcional (ex.: `http://10.0.2.2:8080/v1/` para um servidor local) | não aceita: sempre `https://db.fortisafe.net/v1/` |
+| `fortisafe.bases.fingerprints` | opcional | **obrigatória**: impressões digitais completas (40 hex maiúsculos), principal e reserva, separadas por vírgula |
+| `fortisafe.bases.chaves` | opcional: caminho de um `.asc` com chaves **públicas** de teste | não aceita: o anel é `app/src/main/res/raw/fortisafe_bases_chaves.asc` (**obrigatório**) |
+
+- **Sem nada disso**, o debug compila e roda, mas recusa atualizar as bases
+  com mensagem clara (falha fechada) — é assim que a CI compila.
+- **O release sem as impressões digitais ou sem o anel não compila** (guarda
+  em `app/build.gradle`). A chave de produção ainda não existe.
+- No debug, HTTP em claro só é aceito para `10.0.2.2` e `localhost` (teste
+  local, com um servidor na máquina de desenvolvimento).
+
+```bash
+./gradlew assembleDebug \
+  -Pfortisafe.bases.url=http://10.0.2.2:8080/v1/ \
+  -Pfortisafe.bases.chaves=/caminho/chaves-teste.asc \
+  -Pfortisafe.bases.fingerprints=<IMPRESSÃO DIGITAL>
+```
+
+### Testes de unidade
+
+`./gradlew testDebugUnitTest` roda na JVM os testes do protocolo das bases
+(`app/src/test/`): assinatura aceita e recusada, validação do manifesto,
+anti-rebaixamento, frescor, conferência de tamanho e SHA-256, troca atômica,
+lista de emergência e a prova cruzada com fixturas assinadas pelo gerador das
+bases. As chaves Ed25519 dos testes são geradas dentro dos próprios testes.
 
 ## Branches e upstream
 

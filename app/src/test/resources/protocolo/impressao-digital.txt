@@ -1,0 +1,2 @@
+# Chaves de TESTE do protocolo v1 — só para testes do app. Principal, reserva:
+fortisafe.bases.fingerprints=58D71ADE16B83E87EA009996D5A6059DFECF8E58,3B04A4CACC65132808017A9A374425A8B499A7DB

@@ -38,8 +38,13 @@ The identity (first row) was applied in delivery 1.1, on 2026-09-25: name,
 the same date, removed the accessibility service (third row) and the
 download over Tor/Orbot; delivery 1.2 raised `targetSdk` to 36 (fourth row)
 and fixed the inherited defects — its emulator regression run is still
-pending. The other changes are not applied yet; the rest of the code is
-upstream version 3.18.
+pending. In deliveries 1.6 and 1.7 (second row, app side) the app started to
+accept databases **only** from the FortiSafe server and only when signed by a
+FortiSafe key pinned in the build, and to honor the emergency list
+(allowlist and revocation). **The production server and key do not exist
+yet** (Phase 2): today the app builds and runs, but has nowhere to download
+databases from. The other changes are not applied yet; the rest of the code
+is upstream version 3.18.
 
 ## What it does — and what it does not do
 
@@ -51,8 +56,16 @@ upstream version 3.18.
 - Check, on demand, installed apps and storage (internal, external and
   `/system`); check files shared with the app; and, with the real-time
   service enabled, check files written or renamed in internal storage.
-- Download the databases over HTTPS and verify the detached GPG signature
-  before using them.
+- Download the databases only from the FortiSafe server
+  (`https://db.fortisafe.net/v1/`), only over HTTPS, and install them only if
+  the manifest is signed (OpenPGP, Ed25519) by a key whose full fingerprint
+  is pinned in the app; reject a version older than the installed one, an
+  expired database, and any file that does not match the manifest. Each file
+  is checked again when loaded.
+- Honor FortiSafe's signed emergency list: a known false positive (by the
+  file's SHA-256, or by package **and** signing certificate of an installed
+  app) does not become an alert, and a revoked database version stops being
+  used.
 - Work without sending files off the device: the network is used only to
   download the databases.
 
@@ -110,6 +123,41 @@ upstream recommends temporarily trusting javadoc and sources artifacts:
    <trust file=".*-sources[.]jar" regex="true"/>
 </trusted-artifacts>
 ```
+
+### Signature databases: server and keys come from the build
+
+The database server and keys appear in no menu: they come from the build
+(databases protocol v1; decision D-AV18).
+
+| Gradle property | Debug | Release |
+|---|---|---|
+| `fortisafe.bases.url` | optional (e.g. `http://10.0.2.2:8080/v1/` for a local server) | not accepted: always `https://db.fortisafe.net/v1/` |
+| `fortisafe.bases.fingerprints` | optional | **required**: full fingerprints (40 uppercase hex), primary and backup, comma-separated |
+| `fortisafe.bases.chaves` | optional: path to an `.asc` with **public** test keys | not accepted: the keyring is `app/src/main/res/raw/fortisafe_bases_chaves.asc` (**required**) |
+
+- **Without any of these**, the debug build compiles and runs, but refuses to
+  update the databases with a clear message (fail closed) — this is how CI
+  builds it.
+- **A release build without the fingerprints or without the keyring does not
+  compile** (guard in `app/build.gradle`). The production key does not exist
+  yet.
+- In debug builds, cleartext HTTP is accepted only for `10.0.2.2` and
+  `localhost` (local testing against a server on the development machine).
+
+```bash
+./gradlew assembleDebug \
+  -Pfortisafe.bases.url=http://10.0.2.2:8080/v1/ \
+  -Pfortisafe.bases.chaves=/path/test-keys.asc \
+  -Pfortisafe.bases.fingerprints=<FINGERPRINT>
+```
+
+### Unit tests
+
+`./gradlew testDebugUnitTest` runs the databases protocol tests on the JVM
+(`app/src/test/`): accepted and rejected signatures, manifest validation,
+anti-downgrade, freshness, size and SHA-256 checks, atomic swap, emergency
+list, and a cross-check against fixtures signed by the databases generator.
+The Ed25519 keys used by the tests are generated inside the tests.
 
 ## Branches and upstream
 

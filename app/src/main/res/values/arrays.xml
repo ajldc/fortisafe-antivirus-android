@@ -32,6 +32,5 @@
         <item>• MalwareBazaar: Signature Databases</item>
         <item>• VirusShare: Signature Databases</item>
         <item>• RecursiveFileObserver.java: Daniel Gultsch, ownCloud Inc., Bartek Przybylski</item>
-        <item>• GPGDetachedSignatureVerifier.java: Federico Fissore, Arduino LLC</item>
     </string-array>
 </resources>

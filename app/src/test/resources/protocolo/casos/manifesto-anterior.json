@@ -1,0 +1,29 @@
+{
+  "formato": "fortisafe-bases-manifesto/1",
+  "tipo": "bases",
+  "versao": 2026092401,
+  "publicadoEm": "2026-09-25T18:35:46Z",
+  "expiraEm": "2036-09-22T18:35:46Z",
+  "arquivos": [
+    {
+      "nome": "hypatia-md5-bloom.bin",
+      "bytes": 359446,
+      "sha256": "9a87b165ae05223535bd0a7e5d139c774673779215d24d2ef04c8d0cf31ab40e"
+    },
+    {
+      "nome": "hypatia-sha1-bloom.bin",
+      "bytes": 359446,
+      "sha256": "916c116ac51a3ed46acceb5bfcc4cca662def677a34180dace840294665c0f2c"
+    },
+    {
+      "nome": "hypatia-sha256-bloom.bin",
+      "bytes": 359446,
+      "sha256": "6295f9d23cdc219c6b0065230bf1043f05db79d275355b311847a7015cc902a7"
+    },
+    {
+      "nome": "ATRIBUICOES.txt",
+      "bytes": 62,
+      "sha256": "b142f9bb2d7e0f1a070861586cb8fbe5c2c9bd5025bd20b29dd452ac3eb33341"
+    }
+  ]
+}
