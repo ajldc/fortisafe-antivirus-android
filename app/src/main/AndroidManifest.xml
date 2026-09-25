@@ -67,20 +67,23 @@
             android:exported="false"
             android:label="Realtime Malware Scanner" />
 
+        <!--
+          Religa o tempo real no boot e depois de atualizar o próprio app (entrega
+          1.2; matriz permissões × Play, seções boot-e-eventos-de-pacote e
+          target-api-36). exported="false": BOOT_COMPLETED e MY_PACKAGE_REPLACED
+          vêm do sistema e continuam chegando. MY_PACKAGE_REPLACED exige filtro
+          SEM <data>. Saíram: QUICKBOOT_POWERON (ação de fabricante, não chega com
+          exported="false"), PACKAGE_REPLACED e PACKAGE_ADDED (broadcast implícito
+          que não chega a receiver de manifesto em API 26+; a verificação de app
+          recém-instalado é receiver de contexto no serviço, entrega 1.5).
+        -->
         <receiver
             android:name=".EventReceiver"
             android:enabled="true"
-            android:exported="true"
-            android:label="Event Handler">
+            android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
-                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.PACKAGE_REPLACED" />
-                <action android:name="android.intent.action.PACKAGE_ADDED" />
-
-                <data android:scheme="package" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
             </intent-filter>
         </receiver>
     </application>
