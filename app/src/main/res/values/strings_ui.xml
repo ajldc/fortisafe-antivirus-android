@@ -21,8 +21,8 @@
     <string name="estado_inconclusivo_titulo">Inconclusive</string>
     <string name="estado_protegido_texto">Last scan: %1$s. No pending risks.</string>
     <plurals name="estado_risco_texto">
-        <item quantity="one">Possible match with the signature database in %d item. Check the evidence before deciding.</item>
-        <item quantity="other">Possible match with the signature database in %d items. Check the evidence before deciding.</item>
+        <item quantity="one">Possible match with the FortiSafe database in %d item. Check the evidence before deciding.</item>
+        <item quantity="other">Possible match with the FortiSafe database in %d items. Check the evidence before deciding.</item>
     </plurals>
     <string name="estado_motivo_sem_base">There is no signature database on this device yet. Without it, nothing can be compared.</string>
     <string name="estado_motivo_nunca_verificou">No scan has been completed yet.</string>
@@ -87,7 +87,7 @@
     <!-- Detalhe da detecção (entrega 1.5; D-AV17, D-AV20) -->
     <string name="detalhe_autoteste_titulo">Self-test</string>
     <string name="detalhe_autoteste_texto">Expected match: this file was written by the app self-test and does not change the protection status.</string>
-    <string name="detalhe_coincidencia">Possible match with the signature database (%1$s).</string>
+    <string name="detalhe_coincidencia">Possible match with the FortiSafe database (%1$s).</string>
     <string name="detalhe_evidencia">Evidence</string>
     <string name="detalhe_rotulo_arquivo">File</string>
     <string name="detalhe_rotulo_app">App</string>
@@ -120,11 +120,11 @@
     <string name="vt_sem_navegador">No app can open the link.</string>
 
     <!-- Notificações (B4, B5, B14; D-AV20) -->
-    <string name="notif_deteccao_titulo">Possible match with the signature database</string>
+    <string name="notif_deteccao_titulo">Possible match with the FortiSafe database</string>
     <string name="notif_deteccao_titulo_autoteste">Self-test: expected match</string>
     <string name="notif_deteccao_texto">%1$s, database %2$s</string>
-    <string name="notif_deteccao_detalhe">%1$s\n%2$s: %3$s\nDatabase %4$s\nTap to see the evidence and decide what to do.</string>
-    <string name="notif_deteccao_publica">Possible match with the signature database. Unlock the device to see the details.</string>
+    <string name="notif_deteccao_detalhe">%1$s\n%2$s: %3$s\nFortiSafe database %4$s\nTap to see the evidence and decide what to do.</string>
+    <string name="notif_deteccao_publica">Possible match with the FortiSafe database. Unlock the device to see the details.</string>
     <string name="notif_tempo_real_texto_completo">New or changed files and installed or updated apps are checked against known malware signatures</string>
     <string name="notif_tempo_real_limitada_titulo">Limited file protection</string>
     <string name="notif_tempo_real_limitada_texto">No access to files. Tap to review.</string>
@@ -138,8 +138,8 @@
     <string name="bases_assinatura_conferida">Each database file has its digital signature checked before use. A file with an invalid signature is discarded.</string>
 
     <!-- Histórico técnico -->
-    <string name="log_coincidencia">Possible match with the database: %1$s</string>
-    <string name="log_evidencia">%1$s %2$s · database %3$s</string>
+    <string name="log_coincidencia">Possible match with the FortiSafe database: %1$s</string>
+    <string name="log_evidencia">%1$s %2$s · FortiSafe database %3$s</string>
 
     <!-- Ajustes -->
     <string name="ajustes_secao_protecao">Protection</string>
@@ -185,7 +185,7 @@
     <string name="onb_agora_nao">Not now</string>
     <string name="onb_continuar">Continue</string>
     <string name="onb1_titulo">FortiSafe Antivirus</string>
-    <string name="onb1_corpo">What the app does\n• Compares installed apps and the files on your device with signatures of known malware.\n• Works offline once the signature database is downloaded.\n• Alerts you when something matches, shows the evidence and leaves the decision to you.\n\nWhat the app does not do\n• It does not look at the content of your messages, photos or passwords: for each file it only computes a fingerprint (hash), here on the device.\n• It does not filter websites or links.\n• It does not analyze app behavior.</string>
+    <string name="onb1_corpo">What the app does\n• Compares installed apps and the files on your device with signatures of known malware.\n• Works offline once the signature database is downloaded.\n• Alerts you when something matches, shows the evidence and leaves the decision to you.\n\nWhat the app does not do\n• It does not look at the content of chats, photos or passwords: it only computes each file\'s fingerprint (hash).\n• It does not filter websites or links.\n• It does not analyze app behavior.</string>
     <string name="onb1_comecar">Get started</string>
     <string name="onb2_titulo">Scan your apps</string>
     <string name="onb2_corpo">FortiSafe Antivirus accesses the list of apps installed on this device to scan each app\'s files for malware: when you run a scan and, if real-time protection is on, in the background whenever an app is installed or updated.\n\nThe list is processed on this device and is not sent to FortiSafe or to anyone else.\n\nIf you choose “Not now”, you can still scan files and check APKs you share with the app, and you can agree later. You can withdraw consent in Settings.</string>

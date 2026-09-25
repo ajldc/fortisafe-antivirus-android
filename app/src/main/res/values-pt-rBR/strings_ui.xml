@@ -11,9 +11,9 @@
     <string name="estado_inconclusivo_titulo">Inconclusivo</string>
     <string name="estado_protegido_texto">Última verificação: %1$s. Nenhum risco pendente.</string>
     <plurals name="estado_risco_texto">
-        <item quantity="one">Possível coincidência com a base de assinaturas em %d item. Veja a evidência antes de decidir.</item>
-        <item quantity="many">Possível coincidência com a base de assinaturas em %d itens. Veja a evidência antes de decidir.</item>
-        <item quantity="other">Possível coincidência com a base de assinaturas em %d itens. Veja a evidência antes de decidir.</item>
+        <item quantity="one">Possível coincidência com a base FortiSafe em %d item. Veja a evidência antes de decidir.</item>
+        <item quantity="many">Possível coincidência com a base FortiSafe em %d itens. Veja a evidência antes de decidir.</item>
+        <item quantity="other">Possível coincidência com a base FortiSafe em %d itens. Veja a evidência antes de decidir.</item>
     </plurals>
     <string name="estado_motivo_sem_base">Ainda não há base de assinaturas no aparelho. Sem ela, nada pode ser comparado.</string>
     <string name="estado_motivo_nunca_verificou">Nenhuma verificação foi concluída ainda.</string>
@@ -75,7 +75,7 @@
 
     <string name="detalhe_autoteste_titulo">Autoteste</string>
     <string name="detalhe_autoteste_texto">Coincidência esperada: este arquivo foi gravado pelo autoteste do app e não muda o estado de proteção.</string>
-    <string name="detalhe_coincidencia">Possível coincidência com a base de assinaturas (%1$s).</string>
+    <string name="detalhe_coincidencia">Possível coincidência com a base FortiSafe (%1$s).</string>
     <string name="detalhe_evidencia">Evidência</string>
     <string name="detalhe_rotulo_arquivo">Arquivo</string>
     <string name="detalhe_rotulo_app">App</string>
@@ -107,11 +107,11 @@
     <string name="vt_abrir">Abrir o navegador</string>
     <string name="vt_sem_navegador">Nenhum app consegue abrir o endereço.</string>
 
-    <string name="notif_deteccao_titulo">Possível coincidência com a base de assinaturas</string>
+    <string name="notif_deteccao_titulo">Possível coincidência com a base FortiSafe</string>
     <string name="notif_deteccao_titulo_autoteste">Autoteste: coincidência esperada</string>
     <string name="notif_deteccao_texto">%1$s, base %2$s</string>
-    <string name="notif_deteccao_detalhe">%1$s\n%2$s: %3$s\nBase %4$s\nToque para ver a evidência e decidir o que fazer.</string>
-    <string name="notif_deteccao_publica">Possível coincidência com a base de assinaturas. Desbloqueie o aparelho para ver os detalhes.</string>
+    <string name="notif_deteccao_detalhe">%1$s\n%2$s: %3$s\nBase FortiSafe %4$s\nToque para ver a evidência e decidir o que fazer.</string>
+    <string name="notif_deteccao_publica">Possível coincidência com a base FortiSafe. Desbloqueie o aparelho para ver os detalhes.</string>
     <string name="notif_tempo_real_texto_completo">Arquivos novos ou alterados e apps instalados ou atualizados são comparados com assinaturas de malware conhecido</string>
     <string name="notif_tempo_real_limitada_titulo">Proteção de arquivos limitada</string>
     <string name="notif_tempo_real_limitada_texto">Sem acesso aos arquivos. Toque para rever.</string>
@@ -123,8 +123,8 @@
     <string name="bases_atualizando">Atualizando as bases…</string>
     <string name="bases_assinatura_conferida">Cada arquivo da base tem a assinatura digital conferida antes de ser usado. Arquivo com assinatura inválida é descartado.</string>
 
-    <string name="log_coincidencia">Possível coincidência com a base: %1$s</string>
-    <string name="log_evidencia">%1$s %2$s · base %3$s</string>
+    <string name="log_coincidencia">Possível coincidência com a base FortiSafe: %1$s</string>
+    <string name="log_evidencia">%1$s %2$s · base FortiSafe %3$s</string>
 
     <string name="ajustes_secao_protecao">Proteção</string>
     <string name="ajustes_notificacoes">Notificações</string>
@@ -167,7 +167,7 @@
     <string name="onb_agora_nao">Agora não</string>
     <string name="onb_continuar">Continuar</string>
     <string name="onb1_titulo">FortiSafe Antivírus</string>
-    <string name="onb1_corpo">O que o app faz\n• Compara os apps instalados e os arquivos do aparelho com assinaturas de malware conhecido.\n• Funciona sem internet depois de baixar a base de assinaturas.\n• Avisa quando algo coincide, mostra a evidência e deixa a decisão com você.\n\nO que o app não faz\n• Não olha o conteúdo das suas conversas, fotos ou senhas: de cada arquivo, só calcula a impressão digital (hash), aqui no aparelho.\n• Não filtra sites nem links.\n• Não analisa o comportamento dos apps.</string>
+    <string name="onb1_corpo">O que o app faz\n• Compara os apps instalados e os arquivos do aparelho com assinaturas de malware conhecido.\n• Funciona sem internet depois de baixar a base de assinaturas.\n• Avisa quando algo coincide, mostra a evidência e deixa a decisão com você.\n\nO que o app não faz\n• Não olha o conteúdo de conversas, fotos nem senhas: de cada arquivo calcula só a impressão digital (hash).\n• Não filtra sites nem links.\n• Não analisa o comportamento dos apps.</string>
     <string name="onb1_comecar">Começar</string>
     <string name="onb2_titulo">Verificar seus apps</string>
     <string name="onb2_corpo">O FortiSafe Antivírus acessa a lista de apps instalados neste aparelho para verificar os arquivos de cada app em busca de malware: quando você inicia uma verificação e, se a proteção em tempo real estiver ligada, em segundo plano sempre que um app for instalado ou atualizado.\n\nA lista é processada neste aparelho e não é enviada ao FortiSafe nem a terceiros.\n\nSe você escolher “Agora não”, ainda poderá verificar arquivos e APKs compartilhados com o app, e poderá concordar depois. Você pode revogar o consentimento em Ajustes.</string>

@@ -11,9 +11,9 @@
     <string name="estado_inconclusivo_titulo">No concluyente</string>
     <string name="estado_protegido_texto">Último análisis: %1$s. Ningún riesgo pendiente.</string>
     <plurals name="estado_risco_texto">
-        <item quantity="one">Posible coincidencia con la base de firmas en %d elemento. Revisa la evidencia antes de decidir.</item>
-        <item quantity="many">Posible coincidencia con la base de firmas en %d elementos. Revisa la evidencia antes de decidir.</item>
-        <item quantity="other">Posible coincidencia con la base de firmas en %d elementos. Revisa la evidencia antes de decidir.</item>
+        <item quantity="one">Posible coincidencia con la base FortiSafe en %d elemento. Revisa la evidencia antes de decidir.</item>
+        <item quantity="many">Posible coincidencia con la base FortiSafe en %d elementos. Revisa la evidencia antes de decidir.</item>
+        <item quantity="other">Posible coincidencia con la base FortiSafe en %d elementos. Revisa la evidencia antes de decidir.</item>
     </plurals>
     <string name="estado_motivo_sem_base">Todavía no hay ninguna base de firmas en el dispositivo. Sin ella, no se puede comparar nada.</string>
     <string name="estado_motivo_nunca_verificou">Todavía no se ha completado ningún análisis.</string>
@@ -75,7 +75,7 @@
 
     <string name="detalhe_autoteste_titulo">Autoprueba</string>
     <string name="detalhe_autoteste_texto">Coincidencia esperada: este archivo lo escribió la autoprueba de la aplicación y no cambia el estado de protección.</string>
-    <string name="detalhe_coincidencia">Posible coincidencia con la base de firmas (%1$s).</string>
+    <string name="detalhe_coincidencia">Posible coincidencia con la base FortiSafe (%1$s).</string>
     <string name="detalhe_evidencia">Evidencia</string>
     <string name="detalhe_rotulo_arquivo">Archivo</string>
     <string name="detalhe_rotulo_app">Aplicación</string>
@@ -107,11 +107,11 @@
     <string name="vt_abrir">Abrir el navegador</string>
     <string name="vt_sem_navegador">Ninguna aplicación puede abrir el enlace.</string>
 
-    <string name="notif_deteccao_titulo">Posible coincidencia con la base de firmas</string>
+    <string name="notif_deteccao_titulo">Posible coincidencia con la base FortiSafe</string>
     <string name="notif_deteccao_titulo_autoteste">Autoprueba: coincidencia esperada</string>
     <string name="notif_deteccao_texto">%1$s, base %2$s</string>
-    <string name="notif_deteccao_detalhe">%1$s\n%2$s: %3$s\nBase %4$s\nToca para ver la evidencia y decidir qué hacer.</string>
-    <string name="notif_deteccao_publica">Posible coincidencia con la base de firmas. Desbloquea el dispositivo para ver los detalles.</string>
+    <string name="notif_deteccao_detalhe">%1$s\n%2$s: %3$s\nBase FortiSafe %4$s\nToca para ver la evidencia y decidir qué hacer.</string>
+    <string name="notif_deteccao_publica">Posible coincidencia con la base FortiSafe. Desbloquea el dispositivo para ver los detalles.</string>
     <string name="notif_tempo_real_texto_completo">Los archivos nuevos o modificados y las aplicaciones instaladas o actualizadas se comparan con firmas de malware conocido</string>
     <string name="notif_tempo_real_limitada_titulo">Protección de archivos limitada</string>
     <string name="notif_tempo_real_limitada_texto">Sin acceso a los archivos. Toca para revisarlo.</string>
@@ -123,8 +123,8 @@
     <string name="bases_atualizando">Actualizando las bases…</string>
     <string name="bases_assinatura_conferida">Cada archivo de la base tiene su firma digital comprobada antes de usarse. Un archivo con una firma no válida se descarta.</string>
 
-    <string name="log_coincidencia">Posible coincidencia con la base: %1$s</string>
-    <string name="log_evidencia">%1$s %2$s · base %3$s</string>
+    <string name="log_coincidencia">Posible coincidencia con la base FortiSafe: %1$s</string>
+    <string name="log_evidencia">%1$s %2$s · base FortiSafe %3$s</string>
 
     <string name="ajustes_secao_protecao">Protección</string>
     <string name="ajustes_notificacoes">Notificaciones</string>
@@ -167,7 +167,7 @@
     <string name="onb_agora_nao">Ahora no</string>
     <string name="onb_continuar">Continuar</string>
     <string name="onb1_titulo">FortiSafe Antivirus</string>
-    <string name="onb1_corpo">Lo que hace la aplicación\n• Compara las aplicaciones instaladas y los archivos del dispositivo con firmas de malware conocido.\n• Funciona sin internet después de descargar la base de firmas.\n• Te avisa cuando algo coincide, te muestra la evidencia y deja la decisión en tus manos.\n\nLo que la aplicación no hace\n• No mira el contenido de tus conversaciones, fotos ni contraseñas: de cada archivo solo calcula la huella digital (hash), aquí en el dispositivo.\n• No filtra sitios web ni enlaces.\n• No analiza el comportamiento de las aplicaciones.</string>
+    <string name="onb1_corpo">Lo que hace la aplicación\n• Compara las aplicaciones instaladas y los archivos del dispositivo con firmas de malware conocido.\n• Funciona sin internet después de descargar la base de firmas.\n• Te avisa cuando algo coincide, te muestra la evidencia y deja la decisión en tus manos.\n\nLo que la aplicación no hace\n• No mira el contenido de chats, fotos ni contraseñas: de cada archivo solo calcula la huella digital (hash).\n• No filtra sitios web ni enlaces.\n• No analiza el comportamiento de las aplicaciones.</string>
     <string name="onb1_comecar">Empezar</string>
     <string name="onb2_titulo">Analizar tus aplicaciones</string>
     <string name="onb2_corpo">FortiSafe Antivirus accede a la lista de aplicaciones instaladas en este dispositivo para analizar los archivos de cada aplicación en busca de malware: cuando inicias un análisis y, si la protección en tiempo real está activada, en segundo plano cada vez que se instala o actualiza una aplicación.\n\nLa lista se procesa en este dispositivo y no se envía a FortiSafe ni a terceros.\n\nSi eliges «Ahora no», podrás seguir analizando archivos y los APK que compartas con la aplicación, y podrás aceptar más tarde. Puedes retirar el consentimiento en Ajustes.</string>
