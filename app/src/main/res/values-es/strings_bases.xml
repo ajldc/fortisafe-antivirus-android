@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Textos de las bases de firmas (entregas 1.6 y 1.7). Ver values/strings_bases.xml. -->
+<resources>
+    <string name="bases_procurando">Buscando actualizaciones de las bases de firmas en el servidor de FortiSafe…</string>
+    <string name="bases_instalada">Bases de firmas actualizadas a la versión %1$s (publicada el %2$s).</string>
+    <string name="bases_em_dia">Las bases de firmas están al día (versión %1$s).</string>
+    <string name="bases_sem_chave">Esta compilación no incluye la clave de firma de las bases. Las actualizaciones se rechazan y no se carga ninguna base.</string>
+    <string name="bases_recusada_url">Actualización rechazada: la dirección del servidor de las bases no está permitida (solo HTTPS).</string>
+    <string name="bases_recusada_rede">No se pudo contactar con el servidor de las bases. Se mantuvieron las bases actuales.</string>
+    <string name="bases_recusada_servidor">El servidor de las bases dio una respuesta inesperada. Se mantuvieron las bases actuales.</string>
+    <string name="bases_recusada_assinatura">Actualización rechazada: la firma de FortiSafe falta o no es válida. Se mantuvieron las bases actuales.</string>
+    <string name="bases_recusada_formato">Actualización rechazada: el manifiesto de las bases está mal formado. Se mantuvieron las bases actuales.</string>
+    <string name="bases_recusada_rebaixamento">Actualización rechazada: el servidor ofreció una versión más antigua que la instalada. Se mantuvieron las bases actuales.</string>
+    <string name="bases_recusada_revogada">Actualización rechazada: FortiSafe revocó la versión del servidor.</string>
+    <string name="bases_recusada_expirada">Actualización rechazada: las bases del servidor están caducadas. Se mantuvieron las bases actuales.</string>
+    <string name="bases_recusada_arquivo">Actualización rechazada: un archivo descargado no coincide con el manifiesto firmado. No se cambió nada.</string>
+    <string name="bases_recusada_armazenamento">No se pudieron guardar las bases en este dispositivo. No se cambió nada.</string>
+    <string name="bases_carregada">Usando las bases de firmas en la versión %1$s (publicada el %2$s).</string>
+    <string name="bases_estado_desatualizada">Atención: las bases de firmas están desactualizadas (válidas hasta el %1$s). Actualiza las bases.</string>
+    <string name="bases_estado_revogada">FortiSafe revocó la versión %1$s de las bases de firmas y dejó de usarse. Actualiza las bases.</string>
+    <string name="bases_estado_ausente">No hay bases de firmas válidas instaladas. Actualiza las bases.</string>
+    <string name="bases_arquivo_divergente">El archivo instalado %1$s no coincide con el manifiesto aceptado, así que las bases no se cargaron. Actualiza las bases.</string>
+    <string name="bases_emergencia_aplicada">Lista de emergencia de FortiSafe aplicada (versión %1$s).</string>
+    <string name="bases_emergencia_recusada">La lista de emergencia de FortiSafe no se actualizó; sigue vigente la anterior.</string>
+    <string name="bases_emergencia_expirada">Atención: la lista de emergencia de FortiSafe caducó el %1$s. Sigue vigente hasta que llegue una más reciente.</string>
+</resources>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Textos das bases de assinaturas (entregas 1.6 e 1.7: servidor e chaves do
+  FortiSafe, lista de emergência). Arquivo à parte de strings.xml para não
+  colidir com a interface nova (entrega 1.4). Mesmas chaves em values-pt-rBR e
+  values-es.
+-->
+<resources>
+    <string name="bases_procurando">Checking the signature databases on the FortiSafe server…</string>
+    <string name="bases_instalada">Signature databases updated to version %1$s (published %2$s).</string>
+    <string name="bases_em_dia">The signature databases are up to date (version %1$s).</string>
+    <string name="bases_sem_chave">This build has no signing key for the signature databases. Updates are refused and no database is loaded.</string>
+    <string name="bases_recusada_url">Update refused: the database server address is not allowed (HTTPS only).</string>
+    <string name="bases_recusada_rede">Could not reach the database server. The current databases were kept.</string>
+    <string name="bases_recusada_servidor">The database server gave an unexpected answer. The current databases were kept.</string>
+    <string name="bases_recusada_assinatura">Update refused: the FortiSafe signature is missing or invalid. The current databases were kept.</string>
+    <string name="bases_recusada_formato">Update refused: the database manifest is malformed. The current databases were kept.</string>
+    <string name="bases_recusada_rebaixamento">Update refused: the server offered an older version than the installed one. The current databases were kept.</string>
+    <string name="bases_recusada_revogada">Update refused: the version on the server was revoked by FortiSafe.</string>
+    <string name="bases_recusada_expirada">Update refused: the databases on the server have expired. The current databases were kept.</string>
+    <string name="bases_recusada_arquivo">Update refused: a downloaded file does not match the signed manifest. Nothing was changed.</string>
+    <string name="bases_recusada_armazenamento">Could not save the databases on this device. Nothing was changed.</string>
+    <string name="bases_carregada">Using signature databases version %1$s (published %2$s).</string>
+    <string name="bases_estado_desatualizada">Attention: the signature databases are out of date (valid until %1$s). Update the databases.</string>
+    <string name="bases_estado_revogada">Signature databases version %1$s were revoked by FortiSafe and are no longer used. Update the databases.</string>
+    <string name="bases_estado_ausente">No valid signature databases are installed. Update the databases.</string>
+    <string name="bases_arquivo_divergente">The installed file %1$s does not match the accepted manifest, so the databases were not loaded. Update the databases.</string>
+    <string name="bases_emergencia_aplicada">FortiSafe emergency list version %1$s applied.</string>
+    <string name="bases_emergencia_recusada">The FortiSafe emergency list was not updated; the previous one is still in effect.</string>
+    <string name="bases_emergencia_expirada">Attention: the FortiSafe emergency list expired on %1$s. It still applies until a newer one is installed.</string>
+</resources>

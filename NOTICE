@@ -67,12 +67,15 @@ não participam dele, não o endossam e não respondem por ele.
   Copyright (C) 2016 Daniel Gultsch.
   Origem: siacs/Conversations, adaptado.
 
-- app/src/main/java/us/spotco/malwarescanner/GPGDetachedSignatureVerifier.java
-  Licença: GPL-2.0-or-later, com a exceção declarada no cabeçalho do próprio
-  arquivo (uso como parte de uma biblioteca de software livre sem restrição).
-  Copyright 2015 Arduino LLC (http://www.arduino.cc/); autor citado no README
-  do upstream: Federico Fissore.
-  Origem: https://github.com/arduino/Arduino/blob/master/arduino-core/src/cc/arduino/contributions/GPGDetachedSignatureVerifier.java
+- GPGDetachedSignatureVerifier.java (Arduino) — não faz mais parte do código
+  desde 25/09/2026 (entrega 1.6; G0, B21: "substituir"). Registro, para quem
+  comparar com o upstream: era GPL-2.0-or-later com exceção de biblioteca,
+  Copyright 2015 Arduino LLC, autor citado no README do upstream Federico
+  Fissore (origem: https://github.com/arduino/Arduino/blob/master/arduino-core/src/cc/arduino/contributions/GPGDetachedSignatureVerifier.java).
+  Foi substituído por um verificador escrito do zero pelo FortiSafe
+  (app/src/main/java/us/spotco/malwarescanner/bases/VerificadorAssinatura.kt,
+  AGPL-3.0-or-later), sem aproveitar trecho do arquivo removido. O crédito
+  saiu também da lista "Créditos" do app (res/values*/arrays.xml).
 
 - Ícones: desde a entrega 1.1 (25/09/2026) o ícone do app, o da loja e o das
   notificações são a marca FortiSafe (seção 8); o escudo do Material Design
@@ -216,11 +219,8 @@ Fato de licença, sem parecer jurídico:
   permite combinar uma obra coberta pela AGPL-3.0 com uma obra coberta pela
   GPL-3.0 numa única obra combinada e distribuí-la; cada parte continua regida
   pela própria licença.
-- GPGDetachedSignatureVerifier.java é GPL-2.0-or-later. A cláusula "ou
-  posterior" permite recebê-lo sob a GPL-3.0, e a partir daí vale o mesmo
-  mecanismo da seção 13 acima. O arquivo traz ainda uma exceção do autor que
-  permite seu uso como parte de uma biblioteca de software livre sem
-  restrição.
+- GPGDetachedSignatureVerifier.java (GPL-2.0-or-later) saiu do código em
+  25/09/2026 (seção 2); não há mais arquivo sob GPL-2.0 na obra.
 - Apache-2.0 e MIT (dependências) são compatíveis com a GPL-3.0 e
   com a AGPL-3.0 na direção usada aqui: código sob essas licenças pode ser
   incorporado a uma obra AGPL-3.0, mantendo-se os avisos de copyright e de
