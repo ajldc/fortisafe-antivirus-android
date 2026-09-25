@@ -96,6 +96,8 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.documentfile)
     implementation(libs.androidx.core.ktx)
+
+    testImplementation(libs.junit)
 }
 
 static String getGitWorkingBranch() {

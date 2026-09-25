@@ -10,6 +10,9 @@ appcompat = "1.7.1"
 documentfile = "1.1.0"
 core-ktx = "1.17.0"
 
+# Só testes de unidade na JVM (entrega 1.6).
+junit = "4.13.2"
+
 [libraries]
 commons-io = { group = "commons-io", name = "commons-io", version.ref = "commons-io" }
 
@@ -22,6 +25,8 @@ androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version
 androidx-documentfile = { group = "androidx.documentfile", name = "documentfile", version.ref = "documentfile" }
 
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
+
+junit = { group = "junit", name = "junit", version.ref = "junit" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
