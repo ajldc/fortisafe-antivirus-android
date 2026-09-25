@@ -16,14 +16,6 @@
         <item name="android:textColorSecondary">@color/fortisafe_text_secondary</item>
     </style>
 
-    <style name="Theme.AppCompat.Translucent">
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowBackground">@android:color/transparent</item>
-        <item name="android:colorBackgroundCacheHint">@null</item>
-        <item name="android:windowIsTranslucent">true</item>
-        <item name="android:windowAnimationStyle">@android:style/Animation</item>
-    </style>
-
     <!-- Raiz dos estilos com ponto no nome (o aapt2 infere o pai pelo prefixo). -->
     <style name="FortiSafe" />
 

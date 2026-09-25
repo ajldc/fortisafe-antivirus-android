@@ -67,15 +67,6 @@
         android:theme="@style/Theme.FortiSafe"
         android:usesCleartextTraffic="false"
         tools:targetApi="31">
-        <activity
-            android:name=".NotificationPromptActivity"
-            android:exported="false"
-            android:launchMode="singleInstance"
-            android:theme="@style/Theme.AppCompat.Translucent"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:noHistory="true"
-            android:excludeFromRecents="true" />
         <!--
           Sem screenOrientation="portrait": com targetSdk 36 a trava é ignorada em
           telas com menor largura >= 600dp. configChanges cobre rotação e
@@ -95,6 +86,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!--
+          Detalhe da detecção (entrega 1.5): substitui a NotificationPromptActivity
+          do upstream; a notificação abre a evidência antes de qualquer ação.
+        -->
+        <activity
+            android:name=".DetalheDeteccaoActivity"
+            android:exported="false" />
         <activity
             android:name=".ShareScanner"
             android:exported="true">
