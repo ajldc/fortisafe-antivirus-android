@@ -1,0 +1,237 @@
+{
+  "formato": "fortisafe-bases-manifesto/1",
+  "tipo": "bases",
+  "versao": 2026092501,
+  "publicadoEm": "2026-09-25T18:35:46Z",
+  "expiraEm": "2036-09-22T18:35:46Z",
+  "arquivos": [
+    {
+      "nome": "hypatia-md5-bloom.bin",
+      "bytes": 359446,
+      "sha256": "9a87b165ae05223535bd0a7e5d139c774673779215d24d2ef04c8d0cf31ab40e"
+    },
+    {
+      "nome": "hypatia-sha1-bloom.bin",
+      "bytes": 359446,
+      "sha256": "916c116ac51a3ed46acceb5bfcc4cca662def677a34180dace840294665c0f2c"
+    },
+    {
+      "nome": "hypatia-sha256-bloom.bin",
+      "bytes": 359446,
+      "sha256": "6295f9d23cdc219c6b0065230bf1043f05db79d275355b311847a7015cc902a7"
+    },
+    {
+      "nome": "ATRIBUICOES.txt",
+      "bytes": 62,
+      "sha256": "b142f9bb2d7e0f1a070861586cb8fbe5c2c9bd5025bd20b29dd452ac3eb33341"
+    }
+  ],
+  "geracao": {
+    "geradoEm": "2026-09-23T18:35:46Z",
+    "gerador": {
+      "pipeline": "ajldc/fortisafe-antivirus, diretório pipeline/",
+      "commitDoPipeline": "0000000000000000000000000000000000000000",
+      "pipelineComAlteracoesNaoCommitadas": false,
+      "guava": "33.4.8-jre",
+      "java": "21.0.10",
+      "serializacao": "com.google.common.hash.BloomFilter#writeTo",
+      "estrategia": "MURMUR128_MITZ_64 (ordinal 1)",
+      "funil": "Funnels.stringFunnel(US_ASCII)",
+      "hashes": "hexadecimal minúsculo"
+    },
+    "feeds": [
+      {
+        "nome": "eset",
+        "repositorio": "https://github.com/eset/malware-ioc.git",
+        "commit": "1111111111111111111111111111111111111111",
+        "dataCommit": "2026-09-23T18:35:46Z",
+        "licencaDosDados": "BSD-2-Clause",
+        "arquivos": 1,
+        "porAlgoritmo": {
+          "md5": {
+            "lidas": 5,
+            "vazias": 0,
+            "validas": 5,
+            "invalidas": 0,
+            "duplicadas": 0,
+            "unicas": 5
+          },
+          "sha1": {
+            "lidas": 5,
+            "vazias": 0,
+            "validas": 5,
+            "invalidas": 0,
+            "duplicadas": 0,
+            "unicas": 5
+          },
+          "sha256": {
+            "lidas": 5,
+            "vazias": 0,
+            "validas": 5,
+            "invalidas": 0,
+            "duplicadas": 0,
+            "unicas": 5
+          }
+        },
+        "descartes": [],
+        "descartesNaoListados": 0
+      },
+      {
+        "nome": "stalkerware",
+        "repositorio": "https://github.com/AssoEchap/stalkerware-indicators.git",
+        "commit": "2222222222222222222222222222222222222222",
+        "dataCommit": "2026-09-23T18:35:46Z",
+        "licencaDosDados": "CC-BY-4.0",
+        "arquivos": 1,
+        "porAlgoritmo": {
+          "sha256": {
+            "lidas": 5,
+            "vazias": 0,
+            "validas": 5,
+            "invalidas": 0,
+            "duplicadas": 0,
+            "unicas": 5
+          }
+        },
+        "descartes": [],
+        "descartesNaoListados": 0
+      },
+      {
+        "nome": "canarios",
+        "repositorio": "teste",
+        "commit": "3333333333333333333333333333333333333333",
+        "dataCommit": null,
+        "licencaDosDados": "não se aplica",
+        "arquivos": 1,
+        "arquivo": "pipeline/canarios/canarios.csv",
+        "sha256Arquivo": "bc8722f2abcd18e9c21877d55cf2610bafe411c89e23acd7a2c1e7b7ba82988d",
+        "canarios": [
+          {
+            "algoritmo": "md5",
+            "hash": "903616d0dbe074aa363d2d49c03f7362",
+            "origem": "HypatiaHypatiaHypatia"
+          },
+          {
+            "algoritmo": "md5",
+            "hash": "faf325d9d4b2a6c9457405eb31870b22",
+            "origem": "HypatiaHypatiaHypatia-MD5"
+          },
+          {
+            "algoritmo": "sha1",
+            "hash": "fc4a3e802894cc2229be77ec6f082d1aab744e54",
+            "origem": "HypatiaHypatiaHypatia"
+          },
+          {
+            "algoritmo": "sha1",
+            "hash": "04445ab9332cdca0031184165eb88a0a9dcec4ed",
+            "origem": "HypatiaHypatiaHypatia-SHA1"
+          },
+          {
+            "algoritmo": "sha256",
+            "hash": "df44844a0e99ddd935e8419257440a2ca7ef3243435a67416fcbb6cd3ae560c3",
+            "origem": "HypatiaHypatiaHypatia"
+          },
+          {
+            "algoritmo": "sha256",
+            "hash": "3be403a831795482e82e2f9bc3e57ca34744aca3756e297b056b9f9c41830eaf",
+            "origem": "HypatiaHypatiaHypatia-SHA256"
+          }
+        ],
+        "porAlgoritmo": {
+          "md5": {
+            "lidas": 2,
+            "vazias": 0,
+            "validas": 2,
+            "invalidas": 0,
+            "duplicadas": 0,
+            "unicas": 2
+          },
+          "sha1": {
+            "lidas": 2,
+            "vazias": 0,
+            "validas": 2,
+            "invalidas": 0,
+            "duplicadas": 0,
+            "unicas": 2
+          },
+          "sha256": {
+            "lidas": 2,
+            "vazias": 0,
+            "validas": 2,
+            "invalidas": 0,
+            "duplicadas": 0,
+            "unicas": 2
+          }
+        },
+        "descartes": [],
+        "descartesNaoListados": 0
+      }
+    ],
+    "excluidosSempre": [
+      "d41d8cd98f00b204e9800998ecf8427e",
+      "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    ],
+    "bases": {
+      "md5": {
+        "arquivo": "hypatia-md5-bloom.bin",
+        "bytes": 359446,
+        "sha256": "9a87b165ae05223535bd0a7e5d139c774673779215d24d2ef04c8d0cf31ab40e",
+        "capacidade": 50000,
+        "fpp": 1.0E-12,
+        "funcoesHash": 40,
+        "longs": 44930,
+        "lidas": 7,
+        "vazias": 0,
+        "validas": 7,
+        "invalidas": 0,
+        "duplicadas": 0,
+        "excluidas": 0,
+        "inseridas": 7,
+        "ocupacao": 1.4E-4,
+        "contagemAproximada": 7,
+        "fppEstimadaAposInsercao": 3.448780470899209E-161
+      },
+      "sha1": {
+        "arquivo": "hypatia-sha1-bloom.bin",
+        "bytes": 359446,
+        "sha256": "916c116ac51a3ed46acceb5bfcc4cca662def677a34180dace840294665c0f2c",
+        "capacidade": 50000,
+        "fpp": 1.0E-12,
+        "funcoesHash": 40,
+        "longs": 44930,
+        "lidas": 7,
+        "vazias": 0,
+        "validas": 7,
+        "invalidas": 0,
+        "duplicadas": 0,
+        "excluidas": 0,
+        "inseridas": 7,
+        "ocupacao": 1.4E-4,
+        "contagemAproximada": 7,
+        "fppEstimadaAposInsercao": 3.448780470899209E-161
+      },
+      "sha256": {
+        "arquivo": "hypatia-sha256-bloom.bin",
+        "bytes": 359446,
+        "sha256": "6295f9d23cdc219c6b0065230bf1043f05db79d275355b311847a7015cc902a7",
+        "capacidade": 50000,
+        "fpp": 1.0E-12,
+        "funcoesHash": 40,
+        "longs": 44930,
+        "lidas": 12,
+        "vazias": 0,
+        "validas": 12,
+        "invalidas": 0,
+        "duplicadas": 0,
+        "excluidas": 0,
+        "inseridas": 12,
+        "ocupacao": 2.4E-4,
+        "contagemAproximada": 12,
+        "fppEstimadaAposInsercao": 7.324278227669528E-152
+      }
+    },
+    "totalInserido": 26,
+    "atribuicoes": "ATRIBUICOES.txt"
+  }
+}
