@@ -20,6 +20,7 @@
     <string name="bases_estado_revogada">FortiSafe revocó la versión %1$s de las bases de firmas y dejó de usarse. Actualiza las bases.</string>
     <string name="bases_estado_ausente">No hay bases de firmas válidas instaladas. Actualiza las bases.</string>
     <string name="bases_arquivo_divergente">El archivo instalado %1$s no coincide con el manifiesto aceptado, así que las bases no se cargaron. Actualiza las bases.</string>
+    <string name="bases_aceite_descartado">Las bases guardadas ya no coinciden con las claves de firma de esta versión de la app y se descartaron. Actualiza las bases.</string>
     <string name="bases_emergencia_aplicada">Lista de emergencia de FortiSafe aplicada (versión %1$s).</string>
     <string name="bases_emergencia_recusada">La lista de emergencia de FortiSafe no se actualizó; sigue vigente la anterior.</string>
     <string name="bases_emergencia_expirada">Atención: la lista de emergencia de FortiSafe caducó el %1$s. Sigue vigente hasta que llegue una más reciente.</string>

@@ -25,6 +25,7 @@
     <string name="bases_estado_revogada">Signature databases version %1$s were revoked by FortiSafe and are no longer used. Update the databases.</string>
     <string name="bases_estado_ausente">No valid signature databases are installed. Update the databases.</string>
     <string name="bases_arquivo_divergente">The installed file %1$s does not match the accepted manifest, so the databases were not loaded. Update the databases.</string>
+    <string name="bases_aceite_descartado">The stored signature databases no longer match the signing keys of this version of the app and were discarded. Update the databases.</string>
     <string name="bases_emergencia_aplicada">FortiSafe emergency list version %1$s applied.</string>
     <string name="bases_emergencia_recusada">The FortiSafe emergency list was not updated; the previous one is still in effect.</string>
     <string name="bases_emergencia_expirada">Attention: the FortiSafe emergency list expired on %1$s. It still applies until a newer one is installed.</string>
