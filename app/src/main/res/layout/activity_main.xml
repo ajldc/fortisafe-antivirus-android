@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Tela principal (D-AV13; design-app.md §3): barra inferior com três abas
+  (Início · Histórico · Ajustes). Views comuns do AppCompat, sem Material.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/fortisafe_background"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/txtCabecalho"
+        style="@style/FortiSafe.Cabecalho"
+        android:text="@string/app_name" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <!-- Início: faixa de estado, ação principal e três cartões -->
+        <ScrollView
+            android:id="@+id/paneInicio"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="16dp"
+                android:paddingTop="8dp"
+                android:paddingRight="16dp"
+                android:paddingBottom="16dp">
+
+                <LinearLayout
+                    android:id="@+id/faixaEstado"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_faixa_inconclusivo"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:id="@+id/txtEstadoTitulo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="22sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txtEstadoTexto"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:lineSpacingExtra="2dp"
+                        android:textSize="15sp" />
+
+                    <Button
+                        android:id="@+id/btnEstadoCorrecao"
+                        style="@style/FortiSafe.Botao.Secundario"
+                        android:layout_width="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:visibility="gone" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btnVerificar"
+                    style="@style/FortiSafe.Botao.Primario"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/inicio_verificar_agora" />
+
+                <ProgressBar
+                    android:id="@+id/progressoVerificacao"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:indeterminate="true"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/txtUltimaVerificacao"
+                    style="@style/FortiSafe.Apoio"
+                    android:layout_marginTop="8dp" />
+
+                <LinearLayout
+                    android:id="@+id/cartaoApps"
+                    style="@style/FortiSafe.Cartao"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <TextView
+                        style="@style/FortiSafe.CartaoTitulo"
+                        android:text="@string/cartao_apps_titulo" />
+
+                    <TextView
+                        android:id="@+id/txtCartaoApps"
+                        style="@style/FortiSafe.Corpo" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/cartaoArquivos"
+                    style="@style/FortiSafe.Cartao"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <TextView
+                        style="@style/FortiSafe.CartaoTitulo"
+                        android:text="@string/cartao_arquivos_titulo" />
+
+                    <TextView
+                        android:id="@+id/txtCartaoArquivos"
+                        style="@style/FortiSafe.Corpo" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/FortiSafe.Cartao">
+
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/switchTempoRealInicio"
+                        style="@style/FortiSafe.Chave"
+                        android:text="@string/cartao_tempo_real_titulo"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txtCartaoTempoReal"
+                        style="@style/FortiSafe.Corpo" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/txtBaseInicio"
+                    style="@style/FortiSafe.Apoio"
+                    android:layout_marginTop="16dp" />
+            </LinearLayout>
+        </ScrollView>
+
+        <!-- Histórico: detecções e, à parte, o log técnico herdado -->
+        <LinearLayout
+            android:id="@+id/paneHistorico"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
+
+                <TextView
+                    android:id="@+id/subabaDeteccoes"
+                    style="@style/FortiSafe.Subaba"
+                    android:text="@string/historico_deteccoes" />
+
+                <TextView
+                    android:id="@+id/subabaDetalhes"
+                    style="@style/FortiSafe.Subaba"
+                    android:text="@string/historico_detalhes_tecnicos" />
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <FrameLayout
+                    android:id="@+id/containerDeteccoes"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ListView
+                        android:id="@+id/listaDeteccoes"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:clipToPadding="false"
+                        android:divider="@android:color/transparent"
+                        android:dividerHeight="8dp"
+                        android:padding="16dp" />
+
+                    <TextView
+                        android:id="@+id/txtHistoricoVazio"
+                        style="@style/FortiSafe.Corpo"
+                        android:padding="16dp"
+                        android:text="@string/historico_vazio" />
+                </FrameLayout>
+
+                <TextView
+                    android:id="@+id/txtLogOutput"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="bottom"
+                    android:maxLines="500"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:paddingBottom="8dp"
+                    android:scrollbars="vertical"
+                    android:text=""
+                    android:textColor="@color/fortisafe_text_secondary"
+                    android:textSize="13sp"
+                    android:typeface="monospace"
+                    android:visibility="gone" />
+            </FrameLayout>
+        </LinearLayout>
+
+        <!-- Ajustes -->
+        <ScrollView
+            android:id="@+id/paneAjustes"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:paddingBottom="24dp">
+
+                <TextView
+                    style="@style/FortiSafe.Secao"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/ajustes_secao_protecao" />
+
+                <LinearLayout
+                    style="@style/FortiSafe.Cartao"
+                    android:layout_marginTop="8dp">
+
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/switchTempoRealAjustes"
+                        style="@style/FortiSafe.Chave"
+                        android:text="@string/cartao_tempo_real_titulo" />
+
+                    <TextView
+                        android:id="@+id/txtTempoRealAjustes"
+                        style="@style/FortiSafe.Apoio" />
+
+                    <TextView
+                        style="@style/FortiSafe.CartaoTitulo"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/ajustes_notificacoes" />
+
+                    <TextView
+                        android:id="@+id/txtNotificacoes"
+                        style="@style/FortiSafe.Apoio" />
+
+                    <Button
+                        android:id="@+id/btnNotificacoes"
+                        style="@style/FortiSafe.Botao.Secundario"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/ajustes_notificacoes_permitir" />
+                </LinearLayout>
+
+                <TextView
+                    style="@style/FortiSafe.Secao"
+                    android:text="@string/ajustes_secao_escopo" />
+
+                <LinearLayout
+                    style="@style/FortiSafe.Cartao"
+                    android:layout_marginTop="8dp">
+
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/switchEscopoApps"
+                        style="@style/FortiSafe.Chave"
+                        android:text="@string/escopo_apps" />
+
+                    <TextView
+                        android:id="@+id/txtEscopoAppsNota"
+                        style="@style/FortiSafe.Apoio"
+                        android:text="@string/escopo_apps_precisa_consentimento" />
+
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/switchEscopoExterno"
+                        style="@style/FortiSafe.Chave"
+                        android:text="@string/escopo_externo" />
+
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/switchEscopoRemovivel"
+                        style="@style/FortiSafe.Chave"
+                        android:text="@string/escopo_removivel" />
+
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/switchEscopoSistema"
+                        style="@style/FortiSafe.Chave"
+                        android:text="@string/escopo_sistema" />
+                </LinearLayout>
+
+                <TextView
+                    style="@style/FortiSafe.Secao"
+                    android:text="@string/ajustes_secao_bases" />
+
+                <LinearLayout
+                    style="@style/FortiSafe.Cartao"
+                    android:layout_marginTop="8dp">
+
+                    <TextView
+                        android:id="@+id/txtBaseAjustes"
+                        style="@style/FortiSafe.Corpo"
+                        android:layout_marginTop="0dp" />
+
+                    <TextView
+                        style="@style/FortiSafe.Apoio"
+                        android:text="@string/bases_assinatura_conferida" />
+
+                    <Button
+                        android:id="@+id/btnAtualizarBases"
+                        style="@style/FortiSafe.Botao.Secundario"
+                        android:layout_marginTop="12dp"
+                        android:text="@string/lblUpdateDatabase" />
+                </LinearLayout>
+
+                <TextView
+                    style="@style/FortiSafe.Secao"
+                    android:text="@string/ajustes_secao_privacidade" />
+
+                <LinearLayout
+                    style="@style/FortiSafe.Cartao"
+                    android:layout_marginTop="8dp">
+
+                    <TextView
+                        android:id="@+id/txtConsentimento"
+                        style="@style/FortiSafe.Corpo"
+                        android:layout_marginTop="0dp" />
+
+                    <Button
+                        android:id="@+id/btnConsentimento"
+                        style="@style/FortiSafe.Botao.Secundario"
+                        android:layout_marginTop="12dp" />
+
+                    <TextView
+                        android:id="@+id/btnPolitica"
+                        style="@style/FortiSafe.Link"
+                        android:layout_marginTop="4dp"
+                        android:text="@string/ajustes_politica" />
+                </LinearLayout>
+
+                <TextView
+                    style="@style/FortiSafe.Secao"
+                    android:text="@string/ajustes_secao_ferramentas" />
+
+                <LinearLayout
+                    style="@style/FortiSafe.Cartao"
+                    android:layout_marginTop="8dp">
+
+                    <TextView
+                        style="@style/FortiSafe.Apoio"
+                        android:layout_marginTop="0dp"
+                        android:text="@string/ajustes_autoteste_descricao" />
+
+                    <Button
+                        android:id="@+id/btnAutoteste"
+                        style="@style/FortiSafe.Botao.Secundario"
+                        android:layout_marginTop="12dp"
+                        android:text="@string/ajustes_autoteste" />
+                </LinearLayout>
+
+                <TextView
+                    style="@style/FortiSafe.Secao"
+                    android:text="@string/ajustes_secao_sobre" />
+
+                <LinearLayout
+                    style="@style/FortiSafe.Cartao"
+                    android:layout_marginTop="8dp">
+
+                    <TextView
+                        android:id="@+id/txtVersao"
+                        style="@style/FortiSafe.Apoio"
+                        android:layout_marginTop="0dp" />
+
+                    <TextView
+                        android:id="@+id/btnCreditos"
+                        style="@style/FortiSafe.Link"
+                        android:text="@string/ajustes_creditos" />
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+    </FrameLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/fortisafe_border" />
+
+    <LinearLayout
+        android:id="@+id/barraInferior"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/fortisafe_bar"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/abaInicio"
+            style="@style/FortiSafe.Aba"
+            android:text="@string/aba_inicio"
+            app:drawableTopCompat="@drawable/ic_aba_inicio" />
+
+        <TextView
+            android:id="@+id/abaHistorico"
+            style="@style/FortiSafe.Aba"
+            android:text="@string/aba_historico"
+            app:drawableTopCompat="@drawable/ic_aba_historico" />
+
+        <TextView
+            android:id="@+id/abaAjustes"
+            style="@style/FortiSafe.Aba"
+            android:text="@string/aba_ajustes"
+            app:drawableTopCompat="@drawable/ic_aba_ajustes" />
+    </LinearLayout>
+</LinearLayout>

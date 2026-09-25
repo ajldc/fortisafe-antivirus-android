@@ -70,10 +70,10 @@
         <!--
           Sem screenOrientation="portrait": com targetSdk 36 a trava é ignorada em
           telas com menor largura >= 600dp. configChanges cobre rotação e
-          redimensionamento sem recriar a Activity, para a varredura em curso e o
-          log sobreviverem (entrega 1.2; matriz permissões × Play, seção
-          componentes-e-hardening). A tela nova da D-AV13 tira esse estado da
-          Activity.
+          redimensionamento sem recriar a Activity (entrega 1.2; matriz
+          permissões × Play, seção componentes-e-hardening). Desde a entrega 1.4
+          o estado da verificação manual também vive fora da Activity e
+          sobrevive a uma recriação (tema escuro, idioma).
         -->
         <activity
             android:name=".MainActivity"
