@@ -95,6 +95,27 @@ jobs:
         # Sem `-DskipFormatKtlint` — ver cabeçalho.
         run: ./gradlew assembleDebug lintDebug testDebugUnitTest --stacktrace
 
+      - name: Trava — targetSdk 36 e alinhamento de 16 KB
+        # Entrega 1.2 (matriz permissões × Play, seção target-api-36, testes T1 e
+        # T11). A Play exige targetSdk 36 de apps novos desde 31/08/2026 e páginas
+        # de 16 KB nas atualizações a partir de 01/02/2027. Hoje o APK não tem
+        # biblioteca nativa; se um dia tiver, o zipalign confere o alinhamento.
+        run: |
+          set -euo pipefail
+          apk="$(ls app/build/outputs/apk/debug/*.apk | head -n1)"
+          tools="$(ls -d "$ANDROID_HOME"/build-tools/*/ | sort -V | tail -n1)"
+          target="$("${tools}aapt2" dump badging "$apk" | sed -n "s/^targetSdkVersion:'\([0-9]*\)'.*/\1/p")"
+          echo "targetSdkVersion=${target}"
+          if [ "$target" != "36" ]; then
+            echo "::error::targetSdkVersion ${target}; a Play exige 36"
+            exit 1
+          fi
+          if unzip -Z1 "$apk" | grep -E '^lib/.*\.so$'; then
+            "${tools}zipalign" -c -P 16 -v 4 "$apk"
+          else
+            echo "Sem biblioteca nativa no APK."
+          fi
+
       - name: SBOM CycloneDX 1.5 a partir de gradle/verification-metadata.xml
         # python3 vem pré-instalado na imagem ubuntu-latest; o script usa só a
         # biblioteca padrão. O que o SBOM cobre e não cobre: scripts/README-sbom.md.
