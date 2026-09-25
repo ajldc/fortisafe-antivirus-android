@@ -117,7 +117,6 @@
     <string name="notif_tempo_real_limitada_texto">Sin acceso a los archivos. Toca para revisarlo.</string>
     <string name="notif_tempo_real_subtexto">%1$s firmas · %2$s archivos analizados</string>
 
-    <string name="base_descricao_data">descargada el %1$s</string>
     <string name="base_descricao_ausente">no descargada</string>
     <string name="bases_atualizacao_terminada">Actualización de las bases terminada. Los detalles técnicos están en el Historial.</string>
     <string name="bases_atualizando">Actualizando las bases…</string>
@@ -187,4 +186,8 @@
     <string name="onb5_status_falhou">No se pudo descargar la base ahora. Puedes volver a intentarlo más tarde en Ajustes.</string>
     <string name="onb5_primeira_verificacao">Hacer el primer análisis</string>
     <string name="onb5_concluir_sem_base">Terminar sin descargar</string>
+    <string name="base_descricao_versao">versión %1$s, publicada el %2$s</string>
+    <string name="estado_motivo_sem_chave">Esta versión de la aplicación no tiene la clave de las bases FortiSafe y no puede instalar bases de firmas.</string>
+    <string name="estado_motivo_base_revogada">FortiSafe retiró la base de firmas instalada. Actualiza para recibir una nueva.</string>
+    <string name="estado_motivo_emergencia_vencida">La lista de emergencia de FortiSafe está vencida. Actualiza las bases.</string>
 </resources>

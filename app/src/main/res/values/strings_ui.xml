@@ -131,7 +131,6 @@
     <string name="notif_tempo_real_subtexto">%1$s signatures · %2$s files scanned</string>
 
     <!-- Base de assinaturas (DescricaoBase; ligação com a entrega 1.6) -->
-    <string name="base_descricao_data">downloaded on %1$s</string>
     <string name="base_descricao_ausente">not downloaded</string>
     <string name="bases_atualizacao_terminada">Database update finished. Technical details are in History.</string>
     <string name="bases_atualizando">Updating the databases…</string>
@@ -205,4 +204,8 @@
     <string name="onb5_status_falhou">The database could not be downloaded right now. You can try again later in Settings.</string>
     <string name="onb5_primeira_verificacao">Run the first scan</string>
     <string name="onb5_concluir_sem_base">Finish without downloading</string>
+    <string name="base_descricao_versao">version %1$s, published on %2$s</string>
+    <string name="estado_motivo_sem_chave">This build of the app has no FortiSafe database key, so it cannot install signature databases.</string>
+    <string name="estado_motivo_base_revogada">The installed signature database was withdrawn by FortiSafe. Update to get a new one.</string>
+    <string name="estado_motivo_emergencia_vencida">The FortiSafe emergency list is out of date. Update the databases.</string>
 </resources>

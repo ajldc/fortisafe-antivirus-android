@@ -117,7 +117,6 @@
     <string name="notif_tempo_real_limitada_texto">Sem acesso aos arquivos. Toque para rever.</string>
     <string name="notif_tempo_real_subtexto">%1$s assinaturas · %2$s arquivos verificados</string>
 
-    <string name="base_descricao_data">baixada em %1$s</string>
     <string name="base_descricao_ausente">não baixada</string>
     <string name="bases_atualizacao_terminada">Atualização das bases terminada. Os detalhes técnicos estão no Histórico.</string>
     <string name="bases_atualizando">Atualizando as bases…</string>
@@ -187,4 +186,8 @@
     <string name="onb5_status_falhou">Não foi possível baixar a base agora. Você pode tentar de novo depois, em Ajustes.</string>
     <string name="onb5_primeira_verificacao">Fazer a primeira verificação</string>
     <string name="onb5_concluir_sem_base">Concluir sem baixar</string>
+    <string name="base_descricao_versao">versão %1$s, publicada em %2$s</string>
+    <string name="estado_motivo_sem_chave">Esta versão do app não tem a chave das bases FortiSafe e não consegue instalar bases de assinaturas.</string>
+    <string name="estado_motivo_base_revogada">A base de assinaturas instalada foi retirada pelo FortiSafe. Atualize para receber uma nova.</string>
+    <string name="estado_motivo_emergencia_vencida">A lista de emergência do FortiSafe está vencida. Atualize as bases.</string>
 </resources>
