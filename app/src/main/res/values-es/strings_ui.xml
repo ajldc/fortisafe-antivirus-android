@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Textos de la interfaz de las entregas 1.4 y 1.5 en español (tuteo). Ver values/strings_ui.xml. -->
+<resources>
+    <string name="aba_inicio">Inicio</string>
+    <string name="aba_historico">Historial</string>
+    <string name="aba_ajustes">Ajustes</string>
+
+    <string name="estado_protegido_titulo">Protegido</string>
+    <string name="estado_atencao_titulo">Atención</string>
+    <string name="estado_risco_titulo">Riesgo detectado</string>
+    <string name="estado_inconclusivo_titulo">No concluyente</string>
+    <string name="estado_protegido_texto">Último análisis: %1$s. Ningún riesgo pendiente.</string>
+    <plurals name="estado_risco_texto">
+        <item quantity="one">Posible coincidencia con la base de firmas en %d elemento. Revisa la evidencia antes de decidir.</item>
+        <item quantity="many">Posible coincidencia con la base de firmas en %d elementos. Revisa la evidencia antes de decidir.</item>
+        <item quantity="other">Posible coincidencia con la base de firmas en %d elementos. Revisa la evidencia antes de decidir.</item>
+    </plurals>
+    <string name="estado_motivo_sem_base">Todavía no hay ninguna base de firmas en el dispositivo. Sin ella, no se puede comparar nada.</string>
+    <string name="estado_motivo_nunca_verificou">Todavía no se ha completado ningún análisis.</string>
+    <string name="estado_motivo_ultima_sem_base">El último análisis no comparó nada: la base de firmas no estaba cargada.</string>
+    <string name="estado_motivo_ultima_cancelada">El último análisis se interrumpió antes de terminar.</string>
+    <string name="estado_motivo_sem_acesso">Sin acceso a los archivos: las descargas y otros archivos del dispositivo no se analizan.</string>
+    <plurals name="estado_motivo_base_velha">
+        <item quantity="one">La base de firmas tiene %d día.</item>
+        <item quantity="many">La base de firmas tiene %d días.</item>
+        <item quantity="other">La base de firmas tiene %d días.</item>
+    </plurals>
+    <string name="estado_motivo_tempo_real_desligado">La protección en tiempo real está desactivada.</string>
+    <string name="estado_motivo_apps_sem_consentimento">Las aplicaciones instaladas no se analizan: falta tu consentimiento.</string>
+
+    <string name="correcao_ver_evidencia">Ver la evidencia</string>
+    <string name="correcao_baixar_base">Descargar la base</string>
+    <string name="correcao_atualizar_base">Actualizar la base</string>
+    <string name="correcao_acesso_arquivos">Permitir el acceso a los archivos</string>
+    <string name="correcao_ligar_tempo_real">Activar la protección en tiempo real</string>
+    <string name="correcao_consentimento">Revisar el consentimiento</string>
+
+    <string name="inicio_verificar_agora">Analizar ahora</string>
+    <string name="inicio_cancelar_verificacao">Cancelar el análisis</string>
+    <string name="inicio_verificando">Analizando. Los detalles aparecen en el Historial.</string>
+    <string name="inicio_ultima_verificacao">Último análisis: %1$s, %2$s.</string>
+    <string name="inicio_nada_para_verificar">No hay nada seleccionado para analizar. Elige qué analizar en Ajustes.</string>
+    <string name="inicio_base">Base de firmas %1$s</string>
+    <string name="inicio_base_carregada">Base de firmas %1$s · %2$s firmas cargadas</string>
+    <string name="resultado_limpa">ninguna coincidencia</string>
+    <string name="resultado_com_coincidencias">se encontraron posibles coincidencias</string>
+    <string name="resultado_sem_base">sin base cargada</string>
+    <string name="resultado_cancelada">interrumpido</string>
+
+    <string name="cartao_apps_titulo">Aplicaciones instaladas</string>
+    <string name="cartao_apps_ligado">Se analizan en cada análisis y, con la protección en tiempo real activada, al instalarse o actualizarse.</string>
+    <string name="cartao_apps_fora_do_escopo">No se incluyen en el análisis. Puedes incluirlas en Ajustes.</string>
+    <string name="cartao_apps_sem_consentimento">No se analizan: la aplicación no lee la lista de aplicaciones sin tu consentimiento. Toca para revisarlo.</string>
+    <string name="cartao_arquivos_titulo">Archivos y descargas</string>
+    <string name="cartao_arquivos_ok">Acceso concedido. Se analizan en cada análisis.</string>
+    <string name="cartao_arquivos_fora_do_escopo">Acceso concedido, pero no se incluyen en el análisis. Puedes incluirlos en Ajustes.</string>
+    <string name="cartao_arquivos_sem_acesso">Sin acceso a los archivos. Toca para permitirlo.</string>
+    <string name="cartao_tempo_real_titulo">Protección en tiempo real</string>
+    <string name="tempo_real_ligado_completo">Activada: los archivos nuevos o modificados y las aplicaciones instaladas o actualizadas se analizan al momento.</string>
+    <string name="tempo_real_ligado_arquivos">Activada: los archivos nuevos o modificados se analizan al momento.</string>
+    <string name="tempo_real_limitada_apps">Activada, con protección de archivos limitada: sin acceso a los archivos, solo se analizan las aplicaciones instaladas o actualizadas.</string>
+    <string name="tempo_real_limitada_nada">Activada, con protección de archivos limitada: sin acceso a los archivos, no se analiza nada en tiempo real.</string>
+    <string name="tempo_real_desligado">Desactivada.</string>
+    <string name="tempo_real_nao_ligou">No se pudo activar la protección en tiempo real ahora. Vuelve a intentarlo.</string>
+
+    <string name="historico_deteccoes">Detecciones</string>
+    <string name="historico_detalhes_tecnicos">Detalles técnicos</string>
+    <string name="historico_vazio">No hay detecciones registradas.</string>
+    <string name="historico_linha">%1$s · %2$s</string>
+    <string name="deteccao_estado_ativa">pendiente de tu decisión</string>
+    <string name="deteccao_estado_ignorada">ignorada</string>
+    <string name="deteccao_estado_resolvida">resuelta</string>
+    <string name="deteccao_estado_autoteste">autoprueba</string>
+    <string name="deteccao_estado_sumiu">el archivo ya no existe</string>
+
+    <string name="detalhe_autoteste_titulo">Autoprueba</string>
+    <string name="detalhe_autoteste_texto">Coincidencia esperada: este archivo lo escribió la autoprueba de la aplicación y no cambia el estado de protección.</string>
+    <string name="detalhe_coincidencia">Posible coincidencia con la base de firmas (%1$s).</string>
+    <string name="detalhe_evidencia">Evidencia</string>
+    <string name="detalhe_rotulo_arquivo">Archivo</string>
+    <string name="detalhe_rotulo_app">Aplicación</string>
+    <string name="detalhe_rotulo_algoritmo">Algoritmo</string>
+    <string name="detalhe_rotulo_hash">Hash</string>
+    <string name="detalhe_rotulo_base">Base</string>
+    <string name="detalhe_rotulo_quando">Cuándo</string>
+    <string name="detalhe_rotulo_origem">Origen</string>
+    <string name="detalhe_rotulo_sha256">SHA-256 completo</string>
+    <string name="origem_manual">Análisis manual</string>
+    <string name="origem_tempo_real">Protección en tiempo real</string>
+    <string name="origem_instalacao">Aplicación instalada o actualizada</string>
+    <string name="origem_compartilhado">Archivo compartido con la aplicación</string>
+    <string name="detalhe_aviso_falso_positivo">La comparación usa firmas de malware conocido y puede equivocarse: un archivo legítimo puede coincidir por casualidad. Si confías en este archivo o aplicación, impugna la detección.</string>
+    <string name="detalhe_excluir">Eliminar archivo</string>
+    <string name="detalhe_virustotal">Consultar en VirusTotal</string>
+    <string name="detalhe_contestar">Impugnar esta detección</string>
+    <string name="detalhe_contestar_assunto">[FortiSafe Antivirus] impugnación de detección</string>
+    <string name="detalhe_contestar_texto">Quiero impugnar esta detección de FortiSafe Antivirus.\n\n%1$s</string>
+    <string name="detalhe_contestar_escolher">Enviar la impugnación con</string>
+    <string name="detalhe_nao_encontrada">Esta detección ya no está en el historial.</string>
+    <string name="detalhe_estado_ignorada">Ignoraste esta detección. El mismo archivo no generará un nuevo aviso.</string>
+    <string name="detalhe_estado_resolvida">Detección resuelta: el archivo o la aplicación se eliminó.</string>
+    <string name="detalhe_estado_sumiu">El archivo ya no está en esta ubicación.</string>
+    <string name="detalhe_desinstalar_sem_consentimento">Para ofrecer la desinstalación, la aplicación necesita tu consentimiento para leer la lista de aplicaciones.</string>
+    <string name="detalhe_desinstalado">Aplicación desinstalada.</string>
+    <string name="vt_dialogo_titulo">¿Consultar en VirusTotal?</string>
+    <string name="vt_dialogo_texto">El navegador abrirá el sitio VirusTotal.com con el código SHA-256 de este archivo. El archivo no se envía, solo el código. El sitio verá la dirección IP y los datos del navegador y sigue su propia política de privacidad.</string>
+    <string name="vt_abrir">Abrir el navegador</string>
+    <string name="vt_sem_navegador">Ninguna aplicación puede abrir el enlace.</string>
+
+    <string name="notif_deteccao_titulo">Posible coincidencia con la base de firmas</string>
+    <string name="notif_deteccao_titulo_autoteste">Autoprueba: coincidencia esperada</string>
+    <string name="notif_deteccao_texto">%1$s, base %2$s</string>
+    <string name="notif_deteccao_detalhe">%1$s\n%2$s: %3$s\nBase %4$s\nToca para ver la evidencia y decidir qué hacer.</string>
+    <string name="notif_deteccao_publica">Posible coincidencia con la base de firmas. Desbloquea el dispositivo para ver los detalles.</string>
+    <string name="notif_tempo_real_texto_completo">Los archivos nuevos o modificados y las aplicaciones instaladas o actualizadas se comparan con firmas de malware conocido</string>
+    <string name="notif_tempo_real_limitada_titulo">Protección de archivos limitada</string>
+    <string name="notif_tempo_real_limitada_texto">Sin acceso a los archivos. Toca para revisarlo.</string>
+    <string name="notif_tempo_real_subtexto">%1$s firmas · %2$s archivos analizados</string>
+
+    <string name="base_descricao_data">descargada el %1$s</string>
+    <string name="base_descricao_ausente">no descargada</string>
+    <string name="bases_atualizacao_terminada">Actualización de las bases terminada. Los detalles técnicos están en el Historial.</string>
+    <string name="bases_atualizando">Actualizando las bases…</string>
+    <string name="bases_assinatura_conferida">Cada archivo de la base tiene su firma digital comprobada antes de usarse. Un archivo con una firma no válida se descarta.</string>
+
+    <string name="log_coincidencia">Posible coincidencia con la base: %1$s</string>
+    <string name="log_evidencia">%1$s %2$s · base %3$s</string>
+
+    <string name="ajustes_secao_protecao">Protección</string>
+    <string name="ajustes_notificacoes">Notificaciones</string>
+    <string name="ajustes_notificacoes_permitidas">Permitidas: avisos de riesgo y el aviso fijo de la protección en tiempo real.</string>
+    <string name="ajustes_notificacoes_negadas">Desactivadas: la protección sigue funcionando, pero los riesgos solo aparecen aquí en la aplicación.</string>
+    <string name="ajustes_notificacoes_permitir">Permitir notificaciones</string>
+    <string name="ajustes_secao_escopo">Qué analizar</string>
+    <string name="escopo_sistema">Archivos del sistema (/system)</string>
+    <string name="escopo_apps">Aplicaciones instaladas</string>
+    <string name="escopo_externo">Almacenamiento del dispositivo (Descargas y otras carpetas)</string>
+    <string name="escopo_removivel">Tarjeta de memoria y USB</string>
+    <string name="escopo_apps_precisa_consentimento">Necesita tu consentimiento para leer la lista de aplicaciones.</string>
+    <string name="ajustes_secao_bases">Bases de firmas</string>
+    <string name="ajustes_secao_privacidade">Privacidad</string>
+    <string name="ajustes_consentimento_dado">Lista de aplicaciones instaladas: aceptaste el %1$s. Solo se lee en este dispositivo.</string>
+    <string name="ajustes_consentimento_ausente">Lista de aplicaciones instaladas: sin consentimiento. La aplicación no lee la lista.</string>
+    <string name="ajustes_revogar">Retirar el consentimiento</string>
+    <string name="ajustes_revogar_titulo">¿Retirar el consentimiento?</string>
+    <string name="ajustes_revogar_texto">La aplicación dejará de leer la lista de aplicaciones instaladas. Las aplicaciones salen del análisis y de la protección en tiempo real. Puedes volver a aceptar cuando quieras.</string>
+    <string name="ajustes_revogar_botao">Retirar</string>
+    <string name="ajustes_revogado">Consentimiento retirado. La aplicación ya no lee la lista de aplicaciones.</string>
+    <string name="ajustes_politica">Política de privacidad</string>
+    <string name="ajustes_secao_ferramentas">Herramientas</string>
+    <string name="ajustes_autoteste">Hacer la autoprueba</string>
+    <string name="ajustes_autoteste_descricao">Escribe tres archivos de prueba inofensivos en la carpeta de la propia aplicación y comprueba si el análisis los reconoce.</string>
+    <string name="ajustes_secao_sobre">Acerca de</string>
+    <string name="ajustes_creditos">Créditos y licencias</string>
+    <string name="creditos_codigo_fonte">Código fuente (AGPL-3.0): %1$s</string>
+
+    <string name="politica_resumo">Resumen de privacidad de FortiSafe Antivirus (Tascom Global Network LLC):\n\n• El análisis se hace en este dispositivo. Ninguno de tus archivos se envía a ninguna parte, ni siquiera cuando hay una coincidencia.\n\n• La lista de aplicaciones instaladas solo se lee después de tu consentimiento, y solo en este dispositivo.\n\n• La aplicación solo se conecta a internet para descargar las bases de firmas, por HTTPS. Como en toda conexión, el servidor ve la dirección IP del dispositivo.\n\n• La consulta a VirusTotal solo ocurre si la tocas en una detección y confirmas: el navegador abre el sitio con el código (hash) del archivo.\n\n• Sin anuncios, sin análisis de uso y sin informes de fallos.\n\n• Nada de la aplicación va a la copia de seguridad en la nube.\n\nContacto de privacidad: privacy@fortisafe.net. La política completa se publicará en fortisafe.net.</string>
+
+    <string name="autoteste_titulo">Autoprueba</string>
+    <string name="autoteste_falhou_gravar">La autoprueba falló: no se pudieron escribir los archivos de prueba en la carpeta de la aplicación.</string>
+    <string name="autoteste_sem_base">Los archivos de prueba se escribieron, pero no hay ninguna base de firmas para compararlos. Descarga la base y repite la autoprueba.</string>
+    <string name="autoteste_em_andamento">Autoprueba en curso…</string>
+    <string name="autoteste_ok">Autoprueba completada: se reconocieron los tres archivos de prueba. No cambian el estado de protección.</string>
+    <string name="autoteste_falhou_reconhecer">La autoprueba falló: se reconocieron %1$d de %2$d archivos de prueba.</string>
+
+    <string name="onb_passo">Paso %1$d de %2$d</string>
+    <string name="onb_agora_nao">Ahora no</string>
+    <string name="onb_continuar">Continuar</string>
+    <string name="onb1_titulo">FortiSafe Antivirus</string>
+    <string name="onb1_corpo">Lo que hace la aplicación\n• Compara las aplicaciones instaladas y los archivos del dispositivo con firmas de malware conocido.\n• Funciona sin internet después de descargar la base de firmas.\n• Te avisa cuando algo coincide, te muestra la evidencia y deja la decisión en tus manos.\n\nLo que la aplicación no hace\n• No mira el contenido de tus conversaciones, fotos ni contraseñas: de cada archivo solo calcula la huella digital (hash), aquí en el dispositivo.\n• No filtra sitios web ni enlaces.\n• No analiza el comportamiento de las aplicaciones.</string>
+    <string name="onb1_comecar">Empezar</string>
+    <string name="onb2_titulo">Analizar tus aplicaciones</string>
+    <string name="onb2_corpo">FortiSafe Antivirus accede a la lista de aplicaciones instaladas en este dispositivo para analizar los archivos de cada aplicación en busca de malware: cuando inicias un análisis y, si la protección en tiempo real está activada, en segundo plano cada vez que se instala o actualiza una aplicación.\n\nLa lista se procesa en este dispositivo y no se envía a FortiSafe ni a terceros.\n\nSi eliges «Ahora no», podrás seguir analizando archivos y los APK que compartas con la aplicación, y podrás aceptar más tarde. Puedes retirar el consentimiento en Ajustes.</string>
+    <string name="onb2_concordo">Acepto</string>
+    <string name="onb3_titulo">Acceso a los archivos</string>
+    <string name="onb3_corpo">Para analizar las descargas, los APK descargados y los demás archivos del dispositivo, Android exige el acceso a todos los archivos.\n\nTodo ocurre en este dispositivo: no se envía ningún archivo. De cada archivo, la aplicación solo calcula la huella digital (hash) y la compara con la base.\n\nLa siguiente pantalla es de Android: activa la opción para FortiSafe Antivirus y vuelve. Puedes deshacerlo en cualquier momento en los ajustes de Android.</string>
+    <string name="onb3_ja_concedido">El acceso a los archivos ya está concedido.</string>
+    <string name="onb4_titulo">Avisos en el momento justo</string>
+    <string name="onb4_corpo">La aplicación te avisa con una notificación cuando algo coincide con la base de firmas. Sin publicidad y sin aviso de fin de análisis.\n\nCon la protección en tiempo real activada, Android mantiene un aviso fijo mientras funciona.\n\nSi no permites las notificaciones, la protección sigue funcionando y los riesgos aparecen aquí en la aplicación.</string>
+    <string name="onb4_ja_permitido">Las notificaciones ya están permitidas.</string>
+    <string name="onb5_titulo_baixar">Base de firmas</string>
+    <string name="onb5_titulo_pronta">Base lista</string>
+    <string name="onb5_corpo">La aplicación compara tus aplicaciones y archivos con una base de firmas de malware conocido. La base viene de internet (hasta unos %1$s MB) y cada uno de sus archivos tiene su firma digital comprobada antes de usarse. Después de la descarga, el análisis funciona sin internet.\n\nPor ahora, la base solo se actualiza cuando lo pides, en Ajustes.</string>
+    <string name="onb5_status_ausente">Todavía no se ha descargado ninguna base.</string>
+    <string name="onb5_status_baixando">Descargando la base…</string>
+    <string name="onb5_status_pronta">Base %1$s.</string>
+    <string name="onb5_status_falhou">No se pudo descargar la base ahora. Puedes volver a intentarlo más tarde en Ajustes.</string>
+    <string name="onb5_primeira_verificacao">Hacer el primer análisis</string>
+    <string name="onb5_concluir_sem_base">Terminar sin descargar</string>
+</resources>

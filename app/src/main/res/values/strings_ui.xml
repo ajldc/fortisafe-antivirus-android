@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Textos da interface das entregas 1.4 e 1.5 (tela principal, onboarding em
+  cinco passos, detalhe da detecção, notificações). Idioma padrão: inglês
+  (D-AV12: "FortiSafe Antivirus"). Traduções em values-pt-rBR e values-es.
+  Regras de texto: design-app.md §6 — frases curtas, verbo na frente nos
+  botões, sem "proteção total", sem exclamação, sem prometer proteção web.
+  Os textos de divulgação (passo 2) são rascunho da matriz permissões × Play,
+  seção QUERY_ALL_PACKAGES, e esperam a revisão do André.
+-->
+<resources>
+    <!-- Barra inferior (D-AV13) -->
+    <string name="aba_inicio">Home</string>
+    <string name="aba_historico">History</string>
+    <string name="aba_ajustes">Settings</string>
+
+    <!-- Faixa de estado (D-AV13, D-AV20) -->
+    <string name="estado_protegido_titulo">Protected</string>
+    <string name="estado_atencao_titulo">Attention</string>
+    <string name="estado_risco_titulo">Risk detected</string>
+    <string name="estado_inconclusivo_titulo">Inconclusive</string>
+    <string name="estado_protegido_texto">Last scan: %1$s. No pending risks.</string>
+    <plurals name="estado_risco_texto">
+        <item quantity="one">Possible match with the signature database in %d item. Check the evidence before deciding.</item>
+        <item quantity="other">Possible match with the signature database in %d items. Check the evidence before deciding.</item>
+    </plurals>
+    <string name="estado_motivo_sem_base">There is no signature database on this device yet. Without it, nothing can be compared.</string>
+    <string name="estado_motivo_nunca_verificou">No scan has been completed yet.</string>
+    <string name="estado_motivo_ultima_sem_base">The last scan compared nothing: the signature database was not loaded.</string>
+    <string name="estado_motivo_ultima_cancelada">The last scan stopped before finishing.</string>
+    <string name="estado_motivo_sem_acesso">No access to files: downloads and other files on the device are not scanned.</string>
+    <plurals name="estado_motivo_base_velha">
+        <item quantity="one">The signature database is %d day old.</item>
+        <item quantity="other">The signature database is %d days old.</item>
+    </plurals>
+    <string name="estado_motivo_tempo_real_desligado">Real-time protection is off.</string>
+    <string name="estado_motivo_apps_sem_consentimento">Installed apps are not scanned: your consent is missing.</string>
+
+    <!-- Correção a um toque -->
+    <string name="correcao_ver_evidencia">See the evidence</string>
+    <string name="correcao_baixar_base">Download the database</string>
+    <string name="correcao_atualizar_base">Update the database</string>
+    <string name="correcao_acesso_arquivos">Allow file access</string>
+    <string name="correcao_ligar_tempo_real">Turn on real-time protection</string>
+    <string name="correcao_consentimento">Review consent</string>
+
+    <!-- Início -->
+    <string name="inicio_verificar_agora">Scan now</string>
+    <string name="inicio_cancelar_verificacao">Cancel scan</string>
+    <string name="inicio_verificando">Scanning. Details appear in History.</string>
+    <string name="inicio_ultima_verificacao">Last scan: %1$s, %2$s.</string>
+    <string name="inicio_nada_para_verificar">Nothing is selected to scan. Choose what to scan in Settings.</string>
+    <string name="inicio_base">Signature database %1$s</string>
+    <string name="inicio_base_carregada">Signature database %1$s · %2$s signatures loaded</string>
+    <string name="resultado_limpa">no matches</string>
+    <string name="resultado_com_coincidencias">possible matches found</string>
+    <string name="resultado_sem_base">no database loaded</string>
+    <string name="resultado_cancelada">stopped</string>
+
+    <string name="cartao_apps_titulo">Installed apps</string>
+    <string name="cartao_apps_ligado">Checked in every scan and, with real-time protection on, when installed or updated.</string>
+    <string name="cartao_apps_fora_do_escopo">Not included in scans. You can include them in Settings.</string>
+    <string name="cartao_apps_sem_consentimento">Not scanned: the app does not read the list of apps without your consent. Tap to review.</string>
+    <string name="cartao_arquivos_titulo">Files and downloads</string>
+    <string name="cartao_arquivos_ok">Access granted. Checked in every scan.</string>
+    <string name="cartao_arquivos_fora_do_escopo">Access granted, but not included in scans. You can include them in Settings.</string>
+    <string name="cartao_arquivos_sem_acesso">No access to files. Tap to allow.</string>
+    <string name="cartao_tempo_real_titulo">Real-time protection</string>
+    <string name="tempo_real_ligado_completo">On: new or changed files and installed or updated apps are checked right away.</string>
+    <string name="tempo_real_ligado_arquivos">On: new or changed files are checked right away.</string>
+    <string name="tempo_real_limitada_apps">On, with limited file protection: without file access, only installed or updated apps are checked.</string>
+    <string name="tempo_real_limitada_nada">On, with limited file protection: without file access, nothing is checked in real time.</string>
+    <string name="tempo_real_desligado">Off.</string>
+    <string name="tempo_real_nao_ligou">Real-time protection could not be turned on right now. Try again.</string>
+
+    <!-- Histórico -->
+    <string name="historico_deteccoes">Detections</string>
+    <string name="historico_detalhes_tecnicos">Technical details</string>
+    <string name="historico_vazio">No detections recorded.</string>
+    <string name="historico_linha">%1$s · %2$s</string>
+    <string name="deteccao_estado_ativa">awaiting your decision</string>
+    <string name="deteccao_estado_ignorada">ignored</string>
+    <string name="deteccao_estado_resolvida">resolved</string>
+    <string name="deteccao_estado_autoteste">self-test</string>
+    <string name="deteccao_estado_sumiu">the file no longer exists</string>
+
+    <!-- Detalhe da detecção (entrega 1.5; D-AV17, D-AV20) -->
+    <string name="detalhe_autoteste_titulo">Self-test</string>
+    <string name="detalhe_autoteste_texto">Expected match: this file was written by the app self-test and does not change the protection status.</string>
+    <string name="detalhe_coincidencia">Possible match with the signature database (%1$s).</string>
+    <string name="detalhe_evidencia">Evidence</string>
+    <string name="detalhe_rotulo_arquivo">File</string>
+    <string name="detalhe_rotulo_app">App</string>
+    <string name="detalhe_rotulo_algoritmo">Algorithm</string>
+    <string name="detalhe_rotulo_hash">Hash</string>
+    <string name="detalhe_rotulo_base">Database</string>
+    <string name="detalhe_rotulo_quando">When</string>
+    <string name="detalhe_rotulo_origem">Source</string>
+    <string name="detalhe_rotulo_sha256">Full SHA-256</string>
+    <string name="origem_manual">Manual scan</string>
+    <string name="origem_tempo_real">Real-time protection</string>
+    <string name="origem_instalacao">App installed or updated</string>
+    <string name="origem_compartilhado">File shared with the app</string>
+    <string name="detalhe_aviso_falso_positivo">The comparison uses signatures of known malware and can be wrong: a legitimate file can match by chance. If you trust this file or app, dispute the detection.</string>
+    <string name="detalhe_excluir">Delete file</string>
+    <string name="detalhe_virustotal">Look up on VirusTotal</string>
+    <string name="detalhe_contestar">Dispute this detection</string>
+    <string name="detalhe_contestar_assunto">[FortiSafe Antivirus] detection dispute</string>
+    <string name="detalhe_contestar_texto">I want to dispute this FortiSafe Antivirus detection.\n\n%1$s</string>
+    <string name="detalhe_contestar_escolher">Send the dispute with</string>
+    <string name="detalhe_nao_encontrada">This detection is no longer in the history.</string>
+    <string name="detalhe_estado_ignorada">You ignored this detection. It will not alert again for this same file.</string>
+    <string name="detalhe_estado_resolvida">Detection resolved: the file or app was removed.</string>
+    <string name="detalhe_estado_sumiu">The file is no longer at this location.</string>
+    <string name="detalhe_desinstalar_sem_consentimento">To offer uninstalling, the app needs your consent to read the list of apps.</string>
+    <string name="detalhe_desinstalado">App uninstalled.</string>
+    <string name="vt_dialogo_titulo">Look up on VirusTotal?</string>
+    <string name="vt_dialogo_texto">Your browser will open VirusTotal.com with this file\'s SHA-256 code. The file is not sent, only the code. The site will see your IP address and browser data and follows its own privacy policy.</string>
+    <string name="vt_abrir">Open browser</string>
+    <string name="vt_sem_navegador">No app can open the link.</string>
+
+    <!-- Notificações (B4, B5, B14; D-AV20) -->
+    <string name="notif_deteccao_titulo">Possible match with the signature database</string>
+    <string name="notif_deteccao_titulo_autoteste">Self-test: expected match</string>
+    <string name="notif_deteccao_texto">%1$s, database %2$s</string>
+    <string name="notif_deteccao_detalhe">%1$s\n%2$s: %3$s\nDatabase %4$s\nTap to see the evidence and decide what to do.</string>
+    <string name="notif_deteccao_publica">Possible match with the signature database. Unlock the device to see the details.</string>
+    <string name="notif_tempo_real_texto_completo">New or changed files and installed or updated apps are checked against known malware signatures</string>
+    <string name="notif_tempo_real_limitada_titulo">Limited file protection</string>
+    <string name="notif_tempo_real_limitada_texto">No access to files. Tap to review.</string>
+    <string name="notif_tempo_real_subtexto">%1$s signatures · %2$s files scanned</string>
+
+    <!-- Base de assinaturas (DescricaoBase; ligação com a entrega 1.6) -->
+    <string name="base_descricao_data">downloaded on %1$s</string>
+    <string name="base_descricao_ausente">not downloaded</string>
+    <string name="bases_atualizacao_terminada">Database update finished. Technical details are in History.</string>
+    <string name="bases_atualizando">Updating the databases…</string>
+    <string name="bases_assinatura_conferida">Each database file has its digital signature checked before use. A file with an invalid signature is discarded.</string>
+
+    <!-- Histórico técnico -->
+    <string name="log_coincidencia">Possible match with the database: %1$s</string>
+    <string name="log_evidencia">%1$s %2$s · database %3$s</string>
+
+    <!-- Ajustes -->
+    <string name="ajustes_secao_protecao">Protection</string>
+    <string name="ajustes_notificacoes">Notifications</string>
+    <string name="ajustes_notificacoes_permitidas">Allowed: risk alerts and the ongoing real-time protection notice.</string>
+    <string name="ajustes_notificacoes_negadas">Off: protection keeps working, but risks only show up here in the app.</string>
+    <string name="ajustes_notificacoes_permitir">Allow notifications</string>
+    <string name="ajustes_secao_escopo">What to scan</string>
+    <string name="escopo_sistema">System files (/system)</string>
+    <string name="escopo_apps">Installed apps</string>
+    <string name="escopo_externo">Device storage (Downloads and other folders)</string>
+    <string name="escopo_removivel">Memory card and USB</string>
+    <string name="escopo_apps_precisa_consentimento">Needs your consent to read the list of apps.</string>
+    <string name="ajustes_secao_bases">Signature databases</string>
+    <string name="ajustes_secao_privacidade">Privacy</string>
+    <string name="ajustes_consentimento_dado">Installed app list: you agreed on %1$s. It is only read on this device.</string>
+    <string name="ajustes_consentimento_ausente">Installed app list: no consent. The app does not read the list.</string>
+    <string name="ajustes_revogar">Withdraw consent</string>
+    <string name="ajustes_revogar_titulo">Withdraw consent?</string>
+    <string name="ajustes_revogar_texto">The app will stop reading the list of installed apps. Apps leave scans and real-time protection. You can agree again at any time.</string>
+    <string name="ajustes_revogar_botao">Withdraw</string>
+    <string name="ajustes_revogado">Consent withdrawn. The app no longer reads the list of apps.</string>
+    <string name="ajustes_politica">Privacy policy</string>
+    <string name="ajustes_secao_ferramentas">Tools</string>
+    <string name="ajustes_autoteste">Run the self-test</string>
+    <string name="ajustes_autoteste_descricao">Writes three harmless test files in the app\'s own folder and checks whether the scan recognizes them.</string>
+    <string name="ajustes_secao_sobre">About</string>
+    <string name="ajustes_creditos">Credits and licenses</string>
+    <string name="creditos_codigo_fonte">Source code (AGPL-3.0): %1$s</string>
+
+    <string name="politica_resumo">Privacy summary of FortiSafe Antivirus (Tascom Global Network LLC):\n\n• Scanning happens on this device. None of your files is sent anywhere, not even when there is a match.\n\n• The list of installed apps is only read after your consent, and only on this device.\n\n• The app only connects to the internet to download the signature databases, over HTTPS. As with any connection, the server sees the device IP address.\n\n• The VirusTotal lookup only happens if you tap it on a detection and confirm: your browser opens the site with the file\'s code (hash).\n\n• No ads, no usage analytics and no crash reports.\n\n• Nothing from the app goes to cloud backup.\n\nPrivacy contact: privacy@fortisafe.net. The full policy will be published at fortisafe.net.</string>
+
+    <!-- Autoteste (B12) -->
+    <string name="autoteste_titulo">Self-test</string>
+    <string name="autoteste_falhou_gravar">The self-test failed: the test files could not be written to the app folder.</string>
+    <string name="autoteste_sem_base">The test files were written, but there is no signature database to compare them with. Download the database and run the self-test again.</string>
+    <string name="autoteste_em_andamento">Self-test running…</string>
+    <string name="autoteste_ok">Self-test passed: all three test files were recognized. They do not change the protection status.</string>
+    <string name="autoteste_falhou_reconhecer">The self-test failed: %1$d of %2$d test files were recognized.</string>
+
+    <!-- Onboarding em cinco passos (D-AV13 revista pela D-AV21; design-app.md §4) -->
+    <string name="onb_passo">Step %1$d of %2$d</string>
+    <string name="onb_agora_nao">Not now</string>
+    <string name="onb_continuar">Continue</string>
+    <string name="onb1_titulo">FortiSafe Antivirus</string>
+    <string name="onb1_corpo">What the app does\n• Compares installed apps and the files on your device with signatures of known malware.\n• Works offline once the signature database is downloaded.\n• Alerts you when something matches, shows the evidence and leaves the decision to you.\n\nWhat the app does not do\n• It does not look at the content of your messages, photos or passwords: for each file it only computes a fingerprint (hash), here on the device.\n• It does not filter websites or links.\n• It does not analyze app behavior.</string>
+    <string name="onb1_comecar">Get started</string>
+    <string name="onb2_titulo">Scan your apps</string>
+    <string name="onb2_corpo">FortiSafe Antivirus accesses the list of apps installed on this device to scan each app\'s files for malware: when you run a scan and, if real-time protection is on, in the background whenever an app is installed or updated.\n\nThe list is processed on this device and is not sent to FortiSafe or to anyone else.\n\nIf you choose “Not now”, you can still scan files and check APKs you share with the app, and you can agree later. You can withdraw consent in Settings.</string>
+    <string name="onb2_concordo">Agree</string>
+    <string name="onb3_titulo">Access to files</string>
+    <string name="onb3_corpo">To scan downloads, downloaded APKs and the other files on your device, Android requires access to all files.\n\nEverything happens on this device: no file is sent. For each file, the app only computes a fingerprint (hash) and compares it with the database.\n\nThe next screen belongs to Android: turn on the option for FortiSafe Antivirus and come back. You can undo this at any time in Android settings.</string>
+    <string name="onb3_ja_concedido">File access is already granted.</string>
+    <string name="onb4_titulo">Alerts at the right time</string>
+    <string name="onb4_corpo">The app notifies you when something matches the signature database. No ads and no end-of-scan notices.\n\nWith real-time protection on, Android keeps an ongoing notice while it runs.\n\nIf you do not allow notifications, protection keeps working and risks show up here in the app.</string>
+    <string name="onb4_ja_permitido">Notifications are already allowed.</string>
+    <string name="onb5_titulo_baixar">Signature database</string>
+    <string name="onb5_titulo_pronta">Database ready</string>
+    <string name="onb5_corpo">The app compares your apps and files with a database of known malware signatures. The database comes from the internet (up to about %1$s MB) and each of its files has its digital signature checked before use. After the download, scanning works offline.\n\nFor now, the database is only updated when you ask, in Settings.</string>
+    <string name="onb5_status_ausente">No database downloaded yet.</string>
+    <string name="onb5_status_baixando">Downloading the database…</string>
+    <string name="onb5_status_pronta">Database %1$s.</string>
+    <string name="onb5_status_falhou">The database could not be downloaded right now. You can try again later in Settings.</string>
+    <string name="onb5_primeira_verificacao">Run the first scan</string>
+    <string name="onb5_concluir_sem_base">Finish without downloading</string>
+</resources>

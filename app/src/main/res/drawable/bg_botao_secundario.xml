@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Botão secundário: contorno, fundo de cartão. Mesmo tamanho do principal quando está ao lado dele (ex.: Ignorar, condição C2 da matriz). -->
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="?android:attr/colorControlHighlight">
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/fortisafe_card" />
+            <stroke android:width="1dp" android:color="@color/fortisafe_border" />
+            <corners android:radius="10dp" />
+        </shape>
+    </item>
+</ripple>
