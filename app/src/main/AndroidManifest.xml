@@ -38,12 +38,19 @@
             android:layout_height="wrap_content"
             android:noHistory="true"
             android:excludeFromRecents="true" />
+        <!--
+          Sem screenOrientation="portrait": com targetSdk 36 a trava é ignorada em
+          telas com menor largura >= 600dp. configChanges cobre rotação e
+          redimensionamento sem recriar a Activity, para a varredura em curso e o
+          log sobreviverem (entrega 1.2; matriz permissões × Play, seção
+          componentes-e-hardening). A tela nova da D-AV13 tira esse estado da
+          Activity.
+        -->
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
-            android:configChanges="orientation|keyboardHidden"
-            android:exported="true"
-            android:screenOrientation="portrait">
+            android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize|screenLayout"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
