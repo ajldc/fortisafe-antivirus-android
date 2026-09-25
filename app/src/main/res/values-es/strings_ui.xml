@@ -96,6 +96,7 @@
     <string name="detalhe_contestar_assunto">[FortiSafe Antivirus] impugnación de detección</string>
     <string name="detalhe_contestar_texto">Quiero impugnar esta detección de FortiSafe Antivirus.\n\n%1$s</string>
     <string name="detalhe_contestar_escolher">Enviar la impugnación con</string>
+    <string name="detalhe_contestar_sem_app">Ninguna app de este dispositivo puede enviar la impugnación.</string>
     <string name="detalhe_nao_encontrada">Esta detección ya no está en el historial.</string>
     <string name="detalhe_estado_ignorada">Ignoraste esta detección. El mismo archivo no generará un nuevo aviso.</string>
     <string name="detalhe_estado_resolvida">Detección resuelta: el archivo o la aplicación se eliminó.</string>

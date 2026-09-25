@@ -108,6 +108,7 @@
     <string name="detalhe_contestar_assunto">[FortiSafe Antivirus] detection dispute</string>
     <string name="detalhe_contestar_texto">I want to dispute this FortiSafe Antivirus detection.\n\n%1$s</string>
     <string name="detalhe_contestar_escolher">Send the dispute with</string>
+    <string name="detalhe_contestar_sem_app">No app on this device can send the dispute.</string>
     <string name="detalhe_nao_encontrada">This detection is no longer in the history.</string>
     <string name="detalhe_estado_ignorada">You ignored this detection. It will not alert again for this same file.</string>
     <string name="detalhe_estado_resolvida">Detection resolved: the file or app was removed.</string>

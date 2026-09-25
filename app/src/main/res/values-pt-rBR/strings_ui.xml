@@ -96,6 +96,7 @@
     <string name="detalhe_contestar_assunto">[FortiSafe Antivírus] contestação de detecção</string>
     <string name="detalhe_contestar_texto">Quero contestar esta detecção do FortiSafe Antivírus.\n\n%1$s</string>
     <string name="detalhe_contestar_escolher">Enviar a contestação por</string>
+    <string name="detalhe_contestar_sem_app">Nenhum app deste aparelho consegue enviar a contestação.</string>
     <string name="detalhe_nao_encontrada">Esta detecção não está mais no histórico.</string>
     <string name="detalhe_estado_ignorada">Você ignorou esta detecção. O mesmo arquivo não vai gerar um novo aviso.</string>
     <string name="detalhe_estado_resolvida">Detecção resolvida: o arquivo ou app foi removido.</string>
