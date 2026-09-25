@@ -1,0 +1,25 @@
+<!--
+  Ícone pequeno das notificações: círculo da marca FortiSafe com a fechadura
+  vazada. O sistema pinta a silhueta; só o alfa conta. O vazado vem do sentido
+  dos contornos (círculo anti-horário, fechadura horária, regra nonZero), e
+  não de android:fillType="evenOdd", que só existe a partir da API 24 e seria
+  ignorado no minSdk 21 (D-AV14), enchendo o círculo.
+  Escala 22/512 = 0,04296875 (círculo de 22 dp em 24 dp); deslocamento 1.
+  Substitui os quatro PNG herdados do Hypatia (sem variante xxxhdpi).
+  Marca da Tascom Global Network LLC (ver NOTICE, seção de marcas).
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <group
+        android:scaleX="0.04296875"
+        android:scaleY="0.04296875"
+        android:translateX="1"
+        android:translateY="1">
+        <path
+            android:fillColor="@android:color/white"
+            android:pathData="M0,256 A256,256 0 1,0 512,256 A256,256 0 1,0 0,256 Z M224.67,278.09 A86,86 0 1,1 287.33,278.09 C294.62,316.1 307.05,354.82 313,382 C318,403 303,418 282,418 L230,418 C209,418 194,403 199,382 C204.95,354.82 217.38,316.1 224.67,278.09 Z" />
+    </group>
+</vector>
