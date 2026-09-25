@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Tokens de cor do FortiSafe Antivírus, tema escuro (D-AV13). -->
+<resources>
+    <color name="fortisafe_background">#06101F</color>
+    <color name="fortisafe_bar">#0E1C33</color>
+    <color name="fortisafe_status_bar">#06101F</color>
+    <!-- O verde da marca não tem contraste sobre fundo escuro; no escuro o destaque clareia -->
+    <color name="fortisafe_green">#5FD17A</color>
+    <color name="fortisafe_danger">#D92D20</color>
+</resources>

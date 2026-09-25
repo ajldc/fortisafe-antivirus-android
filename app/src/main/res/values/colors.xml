@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  Tokens de cor do FortiSafe Antivírus, tema claro (D-AV13, docs/design-app.md
+  do repositório de documentação). O tema escuro está em values-night/colors.xml.
+  Contraste WCAG AA de cada par ainda a medir (pendência da Fase 1).
+-->
 <resources>
-    <color name="colorRed">#FF0000</color>
-    <color name="colorGreen">#008000</color>
+    <!-- Fundo da tela -->
+    <color name="fortisafe_background">#F8FAFD</color>
+    <!-- Cartão e barras (a Toolbar usa ?attr/colorPrimary) -->
+    <color name="fortisafe_bar">#FFFFFF</color>
+    <!-- Barra de status: azul-marinho da marca, legível com ícones brancos em qualquer API -->
+    <color name="fortisafe_status_bar">#001532</color>
+    <!-- Verde de destaque (ícone, link, controle ativo) -->
+    <color name="fortisafe_green">#056512</color>
+    <!-- Botão e ícone de perigo -->
+    <color name="fortisafe_danger">#B42318</color>
 </resources>
