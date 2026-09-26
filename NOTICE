@@ -67,12 +67,15 @@ não participam dele, não o endossam e não respondem por ele.
   Copyright (C) 2016 Daniel Gultsch.
   Origem: siacs/Conversations, adaptado.
 
-- app/src/main/java/us/spotco/malwarescanner/GPGDetachedSignatureVerifier.java
-  Licença: GPL-2.0-or-later, com a exceção declarada no cabeçalho do próprio
-  arquivo (uso como parte de uma biblioteca de software livre sem restrição).
-  Copyright 2015 Arduino LLC (http://www.arduino.cc/); autor citado no README
-  do upstream: Federico Fissore.
-  Origem: https://github.com/arduino/Arduino/blob/master/arduino-core/src/cc/arduino/contributions/GPGDetachedSignatureVerifier.java
+- GPGDetachedSignatureVerifier.java (Arduino) — não faz mais parte do código
+  desde 25/09/2026 (entrega 1.6; G0, B21: "substituir"). Registro, para quem
+  comparar com o upstream: era GPL-2.0-or-later com exceção de biblioteca,
+  Copyright 2015 Arduino LLC, autor citado no README do upstream Federico
+  Fissore (origem: https://github.com/arduino/Arduino/blob/master/arduino-core/src/cc/arduino/contributions/GPGDetachedSignatureVerifier.java).
+  Foi substituído por um verificador escrito do zero pelo FortiSafe
+  (app/src/main/java/us/spotco/malwarescanner/bases/VerificadorAssinatura.kt,
+  AGPL-3.0-or-later), sem aproveitar trecho do arquivo removido. O crédito
+  saiu também da lista "Créditos" do app (res/values*/arrays.xml).
 
 - Ícones: desde a entrega 1.1 (25/09/2026) o ícone do app, o da loja e o das
   notificações são a marca FortiSafe (seção 8); o escudo do Material Design
@@ -97,18 +100,34 @@ Licenças conferidas no repositório oficial de cada projeto em 16/09/2026.
 
   Artefato                              Versão       Licença (SPDX)
   ------------------------------------  -----------  -----------------------------
-  commons-io:commons-io                 2.20.0       Apache-2.0
   org.bouncycastle:bcpg-jdk15to18       1.81         MIT (Bouncy Castle Licence) e Apache-2.0 (*)
   com.google.guava:guava                33.4.8-jre   Apache-2.0
   androidx.appcompat:appcompat          1.7.1        Apache-2.0
   androidx.documentfile:documentfile    1.1.0        Apache-2.0
   androidx.core:core-ktx                1.17.0       Apache-2.0
 
+  Só testes de unidade na JVM (não entram no APK):
+
+  Artefato                              Versão       Licença (SPDX)
+  ------------------------------------  -----------  -----------------------------
+  junit:junit                           4.13.2       EPL-1.0          (só testes)
+  org.hamcrest:hamcrest-core            1.3          BSD-3-Clause     (só testes;
+                                                                      dependência
+                                                                      do JUnit 4)
+
   Fontes consultadas:
-  - https://github.com/apache/commons-io/blob/master/LICENSE.txt
   - https://github.com/bcgit/bc-java/blob/main/LICENSE.md
   - https://github.com/google/guava/blob/master/LICENSE
   - https://github.com/androidx/androidx/blob/androidx-main/LICENSE.txt
+  - JUnit 4.13.2 e Hamcrest 1.3: licença declarada nos POMs oficiais
+    (https://repo.maven.apache.org/maven2/junit/junit/4.13.2/junit-4.13.2.pom,
+    "Eclipse Public License 1.0"; https://repo.maven.apache.org/maven2/org/hamcrest/hamcrest-parent/1.3/hamcrest-parent-1.3.pom,
+    "New BSD License"), lidos em 25/09/2026. A FSF classifica a EPL-1.0
+    como incompatível com a GPL; o JUnit só roda nos testes e não é
+    distribuído com o app.
+
+  commons-io:commons-io 2.20.0 (Apache-2.0) saiu em 25/09/2026 (entrega 1.6):
+  só o GPGDetachedSignatureVerifier.java, removido, o usava.
 
   (*) O POM oficial do bcpg-jdk15to18 1.81 declara duas licenças: "Bouncy
       Castle Licence" (tipo MIT) e "Apache Software License, Version 2.0",
@@ -123,35 +142,35 @@ release (ver docs/RELEASE.md). Toda dependência nova exige atualização de
 gradle/verification-metadata.xml e desta seção (ver CONTRIBUTING.md).
 
 
-4. Fontes de assinaturas herdadas do upstream — EM REVISÃO
------------------------------------------------------------
+4. Fontes das bases de assinaturas
+----------------------------------
 
-⚠️ Em revisão — a lista final do FortiSafe, com a licença e a atribuição de
-cada fonte efetivamente usada, será publicada junto das bases de assinaturas
-do FortiSafe. A lista abaixo é a declarada no README do upstream e nos scripts
-em scripts/; ela descreve o Hypatia, não o que o FortiSafe vai distribuir.
+As bases que o FortiSafe gera, assina e distribui (protocolo v1, servidor
+https://db.fortisafe.net/) usam hoje só duas fontes, por decisão do Gate G0
+(D-AV15, 25/09/2026):
 
-Fontes com licença declarada pelo upstream (no README ou nos scripts em
-scripts/):
+- ESET Research — malware-ioc (https://github.com/eset/malware-ioc) —
+  BSD-2-Clause
+- Echap — stalkerware-indicators
+  (https://github.com/AssoEchap/stalkerware-indicators) — CC BY 4.0
 
-- ClamAV (Cisco) — GPLv2
-- ESET (https://github.com/eset/malware-ioc) — BSD 2-Clause
-- Nex / @botherder (https://github.com/botherder/targetedthreats) — CC BY-SA 4.0
-- Amnesty International — CC BY 2.0
-- Echap (https://github.com/AssoEchap/stalkerware-indicators) — CC BY 4.0
-- MalwareBazaar, abuse.ch — CC0
-- ThreatFox, abuse.ch (https://threatfox.abuse.ch/) — CC0 (declarada em
-  scripts/0threatfox.sh; termos a confirmar em threatfox.abuse.ch antes do
-  uso comercial)
+A atribuição completa — commit usado, texto das licenças na íntegra, avisos de
+copyright, modificações feitas e aviso de não afiliação — acompanha cada base
+publicada, no arquivo ATRIBUICOES.txt conferido pelo manifesto assinado, e é o
+que a tela de créditos do app mostra. Nenhuma amostra de malware é distribuída:
+as bases são filtros de Bloom de hashes.
 
-Fontes referenciadas em scripts/ sem licença declarada pelo upstream
-(termos a confirmar antes de qualquer uso pelo FortiSafe):
-
-- Sanesecurity
-- MalShare (https://malshare.com/)
-- CyberCure (https://api.cybercure.ai/)
-- ThreatView (https://threatview.io/)
-- Indicadores de Covid-19 da Avast (https://github.com/avast/covid-19-ioc)
+Histórico (o Hypatia, não o FortiSafe). O README do upstream e os scripts em
+scripts/ declaravam estas fontes: ClamAV (GPLv2), ESET (BSD 2-Clause),
+Nex/@botherder targetedthreats (CC BY-SA 4.0), Amnesty International
+(CC BY 2.0), Echap (CC BY 4.0), MalwareBazaar e ThreatFox da abuse.ch ("CC0"),
+e, sem licença declarada, Sanesecurity, MalShare, CyberCure, ThreatView e os
+indicadores de Covid-19 da Avast. Nenhuma delas, além da ESET e da Echap, entra
+nas bases do FortiSafe. ⚠️ O rótulo "CC0" da abuse.ch é do upstream, não do
+titular: os Termos de Uso da abuse.ch (04/11/2025) reservam o uso gratuito a
+fins não lucrativos (análise de 25/09/2026 no repositório de documentação do
+FortiSafe). Os scripts do upstream continuam no histórico git deste
+repositório.
 
 
 5. Traduções do upstream
@@ -201,11 +220,8 @@ Fato de licença, sem parecer jurídico:
   permite combinar uma obra coberta pela AGPL-3.0 com uma obra coberta pela
   GPL-3.0 numa única obra combinada e distribuí-la; cada parte continua regida
   pela própria licença.
-- GPGDetachedSignatureVerifier.java é GPL-2.0-or-later. A cláusula "ou
-  posterior" permite recebê-lo sob a GPL-3.0, e a partir daí vale o mesmo
-  mecanismo da seção 13 acima. O arquivo traz ainda uma exceção do autor que
-  permite seu uso como parte de uma biblioteca de software livre sem
-  restrição.
+- GPGDetachedSignatureVerifier.java (GPL-2.0-or-later) saiu do código em
+  25/09/2026 (seção 2); não há mais arquivo sob GPL-2.0 na obra.
 - Apache-2.0 e MIT (dependências) são compatíveis com a GPL-3.0 e
   com a AGPL-3.0 na direção usada aqui: código sob essas licenças pode ser
   incorporado a uma obra AGPL-3.0, mantendo-se os avisos de copyright e de

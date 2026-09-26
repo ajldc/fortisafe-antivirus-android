@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Só no build de debug. O manifesto principal põe usesCleartextTraffic="false",
+  que é o que barra HTTP em claro na API 23 (da 24 em diante manda o
+  network_security_config). Sem esta troca, o teste de ponta a ponta com o
+  servidor local (http://10.0.2.2:8080/v1/, protocolo v1 das bases, seção 8)
+  falharia na API 23. Na 24+ o atributo é ignorado, porque há
+  networkSecurityConfig (o do debug libera só 10.0.2.2 e localhost); nas APIs
+  21 a 23 a guarda é o código (GuardaUrl), que aceita os mesmos dois hosts e só
+  no debug. O release não tem este arquivo.
+-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <application
+        android:usesCleartextTraffic="true"
+        tools:replace="android:usesCleartextTraffic" />
+</manifest>

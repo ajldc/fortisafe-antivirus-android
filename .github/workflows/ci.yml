@@ -25,6 +25,11 @@
 #   do gatilho `pull_request` (ou não exigir o check).
 # - GitHub Actions não suporta âncoras YAML, por isso a lista de
 #   `paths-ignore` está duplicada nos dois gatilhos.
+# - Bases de assinaturas (entrega 1.6, 25/09/2026): o build normal não tem
+#   chave nenhuma e tem de passar (o app recusa atualizar: falha fechada). Duas
+#   travas conferem o resto: o release sem o anel de produção é recusado pela
+#   guarda de app/build.gradle, e um debug com chave de teste efêmera (gerada
+#   no runner, nunca versionada) embute o anel no recurso gerado.
 
 name: CI
 
@@ -116,6 +121,30 @@ jobs:
             echo "Sem biblioteca nativa no APK."
           fi
 
+      - name: Trava — release sem chave das bases é recusado
+        # Entrega 1.6 (protocolo v1 das bases, seção 5; D-AV18): um APK de release
+        # que não confia em chave nenhuma não pode sair. Enquanto o anel de
+        # produção não existir (a chave é do André, entrega 2.6), o release TEM de
+        # ser recusado pela guarda de app/build.gradle, e por esse motivo. Com o
+        # anel no repositório, a trava deixa de se aplicar.
+        run: |
+          set -uo pipefail
+          if [ -f app/src/main/res/raw/fortisafe_bases_chaves.asc ]; then
+            echo "Anel de produção presente; a trava não se aplica."
+            exit 0
+          fi
+          if ./gradlew assembleRelease --dry-run > "$RUNNER_TEMP/release-sem-chave.log" 2>&1; then
+            cat "$RUNNER_TEMP/release-sem-chave.log"
+            echo "::error::o build de release passou sem as chaves das bases (D-AV18)"
+            exit 1
+          fi
+          if ! grep -q "Build de release recusado" "$RUNNER_TEMP/release-sem-chave.log"; then
+            cat "$RUNNER_TEMP/release-sem-chave.log"
+            echo "::error::o release falhou, mas não pela guarda das bases"
+            exit 1
+          fi
+          echo "Release recusado pela guarda das bases, como esperado."
+
       - name: SBOM CycloneDX 1.5 a partir de gradle/verification-metadata.xml
         # python3 vem pré-instalado na imagem ubuntu-latest; o script usa só a
         # biblioteca padrão. O que o SBOM cobre e não cobre: scripts/README-sbom.md.
@@ -153,3 +182,29 @@ jobs:
             app/build/test-results/
           if-no-files-found: warn
           retention-days: 14
+
+      - name: Trava — debug com chave de teste embute o anel (protocolo v1, seção 8)
+        # Roda por último: recompila o debug com outras propriedades depois que o
+        # APK normal já foi para o artefato. Exercita fortisafe.bases.chaves,
+        # .fingerprints e .url, que o build normal (sem chave) não percorre. A
+        # chave Ed25519 é gerada aqui, efêmera, e só a pública entra no APK de
+        # teste; nada sobe como artefato.
+        run: |
+          set -euo pipefail
+          export GNUPGHOME="$(mktemp -d)"
+          gpg --batch --pinentry-mode loopback --passphrase '' \
+            --quick-gen-key 'Teste CI FortiSafe <teste@fortisafe.invalid>' ed25519 sign 1d
+          fp="$(gpg --batch --with-colons --list-keys | awk -F: '/^fpr:/ {print $10; exit}')"
+          gpg --batch --armor --export "$fp" > "$RUNNER_TEMP/chave-teste.asc"
+          ./gradlew assembleDebug --stacktrace \
+            -Pfortisafe.bases.chaves="$RUNNER_TEMP/chave-teste.asc" \
+            -Pfortisafe.bases.fingerprints="$fp" \
+            -Pfortisafe.bases.url=http://10.0.2.2:8080/v1/
+          apk="$(ls app/build/outputs/apk/debug/*.apk | head -n1)"
+          unzip -Z1 "$apk" > "$RUNNER_TEMP/conteudo-apk.txt"
+          if ! grep -qx 'res/raw/fortisafe_bases_chaves_debug.asc' "$RUNNER_TEMP/conteudo-apk.txt"; then
+            echo "::error::o APK de debug não traz o anel de teste (raw/fortisafe_bases_chaves_debug)"
+            exit 1
+          fi
+          echo "Anel de teste embutido no APK de debug (impressão digital $fp)."
+          rm -rf "$GNUPGHOME" "$RUNNER_TEMP/chave-teste.asc"

@@ -102,6 +102,13 @@ correspondente** exato daquele binário. Regras deste projeto:
 
 - **Google Play App Signing.** A Google guarda a chave de assinatura do app;
   nós guardamos só a **chave de upload**, usada para assinar o AAB enviado.
+- **Chave de upload gerada em 26/09/2026** (D-AV28): keystore PKCS12, alias
+  `fortisafe-antivirus-upload`, RSA 4096, válida até 11/02/2054,
+  `CN=FortiSafe Antivirus, O=Tascom Global Network LLC, L=Orlando, ST=Florida,
+  C=US`. Impressão digital do certificado (pública, para conferir no Play
+  Console): SHA-256
+  `4B:6B:38:BD:EE:CD:51:F6:5E:4D:68:BE:8B:F6:6E:41:02:0C:81:50:41:CB:DC:F9:F8:16:73:55:C9:8B:71:F6`.
+  Keystore, senha e certificado no cofre Fortisafe do 1Password.
 - A chave de upload **fica fora do repositório**, em cofre de senhas, e é
   injetada no ambiente de build por variável de ambiente ou arquivo
   temporário apagado ao fim do job. Nunca em `gradle.properties` versionado,

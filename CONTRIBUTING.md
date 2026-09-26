@@ -120,10 +120,14 @@ O workflow de CI (`.github/workflows/ci.yml`) executa, com **JDK 17**:
 Rode o mesmo comando antes de abrir o PR. Observações honestas sobre o estado
 atual:
 
-- Hoje **não há testes unitários** em `app/src/test` — o `testDebugUnitTest`
-  passa sem executar nada. Contribuições que tragam testes são especialmente
-  bem-vindas; o alvo são as partes que decidem algo (verificação de
-  assinatura das bases, comparação de hash, tratamento de erro no download).
+- Desde a entrega 1.6 (25/09/2026) há testes de unidade em `app/src/test`
+  (JUnit 4, na JVM), para o protocolo das bases de assinaturas: verificação
+  de assinatura, validação do manifesto e da lista de emergência,
+  anti-rebaixamento, frescor, conferência de arquivos, troca atômica e a
+  prova cruzada com fixturas assinadas pelo gerador. A lógica que decide
+  fica em classes sem Android (`us.spotco.malwarescanner.bases`) justamente
+  para poder ser testada assim. Chave de teste é gerada **dentro** do teste;
+  nenhuma chave privada, nem de teste, entra no repositório.
 - O `lintDebug` roda com `abortOnError false` (herdado do upstream); o
   relatório sai em `app/build/reports/`. Não introduza avisos novos.
 - A opção `-DskipFormatKtlint`, que o CI do upstream passava, foi removida

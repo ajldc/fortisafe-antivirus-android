@@ -34,6 +34,7 @@
         <item quantity="other">The signature database is %d days old.</item>
     </plurals>
     <string name="estado_motivo_tempo_real_desligado">Real-time protection is off.</string>
+    <string name="estado_motivo_tempo_real_parado_pelo_usuario">You stopped the app, so real-time protection is off.</string>
     <string name="estado_motivo_apps_sem_consentimento">Installed apps are not scanned: your consent is missing.</string>
 
     <!-- Correção a um toque -->
@@ -108,6 +109,7 @@
     <string name="detalhe_contestar_assunto">[FortiSafe Antivirus] detection dispute</string>
     <string name="detalhe_contestar_texto">I want to dispute this FortiSafe Antivirus detection.\n\n%1$s</string>
     <string name="detalhe_contestar_escolher">Send the dispute with</string>
+    <string name="detalhe_contestar_sem_app">No app on this device can send the dispute.</string>
     <string name="detalhe_nao_encontrada">This detection is no longer in the history.</string>
     <string name="detalhe_estado_ignorada">You ignored this detection. It will not alert again for this same file.</string>
     <string name="detalhe_estado_resolvida">Detection resolved: the file or app was removed.</string>
@@ -131,7 +133,6 @@
     <string name="notif_tempo_real_subtexto">%1$s signatures · %2$s files scanned</string>
 
     <!-- Base de assinaturas (DescricaoBase; ligação com a entrega 1.6) -->
-    <string name="base_descricao_data">downloaded on %1$s</string>
     <string name="base_descricao_ausente">not downloaded</string>
     <string name="bases_atualizacao_terminada">Database update finished. Technical details are in History.</string>
     <string name="bases_atualizando">Updating the databases…</string>
@@ -169,6 +170,9 @@
     <string name="ajustes_secao_sobre">About</string>
     <string name="ajustes_creditos">Credits and licenses</string>
     <string name="creditos_codigo_fonte">Source code (AGPL-3.0): %1$s</string>
+    <string name="creditos_titulo_bases">Signature database sources</string>
+    <string name="creditos_bases_ausentes">Source attributions appear here after the first database is downloaded and its signature is verified.</string>
+    <string name="creditos_titulo_hypatia">Hypatia contributors</string>
 
     <string name="politica_resumo">Privacy summary of FortiSafe Antivirus (Tascom Global Network LLC):\n\n• Scanning happens on this device. None of your files is sent anywhere, not even when there is a match.\n\n• The list of installed apps is only read after your consent, and only on this device.\n\n• The app only connects to the internet to download the signature databases, over HTTPS. As with any connection, the server sees the device IP address.\n\n• The VirusTotal lookup only happens if you tap it on a detection and confirm: your browser opens the site with the file\'s code (hash).\n\n• No ads, no usage analytics and no crash reports.\n\n• Nothing from the app goes to cloud backup.\n\nPrivacy contact: privacy@fortisafe.net. The full policy will be published at fortisafe.net.</string>
 
@@ -205,4 +209,8 @@
     <string name="onb5_status_falhou">The database could not be downloaded right now. You can try again later in Settings.</string>
     <string name="onb5_primeira_verificacao">Run the first scan</string>
     <string name="onb5_concluir_sem_base">Finish without downloading</string>
+    <string name="base_descricao_versao">version %1$s, published on %2$s</string>
+    <string name="estado_motivo_sem_chave">This build of the app has no FortiSafe database key, so it cannot install signature databases.</string>
+    <string name="estado_motivo_base_revogada">The installed signature database was withdrawn by FortiSafe. Update to get a new one.</string>
+    <string name="estado_motivo_emergencia_vencida">The FortiSafe emergency list is out of date. Update the databases.</string>
 </resources>

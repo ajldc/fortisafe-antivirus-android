@@ -26,6 +26,7 @@
         <item quantity="other">A base de assinaturas tem %d dias.</item>
     </plurals>
     <string name="estado_motivo_tempo_real_desligado">A proteção em tempo real está desligada.</string>
+    <string name="estado_motivo_tempo_real_parado_pelo_usuario">Você parou o app, por isso a proteção em tempo real está desligada.</string>
     <string name="estado_motivo_apps_sem_consentimento">Os apps instalados não são verificados: falta o seu consentimento.</string>
 
     <string name="correcao_ver_evidencia">Ver a evidência</string>
@@ -96,6 +97,7 @@
     <string name="detalhe_contestar_assunto">[FortiSafe Antivírus] contestação de detecção</string>
     <string name="detalhe_contestar_texto">Quero contestar esta detecção do FortiSafe Antivírus.\n\n%1$s</string>
     <string name="detalhe_contestar_escolher">Enviar a contestação por</string>
+    <string name="detalhe_contestar_sem_app">Nenhum app deste aparelho consegue enviar a contestação.</string>
     <string name="detalhe_nao_encontrada">Esta detecção não está mais no histórico.</string>
     <string name="detalhe_estado_ignorada">Você ignorou esta detecção. O mesmo arquivo não vai gerar um novo aviso.</string>
     <string name="detalhe_estado_resolvida">Detecção resolvida: o arquivo ou app foi removido.</string>
@@ -117,7 +119,6 @@
     <string name="notif_tempo_real_limitada_texto">Sem acesso aos arquivos. Toque para rever.</string>
     <string name="notif_tempo_real_subtexto">%1$s assinaturas · %2$s arquivos verificados</string>
 
-    <string name="base_descricao_data">baixada em %1$s</string>
     <string name="base_descricao_ausente">não baixada</string>
     <string name="bases_atualizacao_terminada">Atualização das bases terminada. Os detalhes técnicos estão no Histórico.</string>
     <string name="bases_atualizando">Atualizando as bases…</string>
@@ -153,6 +154,9 @@
     <string name="ajustes_secao_sobre">Sobre</string>
     <string name="ajustes_creditos">Créditos e licenças</string>
     <string name="creditos_codigo_fonte">Código-fonte (AGPL-3.0): %1$s</string>
+    <string name="creditos_titulo_bases">Fontes das bases de assinaturas</string>
+    <string name="creditos_bases_ausentes">As atribuições das fontes aparecem aqui depois que a primeira base for baixada e tiver a assinatura conferida.</string>
+    <string name="creditos_titulo_hypatia">Contribuidores do Hypatia</string>
 
     <string name="politica_resumo">Resumo de privacidade do FortiSafe Antivírus (Tascom Global Network LLC):\n\n• A verificação acontece neste aparelho. Nenhum arquivo seu é enviado a lugar nenhum, nem quando há coincidência.\n\n• A lista de apps instalados só é lida depois do seu consentimento, e só neste aparelho.\n\n• O app só se conecta à internet para baixar as bases de assinaturas, por HTTPS. Como em toda conexão, o servidor vê o endereço IP do aparelho.\n\n• A consulta ao VirusTotal só acontece se você tocar nela numa detecção e confirmar: o navegador abre o site com o código (hash) do arquivo.\n\n• Sem anúncios, sem análise de uso e sem relatório de falhas.\n\n• Nada do app vai para o backup na nuvem.\n\nContato de privacidade: privacy@fortisafe.net. A política completa será publicada em fortisafe.net.</string>
 
@@ -187,4 +191,8 @@
     <string name="onb5_status_falhou">Não foi possível baixar a base agora. Você pode tentar de novo depois, em Ajustes.</string>
     <string name="onb5_primeira_verificacao">Fazer a primeira verificação</string>
     <string name="onb5_concluir_sem_base">Concluir sem baixar</string>
+    <string name="base_descricao_versao">versão %1$s, publicada em %2$s</string>
+    <string name="estado_motivo_sem_chave">Esta versão do app não tem a chave das bases FortiSafe e não consegue instalar bases de assinaturas.</string>
+    <string name="estado_motivo_base_revogada">A base de assinaturas instalada foi retirada pelo FortiSafe. Atualize para receber uma nova.</string>
+    <string name="estado_motivo_emergencia_vencida">A lista de emergência do FortiSafe está vencida. Atualize as bases.</string>
 </resources>

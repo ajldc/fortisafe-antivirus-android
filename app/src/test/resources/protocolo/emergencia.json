@@ -1,0 +1,14 @@
+{
+  "formato": "fortisafe-emergencia/1",
+  "tipo": "emergencia",
+  "versao": 2026092501,
+  "publicadoEm": "2026-09-25T18:35:46Z",
+  "expiraEm": "2036-09-22T18:35:46Z",
+  "permitidos": {
+    "sha256": [
+      "5e6d6feccf4fcbb72325bb0cfbb1a303b9023617a23cbbab666f80307a35aa6f"
+    ],
+    "apps": []
+  },
+  "revogarVersoesDeBase": []
+}

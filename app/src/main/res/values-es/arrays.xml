@@ -6,7 +6,7 @@
         <item>• @srccrow: Traducciones al italiano</item>
         <item>• @inkhorn: Traducciones al portugués</item>
         <item>• @jontaix: Traducciones al portugués</item>
-        <item>• @lucasmz: Brazilian Portuguese Translations</item>
+        <item>• @lucasmz: Traducciones al portugués de Brasil</item>
         <item>• @q1011: Traducciones al ruso</item>
         <item>• Oswald van Ginkel: Traducciones al afrikaans</item>
         <item>• huuhaa: Traducciones al finés</item>
@@ -16,21 +16,14 @@
         <item>• @Sdarfeesh: Traducciones al chino simplificado</item>
         <item>• @cardpuncher: Traducciones francés/turco</item>
         <item>• Tommaso Fonda: Traducciones al italiano</item>
-        <item>• Dimitris Vagiakakos: Traducciones del griego</item>
-        <item>• @gallegonovato: Spanish Translations</item>
-        <item>• @Fjuro: Czech Translations</item>
-        <item>• @thereisnoanderson: German Translations</item>
-        <item>• @ghose: Galician Translations</item>
-        <item>• @yurtpage: Russian Translations</item>
-        <item>• @eloitor: Translations work</item>
-        <item>• ClamAV by Cisco: Bases de datos de firmas</item>
-        <item>• ESET: Bases de datos de firmas</item>
-        <item>• Nex (@botherder): Bases de datos de firmas</item>
-        <item>• Amnistía Internacional: Bases de datos de firmas</item>
-        <item>• Echap: Bases de datos de firmas</item>
-        <item>• MalwareBazaar: Bases de datos de firmas</item>
-        <item>• VirusShare: Bases de datos de firmas</item>
+        <item>• Dimitris Vagiakakos: Traducciones al griego</item>
+        <item>• @gallegonovato: Traducciones al español</item>
+        <item>• @Fjuro: Traducciones al checo</item>
+        <item>• @thereisnoanderson: Traducciones al alemán</item>
+        <item>• @ghose: Traducciones al gallego</item>
+        <item>• @yurtpage: Traducciones al ruso</item>
+        <item>• @elid34: Traducciones al hebreo</item>
+        <item>• @eloitor: Trabajo de traducción</item>
         <item>• RecursiveFileObserver.java: Daniel Gultsch, ownCloud Inc., Bartek Przybylski</item>
-        <item>• GPGDetachedSignatureVerifier.java: Federico Fissore, Arduino LLC</item>
     </string-array>
 </resources>

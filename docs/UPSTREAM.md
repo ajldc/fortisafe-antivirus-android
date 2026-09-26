@@ -145,9 +145,14 @@ alimentar o problema:
      nossa (ver `docs/RELEASE.md`).
    - `app/src/main/AndroidManifest.xml` — permissões, serviços e receivers.
      Nada que foi removido de propósito volta pelo merge.
-   - Fontes das bases de assinaturas (`DatabaseSource.kt` e afins) — o
-     FortiSafe consome as próprias bases; URLs e chaves do upstream não
-     entram.
+   - Bases de assinaturas — desde a entrega 1.6 (25/09/2026) o
+     `Database.kt` foi reescrito sobre o pacote
+     `us.spotco.malwarescanner.bases` (protocolo v1 das bases do FortiSafe),
+     e o `GPGDetachedSignatureVerifier.java` saiu. Mudança do upstream em
+     `Database.kt`, `DatabaseSource.kt`, no verificador ou nos menus de
+     servidor e chave não se aplica: é lida para entender a intenção e, se
+     for correção geral (ex.: leitura do filtro de Bloom), reescrita sobre o
+     código nosso.
    - `LinkScannerService` e recursos ligados à acessibilidade — removidos do
      produto; mudanças do upstream nesses arquivos são descartadas.
    - `gradle/verification-metadata.xml` e `gradle/libs.versions.toml` —
@@ -195,6 +200,9 @@ a divergência achando que foi esquecimento:
 | Reativar o serviço de acessibilidade (`LinkScannerService`) ou qualquer uso de `AccessibilityService` | Removido na entrega 1.3 (25/09/2026) por custo e risco, não por proibição: a Google Play não veta a API a antivírus, mas exige divulgação destacada, declaração e vídeo (correção de 17/09/2026); e a função de proteção web não é deste app (D-AV3). |
 | Qualquer uso de `VpnService` | O antivírus não faz proteção web (filtro de sites, links ou DNS) e não usa `VpnService`. |
 | Voltar as fontes de bases para os servidores do MaintainTeam ou de terceiros | O FortiSafe distribui só bases geradas e assinadas por ele. |
+| URLs e chaves de bases do upstream (`DatabaseSource` com MaintainTeam, espelho no GitHub e AXP.OS; `MT_SIGNING_KEY`), download de `gpg.key` do servidor, `.sig` por arquivo e menu de servidor ou de chave | Entrega 1.6 (25/09/2026; D-AV18): o app só baixa de `BuildConfig.BASES_URL` e só confia nas chaves fixadas por impressão digital completa no build; a raiz de confiança é o anel embutido no APK, não um arquivo baixado do mesmo servidor. |
+| `GPGDetachedSignatureVerifier.java` (Arduino) | Substituído na entrega 1.6 por `bases/VerificadorAssinatura.kt` (G0, B21): o herdado escolhia a chave pelo sufixo do ID de 64 bits e não olhava revogação nem expiração. |
+| Base "extended" (`hypatia-md5-extended-bloom.bin`, preferência `SIGNATURES_EXTENDED`) | Saiu na entrega 1.6: o upstream não a publica mais e o FortiSafe não a gera; a lista de arquivos vem do manifesto assinado. |
 | `release.yml` do upstream ou qualquer workflow que publique fora deste repositório | Publicaria no repositório do MaintainTeam com as nossas credenciais. |
 | `permissions: write-all` em workflows | Privilégio mínimo é regra dos nossos workflows. |
 | `debugkey.pk8` / `debugkey.x509.pem` e qualquer chave versionada | Nenhuma chave no repositório (`docs/RELEASE.md`). |

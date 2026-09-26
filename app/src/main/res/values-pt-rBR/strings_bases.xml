@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Textos das bases de assinaturas (entregas 1.6 e 1.7). Ver values/strings_bases.xml. -->
+<resources>
+    <string name="bases_procurando">Procurando atualização das bases de assinaturas no servidor do FortiSafe…</string>
+    <string name="bases_instalada">Bases de assinaturas atualizadas para a versão %1$s (publicada em %2$s).</string>
+    <string name="bases_em_dia">As bases de assinaturas estão em dia (versão %1$s).</string>
+    <string name="bases_sem_chave">Este build não traz a chave de assinatura das bases. As atualizações são recusadas e nenhuma base é carregada.</string>
+    <string name="bases_recusada_url">Atualização recusada: o endereço do servidor das bases não é permitido (só HTTPS).</string>
+    <string name="bases_recusada_rede">Não foi possível falar com o servidor das bases. As bases atuais foram mantidas.</string>
+    <string name="bases_recusada_servidor">O servidor das bases deu uma resposta inesperada. As bases atuais foram mantidas.</string>
+    <string name="bases_recusada_assinatura">Atualização recusada: a assinatura do FortiSafe está ausente ou é inválida. As bases atuais foram mantidas.</string>
+    <string name="bases_recusada_formato">Atualização recusada: o manifesto das bases está mal formado. As bases atuais foram mantidas.</string>
+    <string name="bases_recusada_rebaixamento">Atualização recusada: o servidor ofereceu uma versão mais antiga que a instalada. As bases atuais foram mantidas.</string>
+    <string name="bases_recusada_revogada">Atualização recusada: a versão do servidor foi revogada pelo FortiSafe.</string>
+    <string name="bases_recusada_expirada">Atualização recusada: as bases do servidor estão vencidas. As bases atuais foram mantidas.</string>
+    <string name="bases_recusada_arquivo">Atualização recusada: um arquivo baixado não confere com o manifesto assinado. Nada foi alterado.</string>
+    <string name="bases_recusada_armazenamento">Não foi possível gravar as bases neste aparelho. Nada foi alterado.</string>
+    <string name="bases_carregada">Usando as bases de assinaturas na versão %1$s (publicada em %2$s).</string>
+    <string name="bases_estado_desatualizada">Atenção: as bases de assinaturas estão desatualizadas (válidas até %1$s). Atualize as bases.</string>
+    <string name="bases_estado_revogada">A versão %1$s das bases de assinaturas foi revogada pelo FortiSafe e deixou de ser usada. Atualize as bases.</string>
+    <string name="bases_estado_ausente">Não há bases de assinaturas válidas instaladas. Atualize as bases.</string>
+    <string name="bases_arquivo_divergente">O arquivo instalado %1$s não confere com o manifesto aceito; por isso as bases não foram carregadas. Atualize as bases.</string>
+    <string name="bases_aceite_descartado">As bases guardadas não conferem mais com as chaves de assinatura desta versão do app e foram descartadas. Atualize as bases.</string>
+    <string name="bases_emergencia_aplicada">Lista de emergência do FortiSafe aplicada (versão %1$s).</string>
+    <string name="bases_emergencia_recusada">A lista de emergência do FortiSafe não foi atualizada; continua valendo a anterior.</string>
+    <string name="bases_emergencia_expirada">Atenção: a lista de emergência do FortiSafe venceu em %1$s. Ela continua valendo até chegar uma mais nova.</string>
+</resources>

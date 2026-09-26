@@ -1,0 +1,33 @@
+Fixturas do protocolo de distribuição das bases v1 (pipeline/PROTOCOLO.md)
+Geradas em 2026-09-25T18:35:46Z por net.fortisafe.bases.GeradorFixturasProtocolo (fontes de teste do pipeline).
+CHAVES DE TESTE: as privadas existiram só na memória da geração. Nada daqui vai para release.
+
+Chaves (anel público chaves-teste.asc; impressões em impressao-digital.txt):
+  principal 58D71ADE16B83E87EA009996D5A6059DFECF8E58 (criada 2026-09-25T17:35:46Z, expira em 2 anos)
+  reserva   3B04A4CACC65132808017A9A374425A8B499A7DB
+  fora do anel (só assina casos/manifesto.json.sig.chave-fora-do-anel) A8048F30A295CB5976DABC3978632C6FBA4A7ED9
+  expirada  F15E29FE62F0F4A714BEE3C311D71BBE0F7C17DA (casos/chave-expirada; criada 2026-09-15T18:35:46Z, validade 1 dia, assinou 5 dias depois)
+
+manifesto.json: versão 2026092501, publicadoEm 2026-09-25T18:35:46Z, expiraEm 2036-09-22T18:35:46Z (validade LONGA de 3650 dias, só na fixtura,
+  para os testes do app não vencerem; o gerador publica com 14 dias). Assinaturas feitas em 2026-09-25T18:35:46Z.
+emergencia.json: versão 2026092501, a partir de pipeline/emergencia/exemplo.txt (permite o SHA-256
+  5e6d6fec… do arquivo de teste SHA-1 do menu do app).
+site/v1/: a publicação completa (árvore da seção 2), servível com
+  python3 -m http.server 8080 --bind 127.0.0.1 --directory site
+  Os .bin são de uma geração SINTÉTICA (canários do autoteste + hashes de teste), não da base real.
+
+Resultado esperado de cada par (conferido pelo VerificadorAssinatura do pipeline, regra da seção 5,
+com o relógio em 2026-09-25T18:35:46Z):
+  ACEITA   manifesto.json + manifesto.json.sig
+  RECUSADA manifesto-adulterado.json + manifesto.json.sig → BYTES_NAO_CONFEREM
+  ACEITA   emergencia.json + emergencia.json.sig
+  ACEITA   manifesto.json + casos/manifesto.json.sig.reserva
+  ACEITA   manifesto.json + casos/manifesto.json.sig.armored
+  RECUSADA manifesto.json + casos/manifesto.json.sig.chave-fora-do-anel → CHAVE_FORA_DO_ANEL
+  RECUSADA manifesto.json + casos/manifesto.json.sig.do-futuro → DO_FUTURO
+  RECUSADA manifesto.json + casos/manifesto.json.sig.texto → TIPO_DE_ASSINATURA
+  ACEITA   casos/manifesto-expirado.json + .sig (assinatura) — mas expiraEm já passou: o app NÃO instala (seção 6, regra 5)
+  ACEITA   casos/manifesto-anterior.json + .sig (assinatura) — mas versão 2026092401 < 2026092501: rebaixamento, o app rejeita (regra 4)
+  RECUSADA manifesto.json + casos/chave-expirada/manifesto.json.sig (anel e impressão da pasta) → CHAVE_EXPIRADA
+
+verificar --publicacao site/v1 (ClienteBases): aprovado.
