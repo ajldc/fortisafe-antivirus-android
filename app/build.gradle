@@ -132,7 +132,14 @@ android {
         }
     }
     lint {
-        abortOnError false
+        // Critério de pronto da entrega 1.2 (docs/plano-fases.md, no repositório de
+        // documentação): lint com abortOnError e baseline sem NewApi. Medido no Mac
+        // em 25/09/2026: 0 erros e 0 NewApi; os avisos restantes estão no baseline
+        // (lint-baseline.xml). Erro novo reprova o build e a CI. Para aceitar um
+        // aviso de propósito, regenere o baseline com ./gradlew :app:updateLintBaseline
+        // e diga no commit por quê.
+        abortOnError true
+        baseline = file('lint-baseline.xml')
     }
     packagingOptions {
         exclude 'org/bouncycastle/pqc/crypto/picnic/lowmcL1.bin.properties'
