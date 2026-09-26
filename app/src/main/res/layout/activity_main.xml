@@ -47,6 +47,7 @@
 
                     <TextView
                         android:id="@+id/txtEstadoTitulo"
+                        style="@style/FortiSafe.FonteTitulo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="22sp"
@@ -123,8 +124,10 @@
                     <androidx.appcompat.widget.SwitchCompat
                         android:id="@+id/switchTempoRealInicio"
                         style="@style/FortiSafe.Chave"
+                        android:fontFamily="@font/archivo"
                         android:text="@string/cartao_tempo_real_titulo"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        app:fontFamily="@font/archivo" />
 
                     <TextView
                         android:id="@+id/txtCartaoTempoReal"

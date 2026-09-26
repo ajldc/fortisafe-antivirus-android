@@ -30,6 +30,9 @@
         <item name="android:textSize">20sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/fortisafe_text</item>
+        <!-- Archivo só nos títulos (D-AV36); app:fontFamily aplica nas APIs < 26. -->
+        <item name="android:fontFamily">@font/archivo</item>
+        <item name="fontFamily">@font/archivo</item>
     </style>
 
     <!-- Título de seção (Ajustes, Detalhe). -->
@@ -40,6 +43,9 @@
         <item name="android:textSize">14sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/fortisafe_text_support</item>
+        <!-- Archivo só nos títulos (D-AV36); app:fontFamily aplica nas APIs < 26. -->
+        <item name="android:fontFamily">@font/archivo</item>
+        <item name="fontFamily">@font/archivo</item>
     </style>
 
     <style name="FortiSafe.Cartao">
@@ -57,6 +63,16 @@
         <item name="android:textSize">16sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/fortisafe_text</item>
+        <!-- Archivo só nos títulos (D-AV36); app:fontFamily aplica nas APIs < 26. -->
+        <item name="android:fontFamily">@font/archivo</item>
+        <item name="fontFamily">@font/archivo</item>
+    </style>
+
+    <!-- Só a fonte dos títulos, para textos de título sem outro estilo (faixas e onboarding). -->
+    <style name="FortiSafe.FonteTitulo">
+        <!-- Archivo só nos títulos (D-AV36); app:fontFamily aplica nas APIs < 26. -->
+        <item name="android:fontFamily">@font/archivo</item>
+        <item name="fontFamily">@font/archivo</item>
     </style>
 
     <style name="FortiSafe.Corpo">

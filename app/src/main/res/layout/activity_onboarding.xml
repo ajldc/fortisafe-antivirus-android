@@ -44,6 +44,7 @@
 
             <TextView
                 android:id="@+id/txtOnbTitulo"
+                style="@style/FortiSafe.FonteTitulo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/fortisafe_text"

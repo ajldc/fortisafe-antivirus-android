@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Archivo só nos títulos (D-AV13, D-AV36): como no site e no app da VPN, onde a
+  Archivo aparece só nos títulos; o corpo continua na fonte do sistema. Uma face,
+  peso 700, para o textStyle="bold" dos títulos não sintetizar negrito em cima de
+  negrito. Os atributos app: são os do AppCompat, que aplica a fonte nas APIs
+  anteriores à 26. Origem e como gerar de novo: scripts/fontes/gerar-archivo.sh.
+-->
+<font-family xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <!-- android: vale da API 26 em diante; app: cobre as anteriores (padrão do AppCompat). -->
+    <font
+        tools:ignore="UnusedAttribute"
+        android:font="@font/archivo_bold"
+        android:fontStyle="normal"
+        android:fontWeight="700"
+        app:font="@font/archivo_bold"
+        app:fontStyle="normal"
+        app:fontWeight="700" />
+</font-family>
