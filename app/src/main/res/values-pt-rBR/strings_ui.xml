@@ -26,6 +26,7 @@
         <item quantity="other">A base de assinaturas tem %d dias.</item>
     </plurals>
     <string name="estado_motivo_tempo_real_desligado">A proteção em tempo real está desligada.</string>
+    <string name="estado_motivo_tempo_real_parado_pelo_usuario">Você parou o app, por isso a proteção em tempo real está desligada.</string>
     <string name="estado_motivo_apps_sem_consentimento">Os apps instalados não são verificados: falta o seu consentimento.</string>
 
     <string name="correcao_ver_evidencia">Ver a evidência</string>
