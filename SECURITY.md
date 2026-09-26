@@ -75,8 +75,8 @@ da correção.
 
 **Fora do escopo — encaminhe para quem mantém:**
 
-- Vulnerabilidades nos **feeds de terceiros** que alimentam as bases (ClamAV,
-  ESET, MalwareBazaar etc.): reporte ao respectivo projeto. Se o problema
+- Vulnerabilidades nos **feeds de terceiros** que alimentam as bases (hoje,
+  ESET e Echap): reporte ao respectivo projeto. Se o problema
   afetar o modo como **este app** usa o feed, aí é conosco também.
 - Problemas no **Hypatia upstream** que não existam neste repositório:
   reporte ao [MaintainTeam](https://github.com/MaintainTeam/Hypatia). Se o

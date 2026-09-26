@@ -142,35 +142,35 @@ release (ver docs/RELEASE.md). Toda dependência nova exige atualização de
 gradle/verification-metadata.xml e desta seção (ver CONTRIBUTING.md).
 
 
-4. Fontes de assinaturas herdadas do upstream — EM REVISÃO
------------------------------------------------------------
+4. Fontes das bases de assinaturas
+----------------------------------
 
-⚠️ Em revisão — a lista final do FortiSafe, com a licença e a atribuição de
-cada fonte efetivamente usada, será publicada junto das bases de assinaturas
-do FortiSafe. A lista abaixo é a declarada no README do upstream e nos scripts
-em scripts/; ela descreve o Hypatia, não o que o FortiSafe vai distribuir.
+As bases que o FortiSafe gera, assina e distribui (protocolo v1, servidor
+https://db.fortisafe.net/) usam hoje só duas fontes, por decisão do Gate G0
+(D-AV15, 25/09/2026):
 
-Fontes com licença declarada pelo upstream (no README ou nos scripts em
-scripts/):
+- ESET Research — malware-ioc (https://github.com/eset/malware-ioc) —
+  BSD-2-Clause
+- Echap — stalkerware-indicators
+  (https://github.com/AssoEchap/stalkerware-indicators) — CC BY 4.0
 
-- ClamAV (Cisco) — GPLv2
-- ESET (https://github.com/eset/malware-ioc) — BSD 2-Clause
-- Nex / @botherder (https://github.com/botherder/targetedthreats) — CC BY-SA 4.0
-- Amnesty International — CC BY 2.0
-- Echap (https://github.com/AssoEchap/stalkerware-indicators) — CC BY 4.0
-- MalwareBazaar, abuse.ch — CC0
-- ThreatFox, abuse.ch (https://threatfox.abuse.ch/) — CC0 (declarada em
-  scripts/0threatfox.sh; termos a confirmar em threatfox.abuse.ch antes do
-  uso comercial)
+A atribuição completa — commit usado, texto das licenças na íntegra, avisos de
+copyright, modificações feitas e aviso de não afiliação — acompanha cada base
+publicada, no arquivo ATRIBUICOES.txt conferido pelo manifesto assinado, e é o
+que a tela de créditos do app mostra. Nenhuma amostra de malware é distribuída:
+as bases são filtros de Bloom de hashes.
 
-Fontes referenciadas em scripts/ sem licença declarada pelo upstream
-(termos a confirmar antes de qualquer uso pelo FortiSafe):
-
-- Sanesecurity
-- MalShare (https://malshare.com/)
-- CyberCure (https://api.cybercure.ai/)
-- ThreatView (https://threatview.io/)
-- Indicadores de Covid-19 da Avast (https://github.com/avast/covid-19-ioc)
+Histórico (o Hypatia, não o FortiSafe). O README do upstream e os scripts em
+scripts/ declaravam estas fontes: ClamAV (GPLv2), ESET (BSD 2-Clause),
+Nex/@botherder targetedthreats (CC BY-SA 4.0), Amnesty International
+(CC BY 2.0), Echap (CC BY 4.0), MalwareBazaar e ThreatFox da abuse.ch ("CC0"),
+e, sem licença declarada, Sanesecurity, MalShare, CyberCure, ThreatView e os
+indicadores de Covid-19 da Avast. Nenhuma delas, além da ESET e da Echap, entra
+nas bases do FortiSafe. ⚠️ O rótulo "CC0" da abuse.ch é do upstream, não do
+titular: os Termos de Uso da abuse.ch (04/11/2025) reservam o uso gratuito a
+fins não lucrativos (análise de 25/09/2026 no repositório de documentação do
+FortiSafe). Os scripts do upstream continuam no histórico git deste
+repositório.
 
 
 5. Traduções do upstream
