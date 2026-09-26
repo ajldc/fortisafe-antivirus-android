@@ -83,6 +83,17 @@ não participam dele, não o endossam e não respondem por ele.
   demais ícones exibidos vêm da própria plataforma Android
   (android.R.drawable) e não são incorporados ao APK.
 
+- Fonte Archivo (app/src/main/res/font/archivo_bold.ttf), só nos títulos
+  (D-AV36, 26/09/2026). Licença: SIL Open Font License 1.1 (OFL-1.1), sem
+  nome de fonte reservado. Copyright 2020 The Archivo Project Authors
+  (https://github.com/Omnibus-Type/Archivo). Origem: google/fonts,
+  ofl/archivo/Archivo[wdth,wght].ttf, commit
+  23e54b51ddffbc7713c583748e3bd86f62b1fa4a. Modificação: instância estática
+  peso 700, largura 100, gerada com fontTools (scripts/fontes/gerar-archivo.sh,
+  reproduzível). O texto da licença está em scripts/fontes/OFL-Archivo.txt e
+  vai também nos metadados da própria fonte (tabela name). A OFL permite
+  embutir a fonte em software sob outra licença; a fonte continua sob a OFL.
+
 - Trechos do Stack Overflow herdados em Utils.kt — nenhum permanece desde
   25/09/2026 (pendência P-AV11 encerrada). Registro, para quem comparar com
   o upstream: isServiceRunning (CC BY-SA 3.0, https://stackoverflow.com/a/5921190)
