@@ -12,9 +12,6 @@
     <string name="app_license">Licencia: AGPL-3.0-or-later</string>
     <string name="app_version">Versión: %s</string>
     <string name="app_db_type_clamav">Con firmas al estilo de ClamAV</string>
-    <string name="lblOnionRoutingToggle">Descargar a través de Tor</string>
-    <string name="lblOnionRoutingEnabledHint">Descargando a través de Tor; puede tardar un poco…</string>
-    <string name="lblOnionRoutingNotInstalled">Orbot no está instalado.</string>
     <string name="lblUpdateDatabase">Actualizar las bases de firmas</string>
     <string name="lblDatabaseServer">Servidor alternativo de las bases</string>
     <string name="lblFullCredits">Créditos</string>
@@ -85,15 +82,6 @@
     <string name="confirm_update_summary">Parece que estás en una conexión limitada. ¿Actualizar las bases de todos modos?\nLa descarga puede llegar a %s MB.</string>
     <string name="lblUpdateRunning">Ya hay una actualización en curso. Vuelve a intentarlo cuando termine.</string>
     <string name="lblWroteTestFiles">Archivos de prueba escritos.</string>
-    <string name="accessibility_service_label">Analizador de enlaces</string>
-    <string name="accessibility_service_description">Extrae dominios de todo el texto de la pantalla y los compara con una lista de bloqueo</string>
-    <string name="lblNotificationLinkDetection">Posible enlace malicioso:</string>
-    <string name="lblLinkScannerToggle">Analizador de enlaces</string>
-    <string name="confirm_link_scanner_title">¿Activar el analizador de enlaces?</string>
-    <string name="confirm_link_scanner_summary">[EXPERIMENTAL]\nDescarga una base adicional de dominios.\nCada dominio que aparezca en la pantalla se compara con esa base.\nRequiere conceder manualmente el permiso del servicio de accesibilidad.\nPuede ralentizar las pantallas con mucho texto.</string>
-    <string name="database_not_loaded_link_scanner">No hay ninguna base cargada. Actualiza las bases para usar el analizador de enlaces.</string>
-    <string name="link_scanner_notification_text">La pantalla se analiza y los enlaces maliciosos se detectan en tiempo real</string>
-    <string name="link_scanner_notification_description">Muestra información del análisis de enlaces.</string>
     <string name="cache_scan_result_deletion_warning">Este archivo se compartió con la aplicación, así que el original no se modificó. Elimina o mueve el original tú mismo.</string>
     <string name="see_notifications">Consulta la notificación para decidir qué hacer con el archivo.</string>
 </resources>

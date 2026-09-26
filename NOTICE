@@ -80,12 +80,14 @@ não participam dele, não o endossam e não respondem por ele.
   demais ícones exibidos vêm da própria plataforma Android
   (android.R.drawable) e não são incorporados ao APK.
 
-- Trechos de app/src/main/java/us/spotco/malwarescanner/Utils.kt creditados a
-  respostas do Stack Overflow, conforme os comentários no próprio código:
-  - isServiceRunning — CC BY-SA 3.0, https://stackoverflow.com/a/5921190
-  - isPackageInstalled — CC BY-SA 3.0, https://stackoverflow.com/a/6758962
-  - isNetworkAvailable — https://stackoverflow.com/a/4239019 (o comentário
-    cita a origem, mas não declara a licença)
+- Trechos do Stack Overflow herdados em Utils.kt — nenhum permanece desde
+  25/09/2026 (pendência P-AV11 encerrada). Registro, para quem comparar com
+  o upstream: isServiceRunning (CC BY-SA 3.0, https://stackoverflow.com/a/5921190)
+  foi substituída por uma marca de execução do próprio MalwareScannerService;
+  isNetworkAvailable (https://stackoverflow.com/a/4239019, sem licença
+  declarada no comentário) foi reescrita com NetworkCapabilities;
+  isPackageInstalled (CC BY-SA 3.0, https://stackoverflow.com/a/6758962)
+  saiu na entrega 1.3 com o caminho Tor/Orbot, único que a usava.
 
 
 3. Dependências (Maven), conforme gradle/libs.versions.toml
@@ -208,13 +210,10 @@ Fato de licença, sem parecer jurídico:
   com a AGPL-3.0 na direção usada aqui: código sob essas licenças pode ser
   incorporado a uma obra AGPL-3.0, mantendo-se os avisos de copyright e de
   licença de cada componente.
-- ⚠️ Trechos de Utils.kt creditados ao Stack Overflow (seção 2) são
-  CC BY-SA 3.0. A Creative Commons declara compatibilidade unidirecional com
-  a GPLv3 apenas para a CC BY-SA **4.0**; a 3.0 não tem essa declaração.
-  Situação herdada do upstream. Decisão do FortiSafe (16/09/2026): reescrever
-  as três funções (isServiceRunning, isPackageInstalled, isNetworkAvailable)
-  com código próprio, sem o trecho do Stack Overflow, antes da primeira
-  versão publicada — e então remover este item e o da seção 2.
+- Trechos do Stack Overflow sob CC BY-SA 3.0 (sem compatibilidade declarada
+  com a GPLv3): o upstream trazia três em Utils.kt; o FortiSafe os removeu
+  ou reescreveu com código próprio em 25/09/2026, antes da primeira versão
+  publicada (P-AV11; detalhe na seção 2).
 
 
 7. Avisos

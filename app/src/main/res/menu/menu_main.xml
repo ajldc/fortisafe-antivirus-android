@@ -9,10 +9,6 @@
         android:icon="@android:drawable/ic_media_play"
         app:showAsAction="always" />
     <item
-        android:id="@+id/toggleOnionRouting"
-        android:title="@string/lblOnionRoutingToggle"
-        android:checkable="true" />
-    <item
         android:id="@+id/mnuUpdateDatabase"
         android:title="@string/lblUpdateDatabase" />
     <item
@@ -24,10 +20,6 @@
     <item
         android:id="@+id/toggleExtended"
         android:title="@string/lblExtendedDatabaseToggle"
-        android:checkable="true" />
-    <item
-        android:id="@+id/toggleLinkScanner"
-        android:title="@string/lblLinkScannerToggle"
         android:checkable="true" />
     <item
         android:id="@+id/toggleRealtime"
