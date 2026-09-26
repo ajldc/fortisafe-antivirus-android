@@ -1,22 +1,151 @@
 <resources>
     <!--
-      Tema do app (entrega 1.1): o DayNight do AppCompat com os tokens da marca.
-      A camada de design completa da D-AV13 (Material 3, barra inferior) nasce
-      nas entregas seguintes; aqui só a cor.
+      Tema do app: o DayNight do AppCompat com os tokens da marca (entrega 1.1) e
+      a camada visual da D-AV13 (entrega 1.4) feita só com views do AppCompat —
+      sem Material nem Compose, para não trazer dependência nova. Raio 10–14 dp,
+      sem sombra e sem gradiente (design-app.md §2).
     -->
     <style name="Theme.FortiSafe" parent="Theme.AppCompat.DayNight.NoActionBar">
         <item name="colorPrimary">@color/fortisafe_bar</item>
         <item name="colorPrimaryDark">@color/fortisafe_status_bar</item>
         <item name="colorAccent">@color/fortisafe_green</item>
+        <item name="colorControlActivated">@color/fortisafe_green</item>
         <item name="android:colorBackground">@color/fortisafe_background</item>
         <item name="android:windowBackground">@color/fortisafe_background</item>
+        <item name="android:textColorPrimary">@color/fortisafe_text</item>
+        <item name="android:textColorSecondary">@color/fortisafe_text_secondary</item>
     </style>
 
-    <style name="Theme.AppCompat.Translucent">
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowBackground">@android:color/transparent</item>
-        <item name="android:colorBackgroundCacheHint">@null</item>
-        <item name="android:windowIsTranslucent">true</item>
-        <item name="android:windowAnimationStyle">@android:style/Animation</item>
+    <!-- Raiz dos estilos com ponto no nome (o aapt2 infere o pai pelo prefixo). -->
+    <style name="FortiSafe" />
+
+    <!-- Cabeçalho das telas: nome do produto. -->
+    <style name="FortiSafe.Cabecalho">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">16dp</item>
+        <item name="android:paddingTop">14dp</item>
+        <item name="android:paddingBottom">6dp</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/fortisafe_text</item>
+    </style>
+
+    <!-- Título de seção (Ajustes, Detalhe). -->
+    <style name="FortiSafe.Secao">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/fortisafe_text_support</item>
+    </style>
+
+    <style name="FortiSafe.Cartao">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">12dp</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:padding">16dp</item>
+        <item name="android:background">@drawable/bg_cartao</item>
+    </style>
+
+    <style name="FortiSafe.CartaoTitulo">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/fortisafe_text</item>
+    </style>
+
+    <style name="FortiSafe.Corpo">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:lineSpacingExtra">2dp</item>
+        <item name="android:textColor">@color/fortisafe_text_secondary</item>
+    </style>
+
+    <style name="FortiSafe.Apoio">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/fortisafe_text_support</item>
+    </style>
+
+    <!-- Chave com o texto à esquerda (Ajustes e cartão de tempo real). -->
+    <style name="FortiSafe.Chave">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">48dp</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/fortisafe_text</item>
+    </style>
+
+    <style name="FortiSafe.Botao" parent="Widget.AppCompat.Button">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">48dp</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">16dp</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:stateListAnimator">@null</item>
+    </style>
+
+    <style name="FortiSafe.Botao.Primario">
+        <item name="android:background">@drawable/bg_botao_primario</item>
+        <item name="android:textColor">@color/fortisafe_on_button</item>
+    </style>
+
+    <style name="FortiSafe.Botao.Perigo">
+        <item name="android:background">@drawable/bg_botao_perigo</item>
+        <item name="android:textColor">@color/fortisafe_on_button</item>
+    </style>
+
+    <style name="FortiSafe.Botao.Secundario">
+        <item name="android:background">@drawable/bg_botao_secundario</item>
+        <item name="android:textColor">@color/fortisafe_green</item>
+    </style>
+
+    <!-- Ação em forma de link (VirusTotal, Contestar, Política de privacidade). -->
+    <style name="FortiSafe.Link">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">48dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/fortisafe_green</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
+    </style>
+
+    <!-- Aba da barra inferior (Início · Histórico · Ajustes). -->
+    <style name="FortiSafe.Aba">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:minHeight">56dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:drawablePadding">2dp</item>
+        <item name="android:paddingTop">6dp</item>
+        <item name="android:paddingBottom">6dp</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
+    </style>
+
+    <!-- Subaba do Histórico (Detecções · Detalhes técnicos). -->
+    <style name="FortiSafe.Subaba">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:minHeight">44dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
     </style>
 </resources>

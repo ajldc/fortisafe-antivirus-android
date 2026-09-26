@@ -1,18 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
   Tokens de cor do FortiSafe Antivírus, tema claro (D-AV13, docs/design-app.md
-  do repositório de documentação). O tema escuro está em values-night/colors.xml.
-  Contraste WCAG AA de cada par ainda a medir (pendência da Fase 1).
+  do repositório de documentação, §2). O tema escuro está em
+  values-night/colors.xml, com os mesmos nomes. Contraste WCAG AA de cada par
+  ainda a medir (pendência da Fase 1).
 -->
 <resources>
     <!-- Fundo da tela -->
     <color name="fortisafe_background">#F8FAFD</color>
-    <!-- Cartão e barras (a Toolbar usa ?attr/colorPrimary) -->
+    <!-- Cartão e barras -->
     <color name="fortisafe_bar">#FFFFFF</color>
+    <color name="fortisafe_card">#FFFFFF</color>
+    <color name="fortisafe_border">#DCE4F2</color>
     <!-- Barra de status: azul-marinho da marca, legível com ícones brancos em qualquer API -->
     <color name="fortisafe_status_bar">#001532</color>
+    <!-- Texto, texto secundário e texto de apoio -->
+    <color name="fortisafe_text">#001532</color>
+    <color name="fortisafe_text_secondary">#3C4A63</color>
+    <color name="fortisafe_text_support">#5A6478</color>
     <!-- Verde de destaque (ícone, link, controle ativo) -->
     <color name="fortisafe_green">#056512</color>
+    <!-- Verde de botão (fundo, texto branco) -->
+    <color name="fortisafe_button_green">#056512</color>
+    <color name="fortisafe_on_button">#FFFFFF</color>
     <!-- Botão e ícone de perigo -->
     <color name="fortisafe_danger">#B42318</color>
+    <!-- Faixa "protegido": fundo, borda, título -->
+    <color name="fortisafe_ok_bg">#E8F3EA</color>
+    <color name="fortisafe_ok_border">#B9DCC0</color>
+    <color name="fortisafe_ok_title">#023309</color>
+    <!-- Faixa "atenção": fundo, borda, texto -->
+    <color name="fortisafe_warn_bg">#FFFBF0</color>
+    <color name="fortisafe_warn_border">#F5D78A</color>
+    <color name="fortisafe_warn_text">#8A5A00</color>
+    <!-- Faixa "risco": fundo, borda, título, texto -->
+    <color name="fortisafe_risk_bg">#FFF5F4</color>
+    <color name="fortisafe_risk_border">#F4C7C3</color>
+    <color name="fortisafe_risk_title">#7A1A12</color>
+    <color name="fortisafe_risk_text">#B42318</color>
 </resources>

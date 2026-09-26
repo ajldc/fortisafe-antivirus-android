@@ -67,22 +67,13 @@
         android:theme="@style/Theme.FortiSafe"
         android:usesCleartextTraffic="false"
         tools:targetApi="31">
-        <activity
-            android:name=".NotificationPromptActivity"
-            android:exported="false"
-            android:launchMode="singleInstance"
-            android:theme="@style/Theme.AppCompat.Translucent"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:noHistory="true"
-            android:excludeFromRecents="true" />
         <!--
           Sem screenOrientation="portrait": com targetSdk 36 a trava é ignorada em
           telas com menor largura >= 600dp. configChanges cobre rotação e
-          redimensionamento sem recriar a Activity, para a varredura em curso e o
-          log sobreviverem (entrega 1.2; matriz permissões × Play, seção
-          componentes-e-hardening). A tela nova da D-AV13 tira esse estado da
-          Activity.
+          redimensionamento sem recriar a Activity (entrega 1.2; matriz
+          permissões × Play, seção componentes-e-hardening). Desde a entrega 1.4
+          o estado da verificação manual também vive fora da Activity e
+          sobrevive a uma recriação (tema escuro, idioma).
         -->
         <activity
             android:name=".MainActivity"
@@ -95,6 +86,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!--
+          Onboarding em cinco passos (entrega 1.4; D-AV21).
+        -->
+        <activity
+            android:name=".OnboardingActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize|screenLayout"
+            android:exported="false" />
+        <!--
+          Detalhe da detecção (entrega 1.5): substitui a NotificationPromptActivity
+          do upstream; a notificação abre a evidência antes de qualquer ação.
+        -->
+        <activity
+            android:name=".DetalheDeteccaoActivity"
+            android:exported="false" />
         <activity
             android:name=".ShareScanner"
             android:exported="true">
@@ -110,7 +115,7 @@
             android:enabled="true"
             android:foregroundServiceType="specialUse"
             android:exported="false"
-            android:label="Realtime Malware Scanner" />
+            android:label="@string/lblNotificationRealtimeTitle" />
 
         <!--
           Religa o tempo real no boot e depois de atualizar o próprio app (entrega

@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Textos da interface das entregas 1.4 e 1.5 em português do Brasil. Ver values/strings_ui.xml. -->
+<resources>
+    <string name="aba_inicio">Início</string>
+    <string name="aba_historico">Histórico</string>
+    <string name="aba_ajustes">Ajustes</string>
+
+    <string name="estado_protegido_titulo">Protegido</string>
+    <string name="estado_atencao_titulo">Atenção</string>
+    <string name="estado_risco_titulo">Risco detectado</string>
+    <string name="estado_inconclusivo_titulo">Inconclusivo</string>
+    <string name="estado_protegido_texto">Última verificação: %1$s. Nenhum risco pendente.</string>
+    <plurals name="estado_risco_texto">
+        <item quantity="one">Possível coincidência com a base FortiSafe em %d item. Veja a evidência antes de decidir.</item>
+        <item quantity="many">Possível coincidência com a base FortiSafe em %d itens. Veja a evidência antes de decidir.</item>
+        <item quantity="other">Possível coincidência com a base FortiSafe em %d itens. Veja a evidência antes de decidir.</item>
+    </plurals>
+    <string name="estado_motivo_sem_base">Ainda não há base de assinaturas no aparelho. Sem ela, nada pode ser comparado.</string>
+    <string name="estado_motivo_nunca_verificou">Nenhuma verificação foi concluída ainda.</string>
+    <string name="estado_motivo_ultima_sem_base">A última verificação não comparou nada: a base de assinaturas não estava carregada.</string>
+    <string name="estado_motivo_ultima_cancelada">A última verificação foi interrompida antes do fim.</string>
+    <string name="estado_motivo_sem_acesso">Sem acesso aos arquivos: downloads e outros arquivos do aparelho não são verificados.</string>
+    <plurals name="estado_motivo_base_velha">
+        <item quantity="one">A base de assinaturas tem %d dia.</item>
+        <item quantity="many">A base de assinaturas tem %d dias.</item>
+        <item quantity="other">A base de assinaturas tem %d dias.</item>
+    </plurals>
+    <string name="estado_motivo_tempo_real_desligado">A proteção em tempo real está desligada.</string>
+    <string name="estado_motivo_apps_sem_consentimento">Os apps instalados não são verificados: falta o seu consentimento.</string>
+
+    <string name="correcao_ver_evidencia">Ver a evidência</string>
+    <string name="correcao_baixar_base">Baixar a base</string>
+    <string name="correcao_atualizar_base">Atualizar a base</string>
+    <string name="correcao_acesso_arquivos">Permitir acesso aos arquivos</string>
+    <string name="correcao_ligar_tempo_real">Ligar a proteção em tempo real</string>
+    <string name="correcao_consentimento">Rever o consentimento</string>
+
+    <string name="inicio_verificar_agora">Verificar agora</string>
+    <string name="inicio_cancelar_verificacao">Cancelar a verificação</string>
+    <string name="inicio_verificando">Verificando. Os detalhes aparecem no Histórico.</string>
+    <string name="inicio_ultima_verificacao">Última verificação: %1$s, %2$s.</string>
+    <string name="inicio_nada_para_verificar">Nada está marcado para verificar. Escolha o que verificar em Ajustes.</string>
+    <string name="inicio_base">Base de assinaturas %1$s</string>
+    <string name="inicio_base_carregada">Base de assinaturas %1$s · %2$s assinaturas carregadas</string>
+    <string name="resultado_limpa">nenhuma coincidência</string>
+    <string name="resultado_com_coincidencias">possíveis coincidências encontradas</string>
+    <string name="resultado_sem_base">sem base carregada</string>
+    <string name="resultado_cancelada">interrompida</string>
+
+    <string name="cartao_apps_titulo">Apps instalados</string>
+    <string name="cartao_apps_ligado">Verificados em cada verificação e, com o tempo real ligado, ao serem instalados ou atualizados.</string>
+    <string name="cartao_apps_fora_do_escopo">Fora da verificação. Você pode incluí-los em Ajustes.</string>
+    <string name="cartao_apps_sem_consentimento">Não verificados: o app não lê a lista de apps sem o seu consentimento. Toque para rever.</string>
+    <string name="cartao_arquivos_titulo">Arquivos e downloads</string>
+    <string name="cartao_arquivos_ok">Acesso concedido. Verificados em cada verificação.</string>
+    <string name="cartao_arquivos_fora_do_escopo">Acesso concedido, mas fora da verificação. Você pode incluí-los em Ajustes.</string>
+    <string name="cartao_arquivos_sem_acesso">Sem acesso aos arquivos. Toque para permitir.</string>
+    <string name="cartao_tempo_real_titulo">Proteção em tempo real</string>
+    <string name="tempo_real_ligado_completo">Ligada: arquivos novos ou alterados e apps instalados ou atualizados são verificados na hora.</string>
+    <string name="tempo_real_ligado_arquivos">Ligada: arquivos novos ou alterados são verificados na hora.</string>
+    <string name="tempo_real_limitada_apps">Ligada, com proteção de arquivos limitada: sem acesso aos arquivos, só os apps instalados ou atualizados são verificados.</string>
+    <string name="tempo_real_limitada_nada">Ligada, com proteção de arquivos limitada: sem acesso aos arquivos, nada é verificado em tempo real.</string>
+    <string name="tempo_real_desligado">Desligada.</string>
+    <string name="tempo_real_nao_ligou">Não foi possível ligar a proteção em tempo real agora. Tente de novo.</string>
+
+    <string name="historico_deteccoes">Detecções</string>
+    <string name="historico_detalhes_tecnicos">Detalhes técnicos</string>
+    <string name="historico_vazio">Nenhuma detecção registrada.</string>
+    <string name="historico_linha">%1$s · %2$s</string>
+    <string name="deteccao_estado_ativa">aguardando sua decisão</string>
+    <string name="deteccao_estado_ignorada">ignorada</string>
+    <string name="deteccao_estado_resolvida">resolvida</string>
+    <string name="deteccao_estado_autoteste">autoteste</string>
+    <string name="deteccao_estado_sumiu">o arquivo não existe mais</string>
+
+    <string name="detalhe_autoteste_titulo">Autoteste</string>
+    <string name="detalhe_autoteste_texto">Coincidência esperada: este arquivo foi gravado pelo autoteste do app e não muda o estado de proteção.</string>
+    <string name="detalhe_coincidencia">Possível coincidência com a base FortiSafe (%1$s).</string>
+    <string name="detalhe_evidencia">Evidência</string>
+    <string name="detalhe_rotulo_arquivo">Arquivo</string>
+    <string name="detalhe_rotulo_app">App</string>
+    <string name="detalhe_rotulo_algoritmo">Algoritmo</string>
+    <string name="detalhe_rotulo_hash">Hash</string>
+    <string name="detalhe_rotulo_base">Base</string>
+    <string name="detalhe_rotulo_quando">Quando</string>
+    <string name="detalhe_rotulo_origem">Origem</string>
+    <string name="detalhe_rotulo_sha256">SHA-256 completo</string>
+    <string name="origem_manual">Verificação manual</string>
+    <string name="origem_tempo_real">Proteção em tempo real</string>
+    <string name="origem_instalacao">App instalado ou atualizado</string>
+    <string name="origem_compartilhado">Arquivo compartilhado com o app</string>
+    <string name="detalhe_aviso_falso_positivo">A comparação usa assinaturas de malware conhecido e pode errar: um arquivo legítimo pode coincidir por acaso. Se você confia neste arquivo ou app, conteste a detecção.</string>
+    <string name="detalhe_excluir">Excluir arquivo</string>
+    <string name="detalhe_virustotal">Consultar no VirusTotal</string>
+    <string name="detalhe_contestar">Contestar esta detecção</string>
+    <string name="detalhe_contestar_assunto">[FortiSafe Antivírus] contestação de detecção</string>
+    <string name="detalhe_contestar_texto">Quero contestar esta detecção do FortiSafe Antivírus.\n\n%1$s</string>
+    <string name="detalhe_contestar_escolher">Enviar a contestação por</string>
+    <string name="detalhe_nao_encontrada">Esta detecção não está mais no histórico.</string>
+    <string name="detalhe_estado_ignorada">Você ignorou esta detecção. O mesmo arquivo não vai gerar um novo aviso.</string>
+    <string name="detalhe_estado_resolvida">Detecção resolvida: o arquivo ou app foi removido.</string>
+    <string name="detalhe_estado_sumiu">O arquivo não está mais neste lugar.</string>
+    <string name="detalhe_desinstalar_sem_consentimento">Para oferecer a desinstalação, o app precisa do seu consentimento para ler a lista de apps.</string>
+    <string name="detalhe_desinstalado">App desinstalado.</string>
+    <string name="vt_dialogo_titulo">Consultar no VirusTotal?</string>
+    <string name="vt_dialogo_texto">O navegador vai abrir o site VirusTotal.com com o código SHA-256 deste arquivo. O arquivo não é enviado, só o código. O site verá o endereço IP e os dados do navegador e segue a política de privacidade dele.</string>
+    <string name="vt_abrir">Abrir o navegador</string>
+    <string name="vt_sem_navegador">Nenhum app consegue abrir o endereço.</string>
+
+    <string name="notif_deteccao_titulo">Possível coincidência com a base FortiSafe</string>
+    <string name="notif_deteccao_titulo_autoteste">Autoteste: coincidência esperada</string>
+    <string name="notif_deteccao_texto">%1$s, base %2$s</string>
+    <string name="notif_deteccao_detalhe">%1$s\n%2$s: %3$s\nBase FortiSafe %4$s\nToque para ver a evidência e decidir o que fazer.</string>
+    <string name="notif_deteccao_publica">Possível coincidência com a base FortiSafe. Desbloqueie o aparelho para ver os detalhes.</string>
+    <string name="notif_tempo_real_texto_completo">Arquivos novos ou alterados e apps instalados ou atualizados são comparados com assinaturas de malware conhecido</string>
+    <string name="notif_tempo_real_limitada_titulo">Proteção de arquivos limitada</string>
+    <string name="notif_tempo_real_limitada_texto">Sem acesso aos arquivos. Toque para rever.</string>
+    <string name="notif_tempo_real_subtexto">%1$s assinaturas · %2$s arquivos verificados</string>
+
+    <string name="base_descricao_data">baixada em %1$s</string>
+    <string name="base_descricao_ausente">não baixada</string>
+    <string name="bases_atualizacao_terminada">Atualização das bases terminada. Os detalhes técnicos estão no Histórico.</string>
+    <string name="bases_atualizando">Atualizando as bases…</string>
+    <string name="bases_assinatura_conferida">Cada arquivo da base tem a assinatura digital conferida antes de ser usado. Arquivo com assinatura inválida é descartado.</string>
+
+    <string name="log_coincidencia">Possível coincidência com a base FortiSafe: %1$s</string>
+    <string name="log_evidencia">%1$s %2$s · base FortiSafe %3$s</string>
+
+    <string name="ajustes_secao_protecao">Proteção</string>
+    <string name="ajustes_notificacoes">Notificações</string>
+    <string name="ajustes_notificacoes_permitidas">Permitidas: avisos de risco e o aviso fixo da proteção em tempo real.</string>
+    <string name="ajustes_notificacoes_negadas">Desligadas: a proteção continua funcionando, mas os riscos só aparecem aqui no app.</string>
+    <string name="ajustes_notificacoes_permitir">Permitir notificações</string>
+    <string name="ajustes_secao_escopo">O que verificar</string>
+    <string name="escopo_sistema">Arquivos do sistema (/system)</string>
+    <string name="escopo_apps">Apps instalados</string>
+    <string name="escopo_externo">Armazenamento do aparelho (Downloads e outras pastas)</string>
+    <string name="escopo_removivel">Cartão de memória e USB</string>
+    <string name="escopo_apps_precisa_consentimento">Precisa do seu consentimento para ler a lista de apps.</string>
+    <string name="ajustes_secao_bases">Bases de assinaturas</string>
+    <string name="ajustes_secao_privacidade">Privacidade</string>
+    <string name="ajustes_consentimento_dado">Lista de apps instalados: você concordou em %1$s. Ela só é lida neste aparelho.</string>
+    <string name="ajustes_consentimento_ausente">Lista de apps instalados: sem consentimento. O app não lê a lista.</string>
+    <string name="ajustes_revogar">Revogar o consentimento</string>
+    <string name="ajustes_revogar_titulo">Revogar o consentimento?</string>
+    <string name="ajustes_revogar_texto">O app deixa de ler a lista de apps instalados. Os apps saem da verificação e da proteção em tempo real. Você pode concordar de novo quando quiser.</string>
+    <string name="ajustes_revogar_botao">Revogar</string>
+    <string name="ajustes_revogado">Consentimento revogado. O app não lê mais a lista de apps.</string>
+    <string name="ajustes_politica">Política de privacidade</string>
+    <string name="ajustes_secao_ferramentas">Ferramentas</string>
+    <string name="ajustes_autoteste">Fazer o autoteste</string>
+    <string name="ajustes_autoteste_descricao">Grava três arquivos de teste inofensivos na pasta do próprio app e confere se a verificação os reconhece.</string>
+    <string name="ajustes_secao_sobre">Sobre</string>
+    <string name="ajustes_creditos">Créditos e licenças</string>
+    <string name="creditos_codigo_fonte">Código-fonte (AGPL-3.0): %1$s</string>
+
+    <string name="politica_resumo">Resumo de privacidade do FortiSafe Antivírus (Tascom Global Network LLC):\n\n• A verificação acontece neste aparelho. Nenhum arquivo seu é enviado a lugar nenhum, nem quando há coincidência.\n\n• A lista de apps instalados só é lida depois do seu consentimento, e só neste aparelho.\n\n• O app só se conecta à internet para baixar as bases de assinaturas, por HTTPS. Como em toda conexão, o servidor vê o endereço IP do aparelho.\n\n• A consulta ao VirusTotal só acontece se você tocar nela numa detecção e confirmar: o navegador abre o site com o código (hash) do arquivo.\n\n• Sem anúncios, sem análise de uso e sem relatório de falhas.\n\n• Nada do app vai para o backup na nuvem.\n\nContato de privacidade: privacy@fortisafe.net. A política completa será publicada em fortisafe.net.</string>
+
+    <string name="autoteste_titulo">Autoteste</string>
+    <string name="autoteste_falhou_gravar">O autoteste falhou: não foi possível gravar os arquivos de teste na pasta do app.</string>
+    <string name="autoteste_sem_base">Os arquivos de teste foram gravados, mas não há base de assinaturas para compará-los. Baixe a base e repita o autoteste.</string>
+    <string name="autoteste_em_andamento">Autoteste em andamento…</string>
+    <string name="autoteste_ok">Autoteste concluído: os três arquivos de teste foram reconhecidos. Eles não mudam o estado de proteção.</string>
+    <string name="autoteste_falhou_reconhecer">O autoteste falhou: %1$d de %2$d arquivos de teste foram reconhecidos.</string>
+
+    <string name="onb_passo">Passo %1$d de %2$d</string>
+    <string name="onb_agora_nao">Agora não</string>
+    <string name="onb_continuar">Continuar</string>
+    <string name="onb1_titulo">FortiSafe Antivírus</string>
+    <string name="onb1_corpo">O que o app faz\n• Compara os apps instalados e os arquivos do aparelho com assinaturas de malware conhecido.\n• Funciona sem internet depois de baixar a base de assinaturas.\n• Avisa quando algo coincide, mostra a evidência e deixa a decisão com você.\n\nO que o app não faz\n• Não olha o conteúdo de conversas, fotos nem senhas: de cada arquivo calcula só a impressão digital (hash).\n• Não filtra sites nem links.\n• Não analisa o comportamento dos apps.</string>
+    <string name="onb1_comecar">Começar</string>
+    <string name="onb2_titulo">Verificar seus apps</string>
+    <string name="onb2_corpo">O FortiSafe Antivírus acessa a lista de apps instalados neste aparelho para verificar os arquivos de cada app em busca de malware: quando você inicia uma verificação e, se a proteção em tempo real estiver ligada, em segundo plano sempre que um app for instalado ou atualizado.\n\nA lista é processada neste aparelho e não é enviada ao FortiSafe nem a terceiros.\n\nSe você escolher “Agora não”, ainda poderá verificar arquivos e APKs compartilhados com o app, e poderá concordar depois. Você pode revogar o consentimento em Ajustes.</string>
+    <string name="onb2_concordo">Concordo</string>
+    <string name="onb3_titulo">Acesso aos arquivos</string>
+    <string name="onb3_corpo">Para verificar downloads, APKs baixados e os outros arquivos do aparelho, o Android exige o acesso a todos os arquivos.\n\nTudo acontece neste aparelho: nenhum arquivo é enviado. De cada arquivo, o app só calcula a impressão digital (hash) e a compara com a base.\n\nA próxima tela é do Android: ative a opção para o FortiSafe Antivírus e volte. Você pode desfazer isso a qualquer momento nos ajustes do Android.</string>
+    <string name="onb3_ja_concedido">O acesso aos arquivos já está concedido.</string>
+    <string name="onb4_titulo">Alertas na hora certa</string>
+    <string name="onb4_corpo">O app avisa por notificação quando algo coincide com a base de assinaturas. Sem propaganda e sem aviso de fim de verificação.\n\nCom a proteção em tempo real ligada, o Android mantém um aviso fixo enquanto ela funciona.\n\nSe você não permitir as notificações, a proteção continua funcionando e os riscos aparecem aqui no app.</string>
+    <string name="onb4_ja_permitido">As notificações já estão permitidas.</string>
+    <string name="onb5_titulo_baixar">Base de assinaturas</string>
+    <string name="onb5_titulo_pronta">Base pronta</string>
+    <string name="onb5_corpo">O app compara seus apps e arquivos com uma base de assinaturas de malware conhecido. A base vem da internet (até cerca de %1$s MB) e cada arquivo dela tem a assinatura digital conferida antes de ser usado. Depois do download, a verificação funciona sem internet.\n\nPor enquanto, a base só é atualizada quando você pede, em Ajustes.</string>
+    <string name="onb5_status_ausente">Nenhuma base baixada ainda.</string>
+    <string name="onb5_status_baixando">Baixando a base…</string>
+    <string name="onb5_status_pronta">Base %1$s.</string>
+    <string name="onb5_status_falhou">Não foi possível baixar a base agora. Você pode tentar de novo depois, em Ajustes.</string>
+    <string name="onb5_primeira_verificacao">Fazer a primeira verificação</string>
+    <string name="onb5_concluir_sem_base">Concluir sem baixar</string>
+</resources>

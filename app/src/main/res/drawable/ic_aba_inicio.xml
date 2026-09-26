@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Ícone da aba Início (casa). Desenho geométrico próprio. A cor vem do tint
+  aplicado no código (aba ativa em verde de destaque, inativa em texto de apoio).
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <path
+        android:fillColor="#FF000000"
+        android:pathData="M12,3L2,11.5H5V20H10V14.5H14V20H19V11.5H22Z" />
+</vector>

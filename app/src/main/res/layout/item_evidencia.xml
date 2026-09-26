@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Uma linha da evidência: rótulo e valor (selecionável, para copiar o hash). -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingTop="4dp"
+    android:paddingBottom="4dp">
+
+    <TextView
+        android:id="@+id/txtEvidenciaRotulo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/fortisafe_text_support"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/txtEvidenciaValor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/fortisafe_text"
+        android:textIsSelectable="true"
+        android:textSize="15sp" />
+</LinearLayout>

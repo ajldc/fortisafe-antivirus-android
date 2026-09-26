@@ -1,10 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Tokens de cor do FortiSafe Antivírus, tema escuro (D-AV13). -->
+<!-- Tokens de cor do FortiSafe Antivírus, tema escuro (D-AV13, design-app.md §2). -->
 <resources>
     <color name="fortisafe_background">#06101F</color>
     <color name="fortisafe_bar">#0E1C33</color>
+    <color name="fortisafe_card">#0E1C33</color>
+    <color name="fortisafe_border">#1E3050</color>
     <color name="fortisafe_status_bar">#06101F</color>
+    <color name="fortisafe_text">#E6ECF5</color>
+    <color name="fortisafe_text_secondary">#C5CFDF</color>
+    <color name="fortisafe_text_support">#9FB0CC</color>
     <!-- O verde da marca não tem contraste sobre fundo escuro; no escuro o destaque clareia -->
     <color name="fortisafe_green">#5FD17A</color>
+    <color name="fortisafe_button_green">#0A7A34</color>
+    <color name="fortisafe_on_button">#FFFFFF</color>
     <color name="fortisafe_danger">#D92D20</color>
+    <color name="fortisafe_ok_bg">#0C2A17</color>
+    <color name="fortisafe_ok_border">#14532D</color>
+    <color name="fortisafe_ok_title">#C9F2D3</color>
+    <color name="fortisafe_warn_bg">#2A2108</color>
+    <color name="fortisafe_warn_border">#5C4A12</color>
+    <color name="fortisafe_warn_text">#F5C451</color>
+    <color name="fortisafe_risk_bg">#2A0F0D</color>
+    <color name="fortisafe_risk_border">#5C1D18</color>
+    <color name="fortisafe_risk_title">#FFD3CE</color>
+    <color name="fortisafe_risk_text">#FF8A7D</color>
 </resources>
