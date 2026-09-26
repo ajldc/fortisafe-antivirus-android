@@ -17,8 +17,8 @@ plugins {
 // - fortisafe.bases.chaves — só o debug: caminho (absoluto ou relativo à raiz do
 //   repositório) de um .asc com chaves PÚBLICAS de teste, copiado para o recurso
 //   gerado raw/fortisafe_bases_chaves_debug. O release lê
-//   app/src/main/res/raw/fortisafe_bases_chaves.asc (a chave de produção é do
-//   André, entrega 2.6; o arquivo ainda não existe).
+//   app/src/main/res/raw/fortisafe_bases_chaves.asc (chaves de produção
+//   geradas em 26/09/2026, D-AV28; impressões em gradle.properties).
 // - Guarda: build de release sem impressão digital ou sem o .asc falha (fim deste
 //   arquivo). O debug compila sem nada disso e recusa atualizar as bases, com
 //   mensagem clara (falha fechada) — é assim que a CI roda.
