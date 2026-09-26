@@ -77,6 +77,7 @@
     <string name="detalhe_autoteste_titulo">Autoteste</string>
     <string name="detalhe_autoteste_texto">Coincidência esperada: este arquivo foi gravado pelo autoteste do app e não muda o estado de proteção.</string>
     <string name="detalhe_coincidencia">Possível coincidência com a base FortiSafe (%1$s).</string>
+    <string name="detalhe_arquivo_de_teste">Este é o arquivo de teste do FortiSafe. Ele é inofensivo e existe só para você ver como uma detecção aparece.</string>
     <string name="detalhe_evidencia">Evidência</string>
     <string name="detalhe_rotulo_arquivo">Arquivo</string>
     <string name="detalhe_rotulo_app">App</string>

@@ -89,6 +89,7 @@
     <string name="detalhe_autoteste_titulo">Self-test</string>
     <string name="detalhe_autoteste_texto">Expected match: this file was written by the app self-test and does not change the protection status.</string>
     <string name="detalhe_coincidencia">Possible match with the FortiSafe database (%1$s).</string>
+    <string name="detalhe_arquivo_de_teste">This is the FortiSafe test file. It is harmless and exists only so you can see how a detection looks.</string>
     <string name="detalhe_evidencia">Evidence</string>
     <string name="detalhe_rotulo_arquivo">File</string>
     <string name="detalhe_rotulo_app">App</string>
