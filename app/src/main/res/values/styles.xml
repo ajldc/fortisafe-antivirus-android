@@ -1,4 +1,17 @@
 <resources>
+    <!--
+      Tema do app (entrega 1.1): o DayNight do AppCompat com os tokens da marca.
+      A camada de design completa da D-AV13 (Material 3, barra inferior) nasce
+      nas entregas seguintes; aqui só a cor.
+    -->
+    <style name="Theme.FortiSafe" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/fortisafe_bar</item>
+        <item name="colorPrimaryDark">@color/fortisafe_status_bar</item>
+        <item name="colorAccent">@color/fortisafe_green</item>
+        <item name="android:colorBackground">@color/fortisafe_background</item>
+        <item name="android:windowBackground">@color/fortisafe_background</item>
+    </style>
+
     <style name="Theme.AppCompat.Translucent">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>

@@ -33,8 +33,9 @@ bases de assinaturas e distribuição próprias.
 | `targetSdk` | 34 | **36** |
 | Distribuição | IzzyOnDroid (o Hypatia original, da DivestOS, esteve no F-Droid) | **Google Play** (prevista) |
 
-Nenhuma dessas mudanças está aplicada ainda. O estado atual do código é o do
-upstream na versão 3.18.
+A identidade (primeira linha) foi aplicada na entrega 1.1, em 25/09/2026: nome,
+`applicationId`, ícone, cores e textos em pt-BR, en e es. As demais mudanças
+ainda não estão aplicadas; o resto do código é o do upstream na versão 3.18.
 
 ## O que faz — e o que não faz
 
@@ -141,6 +142,7 @@ estão em [`docs/UPSTREAM.md`](docs/UPSTREAM.md).
 
 ---
 
-**Identificadores.** `applicationId` planejado: `net.fortisafe.antivirus`
-(ainda não aplicado). ID atual, herdado do upstream: `org.maintainteam.hypatia`
-(namespace `us.spotco.malwarescanner`), versão 3.18.
+**Identificadores.** `applicationId`: `net.fortisafe.antivirus` (debug:
+`net.fortisafe.antivirus.debug`), aplicado na entrega 1.1. O namespace do
+código continua o do upstream, `us.spotco.malwarescanner`, e a versão ainda é
+a 3.18 herdada.

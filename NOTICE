@@ -33,8 +33,8 @@ integral está no arquivo LICENSE.
 Divergência do próprio upstream, registrada como fato: o app do Hypatia exibe
 "License: GPL-3.0" na tela e no log de inicialização (recurso app_license, no
 mesmo strings.xml), enquanto o arquivo LICENSE do repositório é a GNU
-AGPL-3.0. O FortiSafe segue o LICENSE (AGPL-3.0) e corrigirá o texto exibido
-quando a identidade do app for definida.
+AGPL-3.0. O FortiSafe segue o LICENSE (AGPL-3.0): desde a entrega 1.1
+(25/09/2026) o app exibe "AGPL-3.0-or-later" nos três idiomas.
 
 Principais autores do histórico git do Hypatia — autores com 5 ou mais
 commits entre 67 autores e 524 commits do branch `upstream-stable`, medidos
@@ -74,8 +74,11 @@ não participam dele, não o endossam e não respondem por ele.
   do upstream: Federico Fissore.
   Origem: https://github.com/arduino/Arduino/blob/master/arduino-core/src/cc/arduino/contributions/GPGDetachedSignatureVerifier.java
 
-- Ícones: Material Design Icons — Google / Android / AOSP.
-  Licença: Apache-2.0. https://google.github.io/material-design-icons/
+- Ícones: desde a entrega 1.1 (25/09/2026) o ícone do app, o da loja e o das
+  notificações são a marca FortiSafe (seção 8); o escudo do Material Design
+  Icons (Google, Apache-2.0) que o Hypatia usava saiu do repositório. Os
+  demais ícones exibidos vêm da própria plataforma Android
+  (android.R.drawable) e não são incorporados ao APK.
 
 - Trechos de app/src/main/java/us/spotco/malwarescanner/Utils.kt creditados a
   respostas do Stack Overflow, conforme os comentários no próprio código:
@@ -152,8 +155,11 @@ Fontes referenciadas em scripts/ sem licença declarada pelo upstream
 5. Traduções do upstream
 ------------------------
 
-Tradutores creditados no README do Hypatia (via Weblate). As traduções
-herdadas permanecem no repositório com esse crédito:
+Tradutores creditados no README do Hypatia (via Weblate). Desde a entrega 1.1
+(25/09/2026) o app traz só três idiomas — inglês, português do Brasil e
+espanhol (decisão B22 do Gate G0) —; os textos em pt-BR e em espanhol foram
+revistos e completados pelo FortiSafe a partir dessas traduções. As demais
+traduções continuam no histórico git deste repositório, com este crédito:
 
 - Africâner: Oswald van Ginkel
 - Árabe: abdelbasset jabrane, ABDO GM
@@ -198,7 +204,7 @@ Fato de licença, sem parecer jurídico:
   mecanismo da seção 13 acima. O arquivo traz ainda uma exceção do autor que
   permite seu uso como parte de uma biblioteca de software livre sem
   restrição.
-- Apache-2.0 e MIT (dependências e ícones) são compatíveis com a GPL-3.0 e
+- Apache-2.0 e MIT (dependências) são compatíveis com a GPL-3.0 e
   com a AGPL-3.0 na direção usada aqui: código sob essas licenças pode ser
   incorporado a uma obra AGPL-3.0, mantendo-se os avisos de copyright e de
   licença de cada componente.
@@ -220,3 +226,24 @@ Fato de licença, sem parecer jurídico:
   nem por qualquer das fontes de assinaturas citadas.
 - "Hypatia" é o nome do projeto de origem; "FortiSafe" é marca da Tascom
   Global Network LLC.
+
+
+8. Marcas
+---------
+
+"FortiSafe" e o logotipo da fechadura no círculo são marcas da Tascom Global
+Network LLC. Termo adicional nos termos da seção 7(e) da GNU AGPL-3.0: esta
+obra não concede nenhum direito de marca sobre o nome "FortiSafe" nem sobre o
+logotipo. O código continua sob a AGPL-3.0-or-later; quem distribuir uma
+versão modificada deve trocar o nome e o ícone.
+
+Arquivos que carregam a marca (entrega 1.1, 25/09/2026):
+
+- app/build.gradle — resValue app_name ("FortiSafe Antivirus", "FortiSafe Debug")
+- app/src/main/res/values*/strings.xml e app/src/debug/res/ — app_name e textos
+  com o nome do produto
+- app/src/main/res/drawable/ic_launcher_foreground.xml,
+  ic_launcher_monochrome.xml e ic_notification.xml
+- app/src/main/res/values/ic_launcher_background.xml (verde #056512)
+- app/src/main/res/mipmap-*/ic_launcher.png e ic_launcher_round.png
+- app/src/main/ic_launcher-playstore.png
