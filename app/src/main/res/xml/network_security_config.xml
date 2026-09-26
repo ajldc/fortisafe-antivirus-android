@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  API 24+: nenhum tráfego HTTP em claro. Âncoras de confiança padrão do
+  sistema. A autenticidade das bases não depende do TLS: cada arquivo é
+  conferido pela assinatura do FortiSafe (D-AV18).
+-->
+<network-security-config>
+    <base-config cleartextTrafficPermitted="false" />
+</network-security-config>

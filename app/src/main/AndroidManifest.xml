@@ -6,29 +6,67 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <!--
+      Acesso a todos os arquivos para verificar o armazenamento compartilhado e o
+      tempo real (D-AV6). Declaração e vídeo na Play: matriz permissões × Play,
+      seção MANAGE_EXTERNAL_STORAGE. Contingência: flavor semMes (G0, B9).
+    -->
     <uses-permission
         android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!--
+      Permissões legadas só até a API 29 (G0, B6); da 30 em diante vale o
+      MANAGE_EXTERNAL_STORAGE. Saem junto com requestLegacyExternalStorage
+      quando o minSdk chegar a 30 (hoje 21, D-AV14).
+    -->
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="29" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="29" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <!--
+      Lista de apps instalados para verificá-los contra a base, no aparelho. Só é
+      lida depois do consentimento do onboarding (D-AV21). Declaração na Play:
+      matriz permissões × Play, seção QUERY_ALL_PACKAGES.
+    -->
     <uses-permission
         android:name="android.permission.QUERY_ALL_PACKAGES"
         tools:ignore="QueryAllPackagesPermission" />
+    <!--
+      Pedir ao sistema a desinstalação de um app detectado: exigida desde o alvo
+      28; o Android sempre pede confirmação ao usuário. DELETE_PACKAGES é só do
+      sistema.
+    -->
     <uses-permission android:name="android.permission.REQUEST_DELETE_PACKAGES" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
 
+    <!--
+      allowBackup="false" + dataExtractionRules: nada do app vai para backup na
+      nuvem nem para transferência entre aparelhos (G0, B23; política de dados,
+      entrega 0.7). requestLegacyExternalStorage fica enquanto o minSdk for <= 29:
+      só tem efeito no Android 10, e sem ele a varredura e o tempo real ficariam
+      cegos ali (correção de 17/09/2026). Sem HTTP em claro:
+      usesCleartextTraffic cobre a API 23 e networkSecurityConfig a 24+; nas
+      APIs 21 e 22 a garantia é a guarda https:// no download (entrega 1.6).
+      largeHeap: revisão com medição de memória (teste T16, Android 17).
+    -->
     <application
-        android:allowBackup="true"
+        android:allowBackup="false"
+        android:dataExtractionRules="@xml/data_extraction_rules"
         android:name=".Hypatia"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:largeHeap="true"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.FortiSafe">
+        android:theme="@style/Theme.FortiSafe"
+        android:usesCleartextTraffic="false"
+        tools:targetApi="31">
         <activity
             android:name=".NotificationPromptActivity"
             android:exported="false"
@@ -38,12 +76,19 @@
             android:layout_height="wrap_content"
             android:noHistory="true"
             android:excludeFromRecents="true" />
+        <!--
+          Sem screenOrientation="portrait": com targetSdk 36 a trava é ignorada em
+          telas com menor largura >= 600dp. configChanges cobre rotação e
+          redimensionamento sem recriar a Activity, para a varredura em curso e o
+          log sobreviverem (entrega 1.2; matriz permissões × Play, seção
+          componentes-e-hardening). A tela nova da D-AV13 tira esse estado da
+          Activity.
+        -->
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
-            android:configChanges="orientation|keyboardHidden"
-            android:exported="true"
-            android:screenOrientation="portrait">
+            android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize|screenLayout"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -67,20 +112,23 @@
             android:exported="false"
             android:label="Realtime Malware Scanner" />
 
+        <!--
+          Religa o tempo real no boot e depois de atualizar o próprio app (entrega
+          1.2; matriz permissões × Play, seções boot-e-eventos-de-pacote e
+          target-api-36). exported="false": BOOT_COMPLETED e MY_PACKAGE_REPLACED
+          vêm do sistema e continuam chegando. MY_PACKAGE_REPLACED exige filtro
+          SEM <data>. Saíram: QUICKBOOT_POWERON (ação de fabricante, não chega com
+          exported="false"), PACKAGE_REPLACED e PACKAGE_ADDED (broadcast implícito
+          que não chega a receiver de manifesto em API 26+; a verificação de app
+          recém-instalado é receiver de contexto no serviço, entrega 1.5).
+        -->
         <receiver
             android:name=".EventReceiver"
             android:enabled="true"
-            android:exported="true"
-            android:label="Event Handler">
+            android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
-                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.PACKAGE_REPLACED" />
-                <action android:name="android.intent.action.PACKAGE_ADDED" />
-
-                <data android:scheme="package" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
             </intent-filter>
         </receiver>
     </application>

@@ -13,7 +13,9 @@ android {
         applicationId "net.fortisafe.antivirus"
         resValue "string", "app_name", "FortiSafe Antivirus"
         minSdkVersion 21
-        targetSdkVersion 34
+        // targetSdk 36 (entrega 1.2): exigência da Play para apps novos desde
+        // 31/08/2026. minSdk 21 (D-AV14).
+        targetSdkVersion 36
         if (System.properties.containsKey('versionCodeOverride')) {
             versionCode System.getProperty('versionCodeOverride') as Integer
         } else {
