@@ -23,5 +23,5 @@
     <string name="bases_aceite_descartado">As bases guardadas não conferem mais com as chaves de assinatura desta versão do app e foram descartadas. Atualize as bases.</string>
     <string name="bases_emergencia_aplicada">Lista de emergência do FortiSafe aplicada (versão %1$s).</string>
     <string name="bases_emergencia_recusada">A lista de emergência do FortiSafe não foi atualizada; continua valendo a anterior.</string>
-    <string name="bases_emergencia_expirada">Atenção: a lista de emergência do FortiSafe venceu em %1$s. Ela continua valendo até chegar uma mais nova.</string>
+    <string name="bases_emergencia_expirada">Atenção: a lista de emergência do FortiSafe venceu em %1$s. Até chegar uma mais nova, ela continua retirando bases revogadas, mas as exceções de falso positivo deixam de valer.</string>
 </resources>
